@@ -1,0 +1,19 @@
+<table class="table">
+
+    <tr>
+        <td>Товар:</td>
+        <td>Цена:</td>
+        <td></td>
+    </tr>
+
+
+
+    <?php
+    foreach ($data['cart'] as $good){
+
+        ?>
+        <tr>
+            <td><?=$good['name']?></td>
+            <td><?=$good['price']?></td>
+        </tr>
+    <?php }?>

@@ -1,0 +1,13 @@
+<div class="col-md-9">
+    <h3>Товары</h3>
+    <br>
+
+    <div class="container">
+        <?php foreach($data['goods'] as $good){ ?>
+            <div class="col-md-3 product-box">
+                <p><a href="/products/view/<?=$good['alias']?>/"><?=$good['name']?></a></p>
+                <div><img src="<?=$good['photo']?>" width="200px"> </div>
+                <p class="price"><b><?=$good['price']?></b> грн.</p>
+            </div>
+        <?php } ?>
+    </div>

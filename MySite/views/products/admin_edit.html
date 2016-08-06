@@ -1,0 +1,29 @@
+<h3>Редактировать товар</h3><br/>
+<form method="post" action="">
+    <input type="hidden" name="id" value="<?=$data['goods']['id']?>" />
+    <div class="form-group">
+        <label for="alias">Алиас</label>
+        <input type="text" id="alias" name="alias" value="<?=$data['goods']['alias']?>" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="title">Название</label>
+        <input type="text" id="name" name="name" value="<?=$data['goods']['name']?>" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="title">Цена</label>
+        <input type="text" id="price" name="price" value="<?=$data['goods']['price']?>" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="title">Фото</label>
+        <input type="file" id="photo" name="photo" value="" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="content">Описание</label>
+        <textarea name="description" id="description" class="form-control" style="width: 950px; height: 400px"><?=$data['goods']['description']?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="is_published">Опубликовать товар на сайте?</label>
+        <input type="checkbox" name="is_published" id="is_published" <?php if( $data['goods']['is_published'] ) { ?>checked="checked" <?php } ?> />
+    </div>
+    <input type="submit" class="btn btn-success" />
+</form>
