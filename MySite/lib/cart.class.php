@@ -1,5 +1,5 @@
 <?php
-class Cart{
+class Cart {
     private $products;
 
     public function __construct(){
@@ -10,24 +10,21 @@ class Cart{
         return $this->products;
     }
 
-    public function addProduct($id){
-        $id = (int)$id;
-
-        if (!in_array($id, $this->products)) {
-            array_push($this->products, $id);
-        }
-
-        Cookie::set('books', serialize($this->products));
+    public function addProduct($product){
+        if (!in_array($product, $this->products)) {
+            $this->products[] = $product;
+            }
+        Cookie::set('products', serialize($this->products));
     }
 
     public function deleteProduct($id){
         $id = (int)$id;
         $key = array_search($id, $this->products);
-        if($key !== false){
+        if($key == false){
             unset($this->products[$key]);
         }
         Cookie::set('products', serialize($this->products));
-        Router::redirect('/products/cart/');
+        Router::redirect('/cart/');
     }
 
     public function clear(){

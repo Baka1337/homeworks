@@ -1,0 +1,21 @@
+<h3>Комментарии</h3><br/>
+<table class="table table-striped" style="width: 100%;">
+    <tr>
+        <td style="width: 5%;">#</td>
+        <td style="width: 10%;">Имя</td>
+        <td style="width: 25%;">Комментарий</td>
+        <td style="width: 10%;">Почта</td>
+        <td style="width: 70%;">Товар</td>
+        <td style="width: 50%;"></td>
+    </tr>
+    <?php foreach ($data as $comment) {?>
+        <tr>
+            <td><?=$comment['id']?></td>
+            <td><?=$comment['name']?></td>
+            <td><?=$comment['message']?></td>
+            <td><?=$comment['email']?></td>
+            <td><a href="<?=$comment['alias']?>"><?=$comment['product_name']?></a></td>
+            <td><a href="/admin/comments/delete/<?=$comment['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a></td>
+        </tr>
+    <?php }?>
+</table>

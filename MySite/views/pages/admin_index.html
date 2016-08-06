@@ -1,18 +1,57 @@
-<h3>Список страниц</h3><br/>
-<table class="table table-striped" style="width: 400px;">
-<?php foreach($data['pages'] as $page_data) { ?>
-    <tr>
-        <td><b><?=$page_data['title']?></b></td>
-        <td align="right">
-            <a href="/admin/pages/edit/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
-            <a href="/admin/pages/delete/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
-        </td>
-    </tr>
-<?php } ?>
-</table>
+<div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="area-top clearfix">
+                    <div class="pull-left header">
+                        <h3 class="title"><i class="icon-edit"></i>Добавление и редактирование статических страниц</h3>
+                        <h5><span>Добавление и редактирование статических страниц</span></h5>
+                    </div>
+                    <div class="pull-right padding-right newsbutton">
+                        <div class="action-nav-normal action-nav-line" style="display: inline-block;">
+                            <div class="action-nav-button nav-small" style="width:180px;">
+                                <a href="/admin/pages/add" title="Добавить страницу">
+                                    <i class="icon-file-alt"></i>
+                                    <span>Добавить страницу</span>
+                                </a>
+                                <span class="triangle-button red"><i class="icon-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container padded-right">
+            <!-- maincontent beginn -->
+                <div class="box">
+                    <div class="box-content">
 
-<br/>
+                        <table class="table table-normal table-hover">
+                            <thead>
+                            <tr>
+                                <td style="width: 35%">Название</td>
+                                <td style="width: 5%"><i class="icon-eye-open tip" data-original-title="Просмотров"></i></td>
+                                <td style="width: 5%"><i class="icon-comment-alt tip" data-original-title="Комментарии"></i></td>
+                                <td style="width: 5%"> Статус</td>
+                                <td style="width: 8%">Действие</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach($data['pages'] as $page_data) { ?>
+                                <tr><td><a href="/pages/view/<?=$page_data['alias']?>"><?=$page_data['title']?></a></td>
+                                <td style="text-align: center"><a data-original-title="Просмотров" class="status-info tip" href="/pages/view/<?=$page_data['alias']?>" target="_blank">1</a></td>
+                                <td align="center">0</td>
+                                <td style="text-align: center"><span class="status-success"><b><i class="icon-ok-sign"></i></b></span>
+                                <td>
+                                    <a href="/admin/pages/edit/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
+                                    <a href="/admin/pages/delete/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
+                            </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
 
-<div>
-    <a href="/admin/pages/add/"><button class="btn btn-sm btn-success">Создать страницу</button></a>
+                    </div>
+                </div>
+            <!-- maincontent end -->
+        </div>
+    </div>
 </div>

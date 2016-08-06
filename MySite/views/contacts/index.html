@@ -1,7 +1,65 @@
-<h3>Связатся с нами:</h3>
-<form action="" method="post">
-    <input type="text" class="form-control" name="name" placeholder="Ваше Имя" /><br/>
-    <input type="text" class="form-control" name="email" placeholder="Ваш Email" /><br/>
-    <textarea name="message" class="form-control" placeholder="Сообщение здесь"></textarea><br/>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить</button>
-</form>
+<ol class="breadcrumb">
+    <li><a href="/">Главная</a></li>
+    <li class="active">Связатся с нам</li>
+</ol>
+<h3>Связатся с нами:</h3><br/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="post">
+                <label for="name">Ваше имя</label>
+                <input type="text" class="form-control" name="name" placeholder="Ваше Имя" /><br/>
+                <label for="phone">Контактный телефон</label>
+                <input type="text" class="form-control" name="phone" placeholder="Ваш Телефон" /><br/>
+                <label for="email">Электронная почта</label>
+                <input type="text" class="form-control" name="email" placeholder="mail@domen.com" /><br/>
+                <label for="message">Ваш вопрос</label>
+                <textarea name="message" class="form-control" placeholder="Сообщение здесь" rows="5"></textarea><br/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить сообщение</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <p>
+                        <i class="fa fa-phone-square"></i>
+                        <span><a class="ringo-href" href="tel:+38093333-23-32">+38 (093) 333-23-32</a></span>
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope"></i>
+                        info@mysite.local
+                    </p>
+                    <p> <b class="label label-success">Киев</b><br>
+                        <i class="fa fa-home"></i>
+                        ул. Крещатик, 20/224.<br>
+                        <br/>
+                        <b>График работы:</b>
+                        <br>Пн. – Пт.: с 10:00 до 19:00, Сб.: с 10-16:00, Вс.: выходной
+                    </p>
+                    <p>
+                        <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+                    <div id="map" style="width: 80%; height: 200px;">
+                    <script type="text/javascript">
+                        ymaps.ready(init);
+                        ymaps.disableScrollZoom();
+                        var myMap,
+                            myPlacemark;
+
+                        function init(){
+                            myMap = new ymaps.Map("map", {
+                                center: [50.449660, 30.522870],
+                                zoom: 15
+                            });
+
+                            myPlacemark = new ymaps.Placemark([50.449660, 30.522870], {
+                                hintContent: 'Интернет-магазин Чая',
+                                balloonContent: 'ул. Крещатик, 20/224'
+                            });
+
+                            myMap.geoObjects.add(myPlacemark);
+                            myMap.behaviors.disable('scrollZoom');
+                        }
+                    </script>
+                    </div>
+                    </p>
+        </div>
+    </div>
+</div>

@@ -6,8 +6,6 @@ class Controller{
 
     protected $model;
 
-    protected $cart;
-
     protected $params;
 
     /**
@@ -35,4 +33,5 @@ class Controller{
         $this->data = $data;
         $this->params = App::getRouter()->getParams();
     }
+
 }

@@ -5,16 +5,16 @@ class Session{
     protected static $flash_message;
 
     public static function setFlash($message){
-        self::$flash_message = $message;
+        $_SESSION['flash_message']= $message;
     }
 
     public static function hasFlash(){
-        return !is_null(self::$flash_message);
+        return isset($_SESSION['flash_message']) && !is_null($_SESSION['flash_message']);
     }
 
     public static function flash(){
-        echo self::$flash_message;
-        self::$flash_message = null;
+        echo $_SESSION['flash_message'];
+        $_SESSION['flash_message'] = null;
     }
 
     public static function set($key, $value){

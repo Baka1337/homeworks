@@ -8,7 +8,7 @@ class PagesController extends Controller{
     }
 
     public function index(){
-        $this->data['pages'] = $this->model->getList();
+        Router::redirect('/');
     }
 
     public function view(){

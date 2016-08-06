@@ -1,0 +1,120 @@
+<?php $count=0?>
+<?php if (Session::get('login')) {?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="">
+                <div class="form-group">
+                    <label for="city">Город:</label>
+                    <input type="text" id="city" name="city" value="<?=$data['user']['city']?>" placeholder="Киев" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="delivery">Способ доставки:</label><br/>
+                    <input type="radio" name="delivery" value="1" /> Самовывоз из офиса (Киев) ул. Крещатик, 20/224, 3-й этаж, офис 315 — <b>бесплатно</b>
+                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <abbr title="Показать на карте" class="initialism">Показать на карте</abbr>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-block">
+                            <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+                            <div id="map" style="width: 100%; height: 157px;">
+                                <script type="text/javascript">
+                                    ymaps.ready(init);
+                                    ymaps.disableScrollZoom();
+                                    var myMap,
+                                        myPlacemark;
+
+                                    function init(){
+                                        myMap = new ymaps.Map("map", {
+                                            center: [50.449660, 30.522870],
+                                            zoom: 14
+                                        });
+
+                                        myPlacemark = new ymaps.Placemark([50.449660, 30.522870], {
+                                            hintContent: 'Интернет-магазин Чая',
+                                            balloonContent: 'ул. Крещатик, 20/224'
+                                        });
+
+                                        myMap.geoObjects.add(myPlacemark);
+                                        myMap.behaviors.disable('scrollZoom');
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <input type="radio" name="delivery" value="2" /> Курьером по Киеву — 35 грн <b>(Бесплатно от 600 грн.)</b><br/>
+                    <input type="radio" name="delivery" value="3" /> На склад "Новой почты" в Киеве — 15 грн <br/>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" id="surname" name="surname" value="<?=$data['user']['surname']?>" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" value="<?=$data['user']['name']?>" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="middle_name">Отчество:</label>
+                    <input type="text" id="middle_name" name="middle_name" value="<?=$data['user']['middlename']?>" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="text" id="phone" name="phone" value="0<?=$data['user']['phone']?>" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="payment_method">Форма оплаты:</label><br/>
+                    <input type="radio" name="payment_method" value="1"/> Наличными
+                    Оплата при получении товара (только гривнами)<br/>
+                    <input type="radio" name="payment_method" value="2" "/> Безналичная оплата с НДС<br/>
+                    <input type="radio" name="payment_method" value="3" /> Оплата по безналичному расчёту для физ.лиц (физ. лиц-предпринимателей)<br/>
+                </div>
+                <input type="submit" class="btn btn-success" value="Заказать"/>
+            </form>
+
+        </div>
+        <?php } else {?>
+            <?php Session::setFlash('Для заказа нужно зарегистрироватся или войти в аккаунт')?>
+            <?=Router::redirect('/users/login')?>
+        <?php }?>
+        <div class="col-md-6">
+            <?php if ($data['order']) {?>
+            <h3>
+                Ваша корзина:
+            </h3>
+            <table class="table table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                </tr>
+                </thead>
+                <?php foreach ($data['order'] as $order) {?>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="/products/view/<?=$order['alias']?>"><?=$order['name']?></a>
+                    </td>
+                    <td>
+                        <?=$order['quantity']?>
+                    </td>
+                    <td>
+                        <?=$order['quantity'] * $order['price']?> грн.
+                    </td>
+                </tr>
+                <?php $count = $count + $order['quantity'] * $order['price'];
+                }?>
+                </tbody>
+            </table>
+                <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+            <?php }?>
+        </div>
+    </div>
+</div>

@@ -82,7 +82,6 @@ class Router{
         $this->language = Config::get('default_language');
         $this->controller = Config::get('default_controller');
         $this->action = Config::get('default_action');
-
         $uri_parts = explode('?', $this->uri);
 
         // Get path like /lng/controller/action/param1/param2/.../...
@@ -106,6 +105,7 @@ class Router{
                 $this->controller = strtolower(current($path_parts));
                 array_shift($path_parts);
             }
+
             // Get action
             if ( current($path_parts) ){
                 $this->action = strtolower(current($path_parts));
@@ -117,10 +117,12 @@ class Router{
 
         }
 
+
     }
 
     public static function redirect($location){
         header("Location: $location");
+        exit;
     }
 
 }

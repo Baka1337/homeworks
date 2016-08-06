@@ -5,7 +5,6 @@ class App{
     protected static $router;
 
     public static $db;
-    public static $cart;
 
     /**
      * @return mixed
@@ -20,16 +19,15 @@ class App{
         self::$db = new DB(Config::get('db.host'), Config::get('db.user'), Config::get('db.password'), Config::get('db.db_name'));
 
         Lang::load(self::$router->getLanguage());
-
-        self::$cart = new Cart();
+        
 
         $controller_class = ucfirst(self::$router->getController()).'Controller';
         $controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction());
 
         $layout = self::$router->getRoute();
         if ( $layout == 'admin' && Session::get('role') != 'admin' ){
-            if ( $controller_method != 'admin_login' ){
-                Router::redirect('/admin/users/login');
+            if ( $controller_method != 'login' ){
+                Router::redirect('/users/login');
             }
         }
 
@@ -47,52 +45,5 @@ class App{
         $layout_path = VIEWS_PATH.DS.$layout.'.html';
         $layout_view_object = new View(compact('content'), $layout_path);
         echo $layout_view_object->render();
-    }
-
-    public static function getNameTranslite($string) {
-        $replace=array(
-            "'"=>"",
-            "`"=>"",
-            "а"=>"a","А"=>"a",
-            "б"=>"b","Б"=>"b",
-            "в"=>"v","В"=>"v",
-            "г"=>"g","Г"=>"g",
-            "д"=>"d","Д"=>"d",
-            "е"=>"e","Е"=>"e",
-            "ё"=>"e","Ё"=>"e",
-            "ж"=>"zh","Ж"=>"zh",
-            "з"=>"z","З"=>"z",
-            "и"=>"i","И"=>"i",
-            "й"=>"y","Й"=>"y",
-            "к"=>"k","К"=>"k",
-            "л"=>"l","Л"=>"l",
-            "м"=>"m","М"=>"m",
-            "н"=>"n","Н"=>"n",
-            "о"=>"o","О"=>"o",
-            "п"=>"p","П"=>"p",
-            "р"=>"r","Р"=>"r",
-            "с"=>"s","С"=>"s",
-            "т"=>"t","Т"=>"t",
-            "у"=>"u","У"=>"u",
-            "ф"=>"f","Ф"=>"f",
-            "х"=>"h","Х"=>"h",
-            "ц"=>"c","Ц"=>"c",
-            "ч"=>"ch","Ч"=>"ch",
-            "ш"=>"sh","Ш"=>"sh",
-            "щ"=>"sch","Щ"=>"sch",
-            "ъ"=>"","Ъ"=>"",
-            "ы"=>"y","Ы"=>"y",
-            "ь"=>"","Ь"=>"",
-            "э"=>"e","Э"=>"e",
-            "ю"=>"yu","Ю"=>"yu",
-            "я"=>"ya","Я"=>"ya",
-            "і"=>"i","І"=>"i",
-            "ї"=>"yi","Ї"=>"yi",
-            "є"=>"e","Є"=>"e"
-        );
-        $str=iconv("UTF-8","UTF-8//IGNORE",strtr($string,$replace));
-        $str = preg_replace ("/[^a-z0-9-]/i"," ",$str);
-        $str = preg_replace("/ +/", "-", trim($str));
-        return strtolower($str);
     }
 }

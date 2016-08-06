@@ -1,5 +1,8 @@
 <?php
 
+require_once(ROOT.DS.'lib'.DS.'PHPExcel.php');
+require_once(ROOT.DS.'lib'.DS.'PHPMailer'.DS.'PHPMailerAutoload.php');
+
 function myProjectAutoload($class_name){
     $lib_path = ROOT.DS.'lib'.DS.strtolower($class_name).'.class.php';
     $controllers_path = ROOT.DS.'controllers'.DS.str_replace('controller', '', strtolower($class_name)).'.controller.php';

@@ -1,18 +1,68 @@
-<h3>Список товаров</h3><br/>
-<table class="table table-striped" style="width: 900px;">
-    <?php foreach($data['goods'] as $goods_data) { ?>
-        <tr>
-            <td><b><?=$goods_data['name']?></b></td>
-            <td align="right">
-                <a href="/admin/products/edit/<?=$goods_data['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
-                <a href="/admin/products/delete/<?=$goods_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
-            </td>
-        </tr>
-    <?php } ?>
-</table>
+<div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="area-top clearfix">
+                    <div class="pull-left header">
+                        <h3 class="title"><i class="icon-edit"></i>Добавление и редактирование товаров</h3>
+                        <h5><span>Добавление и редактирование товаров</span></h5>
+                    </div>
+                    <div class="pull-right padding-right newsbutton">
+                        <div class="action-nav-normal action-nav-line" style="display: inline-block;">
+                            <div class="action-nav-button nav-small" style="width:180px;">
+                                <a href="/admin/products/add" title="Добавить товар">
+                                    <i class="icon-file-alt"></i>
+                                    <span>Добавить товар</span>
+                                </a>
+                                <span class="triangle-button red"><i class="icon-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container padded-right">
+            <!-- maincontent beginn -->
+                <div class="box">
+                    <div class="box-content">
 
-<br/>
+                        <table class="table table-normal table-hover">
+                            <thead>
+                            <tr>
+                                <td style="width: 35%">Название</td>
+                                <td style="width: 5%"><i class="icon-eye-open tip" data-original-title="Просмотров"></i></td>
+                                <td style="width: 8%">Действие</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach($data['goods'] as $goods_data) { ?>
+                            <tr><td><a href="/products/view/<?=$goods_data['alias']?>"><?=$goods_data['name']?></a></td>
+                                <td style="text-align: center"><?=$goods_data['views']?></td>
+                                <td align="center">
+                                    <a href="/admin/products/edit/<?=$goods_data['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
+                                    <a href="/admin/products/delete/<?=$goods_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
+                            </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
 
-<div>
-    <a href="/admin/products/add/"><button class="btn btn-sm btn-success">Добавить товар</button></a>
+                    </div>
+
+                </div>
+            <nav>
+                <ul class="pagination pagination-sm">
+                    <li class="page-item">
+                        <?php
+                        foreach ($data['pagination']->buttons as $button) {
+                            if ($button->isActive) { ?>
+                                <a class="page-link" href="/admin/?page=<?= $button->page ?>"><?= $button->text ?></a>
+                            <?php } else { ?>
+                                <span style="color:#555555"><?= $button->text ?></span>
+                            <?php }
+                        } ?>
+                    </li>
+                </ul>
+            </nav>
+            <!-- maincontent end -->
+        </div>
+    </div>
 </div>

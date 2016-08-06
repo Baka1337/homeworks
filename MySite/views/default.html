@@ -2,29 +2,62 @@
 <html>
 <head>
   <title><?=Config::get('site_name')?></title>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="keywords" content="<?=Config::get('keywords')?>" />
     <meta name="description" content="<?=Config::get('description')?>" />
+    <!--    Font awesome css -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!--    Style css-->
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!--    Jquery-->
+  <script src="/js/jquery-3.1.0.min.js"></script>
+    <!--    Bootstrap js-->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <!--    Jquery MASKED INPUT PLUGIN-->
+  <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
+    <!--    Bootsrap css-->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 </head>
 <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="/"><?=Config::get('site_name')?></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li <?php if( App::getRouter()->getController() == 'pages' ) {?>class="active"<?php } ?>><a href="/pages/">Страницы</a></li>
-                    <li <?php if( App::getRouter()->getController() == 'products' ) {?>class="active"<?php } ?>><a href="/products/">Товары</a></li>
-                    <li><a <?php if( App::getRouter()->getController() == 'contacts' ) {?>class="active"<?php } ?> href="/contacts/">Связатся с нами</a></li>
+                    <ul class="nav navbar-nav left">
+                        <li><a href="/cart/">Корзина</a></li>
+                        <li><a href="/pages/view/dostavka-i-oplata/">Доставка и оплата</a></li>
+                        <li><a href="/contacts/">Связатся с нами</a></li>
+                        <li><a href="/pages/view/about/">О Нас</a></li>
+                    </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <?php if (Session::get('login')) {?>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Привет, <?=Session::get('login')?>! <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <?php if (Session::get('role') == 'admin') {?>
+                            <li><a href="/admin" target="_blank">Админ-панель</a></li>
+                                <?php }?>
+                            <li><a href="/users/profile">Профиль</a></li>
+                            <li><a href="/users/logout">Выйти</a></li>
+                            <?php } else {?>
+                            <li><a href="/users/login">Войти</a></li>
+                            <?php }?>
+                        </ul>
+                    </li>
+
                 </ul>
+                    </div>
             </div>
-        </div>
     </nav>
 
     <div class="container">
@@ -38,6 +71,7 @@
             <?php } ?>
 
             <?=$data['content']?>
+
         </div>
 
     </div>
