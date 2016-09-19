@@ -11,7 +11,7 @@ class Message extends Model {
 
         $id = (int)$id;
         $name = $this->db->escape($data['name']);
-        $phone = (int)$data['phone'];
+        $phone = $this->db->escape($data['phone']);
         $email = $this->db->escape($data['email']);
         $message = $this->db->escape($data['message']);
 
@@ -19,7 +19,7 @@ class Message extends Model {
             $sql = "
                 insert into {$this->table}
                    set name = '{$name}',
-                       phone = {$phone},
+                       phone = '{$phone}',
                        email = '{$email}',
                        message = '{$message}'
             ";
@@ -27,7 +27,7 @@ class Message extends Model {
             $sql = "
                 update {$this->table}
                    set name = '{$name}',
-                       phone = {$phone},
+                       phone = '{$phone}',
                        email = '{$email}',
                        message = '{$message}'
                    where id = {$id}

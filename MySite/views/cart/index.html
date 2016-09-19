@@ -1,51 +1,107 @@
-<h3>Корзина</h3>
-<?php $count=0?>
-<table width=100% class="table-responsive table-striped">
-    <thead>
-        <tr>
-            <td>
-                Название
-            </td>
-            <td>
-                Количество
-            </td>
-            <td align="center">
-                Цена за 100 грамм
-            </td>
-            <td align="center">
-                Цена
-            </td>
-            <td>
-                Действие
-            </td>
-        </tr>
-    </thead>
-    <?php if (Cookie::get('products')){
-        foreach ($data['cart'] as $product) {?>
-                <tr>
-                    <td>
-                        <a href="/products/view/<?=$product['alias']?>"><?=$product['name']?></a>
-                    </td>
-                    <td>
-                        <form action="/cart/" method="post" style="clear: both">
-                            <input type="hidden" name="product" value="<?=$product['id']?>"/>
-                            <input type="number" id="quantity" name="quantity" step="1" min="1" style="width: 50px" value="<?=$product['quantity']?>" /> x 100 гр.
-                            <input type="submit" value="Пересчитать">
-                            <?php $count = $count + $product['quantity'] * $product['price'];?>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <?=$product['price']?> грн.
-                    </td>
-                    <td align="center">
-                        <?=$product['quantity'] * $product['price']?> грн.
-                    </td>
-                    <td>
-                        <a href="/cart/delete/<?=$product['id']?>">Удалить</a>
-                    </td>
-                </tr>
-        <?php } }  ?>
-            </table>
-    <h3 style="float: right">Итого: <?=$count?> грн.</h3>
-<br/>
-<a href="/orders/add/"><button class="btn btn-sm btn-primary">Оформить заказ</button></a>    <a href="/cart/clear/"><button class="btn btn-sm btn-warning">Очистить корзину</button></a>
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="loginDefault" class="centerColumn">
+                    <h1 id="loginDefaultHeading">Корзина <?=count($data['cart'])?></h1>
+                    <div class="tie">
+                        <div class="tie-indent">
+                            <?php $count=0 ?>
+                            <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                <?php if (empty($data['cart'])) {?>
+                                    Нет товаров, добавьте!
+                                <?php }else {?>
+                                <tr class="cartTableHeading">
+                                    <th id="ccProductsHeading" scope="col">Название</th>
+                                    <th id="ccProductsHeading" scope="col">Количество</th>
+                                    <th id="ccTotalHeading" scope="col">Цена за 100 грамм</th>
+                                    <th id="ccTotalHeading" scope="col">Цена</th>
+                                    <th id="ccTotalHeading" scope="col"></th>
+                                </tr>
+                                <?php foreach ($data['cart'] as $product) {
+                                if (!isset($product['quantity'])){
+                                    $product['quantity'] = 1;
+                                }?>
+                                <tr class="rowEven">
+                                    <td class="cartProductDisplay"><a href="/product/view/<?=$product['alias']?>"><?=$product['name']?></a></td>
+                                    <td class="cartProductDisplay">
+                                        <form action="/cart/" method="post" style="clear: both">
+                                            <input type="hidden" name="product" value="<?=$product['id']?>"/>
+                                            <input type="number" id="quantity" name="quantity" step="1" min="1" style="width: 50px" value="<?=$product['quantity']?>" /> x 100 гр.
+                                            <input type="submit" value="Пересчитать">
+                                            <?php $count = $count + $product['quantity'] * $product['price'];?>
+                                        </form>
+                                    </td>
+                                    <td class="cartProductDisplay">
+                                        <?=$product['price']?> грн.
+                                    </td>
+                                    <td class="cartProductDisplay">
+                                        <?=$product['quantity'] * $product['price']?> грн.
+                                    </td>
+                                    <td class="cartProductDisplay">
+                                        <a href="/cart/delete/<?=$product['id']?>"><button class="cssButton button_update" style="width: 80px;" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Удалить</button></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <?php }
+                                } ?>
+                            </table>
+                            <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+
+                            <br class="clearBoth">
+                                <div class="buttonRow back">
+                                    <a href="/orders/add/"><button class="cssButton button_update" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Оформить заказ</button></a>
+                                </div>
+
+                            <div class="buttonRow forward">
+                                <a href="/cart/clear/"><button class="cssButton button_update" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Очистить корзину</button></a>
+                            </div>
+                                <!--                                <div class="buttonRow back">-->
+                                <!--                                    <a class="forgot_pass" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=password_forgotten">Forgot your password?</a>-->
+                                <!--                                </div>-->
+
+                            <br class="clearBoth">
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
+
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <div id="bestsellers" class="box" style="width:220px;">
+                    <div class="box-head"> Bestsellers </div>
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

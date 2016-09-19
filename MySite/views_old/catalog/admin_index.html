@@ -1,0 +1,60 @@
+<div class="placeholder col-xs-6 col-lg-12 text-right">
+    <img src="/img/order.png" class="img-responsive" alt="Каталог">
+    <h4><a href="/admin/catalog/add/">Добавить товар</a></h4>
+</div>
+</div>
+<hr>
+<h2 class="sub-header text-left">Каталог товаров</h2>
+<div class="table-responsive">
+    <table class="table table-hover text-justify">
+        <thead>
+        <tr>
+            <th># товара</th>
+            <th>Название</th>
+            <th>Категория</th>
+            <th>Цена</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+
+        <?php foreach($data['goods'] as $goods_data) { ?>
+
+        <tbody>
+        <tr>
+            <td><?=$goods_data['id']?></td>
+            <td><a href="/catalog/product/<?=$goods_data['alias']?>" target="_blank"><?=$goods_data['name']?></a></td>
+
+            <?php foreach ($data['categories_list'] as $category) {
+                if ($category['id'] == $goods_data['category_id']) { ?>
+                    <td><a href="/catalog/category/<?=$category['alias']?>"><?=$category['name']?></a></td>
+                <?php }
+            }?>
+
+            <td><?=$goods_data['price']?> грн.</td>
+            <td>
+                <a href="/admin/catalog/edit/<?=$goods_data['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
+                <a href="/admin/catalog/delete/<?=$goods_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
+            </td>
+            <?php }?>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="text-center col-lg-12 col-xs-6">
+    <ul class="text-center pagination pagination-sm">
+        <li class="page-item">
+
+        <?php foreach ($data['pagination']->buttons as $button) {
+        if ($button->isActive) { ?>
+
+        <a class="page-link" href="/admin/?page=<?= $button->page ?>"><?= $button->text ?></a>
+
+        <?php } else { ?>
+            <span style="color:#555555"><?= $button->text ?></span>
+        <?php }
+        } ?>
+
+        </li>
+    </ul>
+</div>

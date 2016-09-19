@@ -1,0 +1,71 @@
+<ol class="breadcrumb" style="margin-bottom: 5px;">
+    <li><a href="/">Главная</a></li>
+<?php foreach ($data['parent'] as $parent){
+        if ($data['category']['parent_id'] == $parent['id']){?>
+    <li><a href="/products/parent/<?=$parent['alias']?>"><?=$parent['name']?></a></li>
+    <li><a href="/products/category/<?=$data['category']['alias']?>"><?=$data['category']['name']?></a></li>
+    <li class="active"><?=$data['goods']['name']?></li>
+</ol>
+<?php
+        }
+        } ?>
+<div class="col-md-9">
+    <h3><?=$data['goods']['name']?></h3>
+    <br>
+    <div><img src="<?=IMG_PATH_ASSET?><?=$data['goods']['id']?>.jpeg" class="img-rounded"></div>
+    <div class="row"><p class="price"><b>Цена:</b> <?=$data['goods']['price']?> грн</p></div>
+    <p><b>Описание:</b></p>
+    <p><?=$data['goods']['description']?><?php if (Session::get('role') == 'admin') {?>
+            <a href="/admin/products/edit/<?=$data['goods']['id']?>" title="Редактировать товар">
+                Редактировать
+            </a>
+        <?php }?>
+    <div class="col-md-12 white-bg show-comments">
+        <?php if($data['comments']){ ?>
+
+            <h3>Комментарии (<?=count($data['comments'])?>)</h3><br>
+
+            <?php foreach($data['comments'] as $comment){ ?>
+                <?php include VIEWS_PATH.DS.'helpers'.DS.'comment.html'; ?>
+            <?php } ?>
+
+        <?php } ?>
+    <div class="col-md-12 comments white-bg">
+            <h3>Оставить отзыв</h3>
+            <form id="" method="post" action="/products/addComment/<?=$data['goods']['alias']?>">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php if( Session::get('login')){ ?><?=Session::get('name')?><?php } ?>"/>
+                    <label for="email">Эл. почта</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php if( Session::get('login')){ ?><?=Session::get('email')?><?php } ?>"/>
+                    <label for="message">Сообщение</label>
+                    <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                    <br/>
+                    <input type="submit" id="submit" class="btn btn-success" value="Опубликовать" />
+            </form>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div><img src="<?=IMG_PATH_ASSET?><?=$data['goods']['id']?>.jpeg" class="img-rounded"></div>
+                <div class="row"><p class="price"><b>Цена:</b> <?=$data['goods']['price']?> грн</p></div>
+                <p><b>Описание:</b></p>
+                <p><?=$data['goods']['description']?></p>
+            </div>
+            <div class="col-sm-6">
+                <p><?=$data['goods']['description']?></p>
+            </div>
+            <h3>Оставить отзыв</h3>
+            <form id="" method="post" action="/products/addComment/<?=$data['goods']['alias']?>">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="name" name="name" value="<?php if( Session::get('login')){ ?><?=Session::get('name')?><?php } ?>"/>
+                <label for="email">Эл. почта</label>
+                <input type="email" class="form-control" id="email" name="email" value="<?php if( Session::get('login')){ ?><?=Session::get('email')?><?php } ?>"/>
+                <label for="message">Сообщение</label>
+                <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                <br/>
+                <input type="submit" id="submit" class="btn btn-success" value="Опубликовать" />
+            </form>
+        </div>
+    </div>

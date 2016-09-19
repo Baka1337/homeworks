@@ -1,0 +1,26 @@
+<div class="box" id="categories" style="width:220px;">
+
+
+
+    <div class="box-head">
+        Категории
+    </div>
+
+    <div class="box-body">
+        <div class="sideBoxContent" id="categoriesContent">
+            <ul>
+                <?php foreach ($data['menu'] as $menu) {?>
+                    <li class="category-top"><span class="top-span"><a href="/category/parent/<?=$menu['alias']?>"><span class="category-subs-parent-selected"><?=$menu['name']?></span></a></span></li>
+                    <?php if ($menu['childs']) {?>
+                        <?php foreach ($menu['childs'] as $child){?>
+                            <li style="padding-left:15px" class="category-products"><span class="top-span"><a href="/category/view/<?=$child['alias']?>" class="category-products"><span class="category-subs"><?=$child['name']?></span></a></span></li>
+                        <?php }
+                    } ?>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>

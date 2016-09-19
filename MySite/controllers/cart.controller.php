@@ -1,14 +1,11 @@
 <?php
 
-class CartController extends Controller
-{
-
+class CartController extends Controller{
     private $cart;
 
-    public function __construct($data = array())
-    {
+    public function __construct($data = array()){
         parent::__construct($data);
-        $this->model = new Product();
+        $this->model = new Products();
         $this->cart = new Cart();
     }
 

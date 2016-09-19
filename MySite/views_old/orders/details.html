@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover text-justify">
+                <thead>
+                <?php $count = 0?>
+                <tr>
+                    <th>
+                        # заказа
+                    </th>
+                    <th>
+                        Наименование
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Кол-во
+                    </th>
+                </tr>
+                </thead>
+                <?php foreach($data['order_details'] as $order) { ?>
+                <tbody>
+                <tr>
+                    <td><?=$order['order_id']?></td>
+                    <td><a href="/catalog/view/<?=$order['alias']?>"><?=$order['g_name']?></a></td>
+                    <td><?=$order['price']?> грн.</td>
+                    <td><?=$order['count']?></td>
+                    <?php $count = $count + $order['count'] * $order['price']?>
+                    <?php }?>
+                </tr>
+                </tbody>
+            </table>
+            <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+        </div>
+    </div>
+</div>

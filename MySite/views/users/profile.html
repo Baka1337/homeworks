@@ -1,126 +1,144 @@
-<?php if( Session::get('login')){ ?>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                Профиль пользователя: <em><?=$data['user']['login']?></em>
-            </h3><br/>
-            <div class="tabbable" id="tabs-330058">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#panel-273879" data-toggle="tab">Персональная информация</a>
-                    </li>
-                    <li>
-                        <a href="#panel-567077" data-toggle="tab">Изменить пароль</a>
-                    </li>
-                    <li>
-                        <a href="#panel-357077" data-toggle="tab">История заказов</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="panel-273879">
-                        <p>
-                        <form action="" method="post" class="col-md-6">
-                            <div class="form-group">
-                                <label for="surname">Фамилия</label>
-                                <input type="text" id="surname" name="surname" value="<?=$data['user']['surname']?>" class="form-control" />
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="accountEditDefault" class="centerColumn">
+                    <form action="" method="post">
+                        <fieldset>
+                            <?php if (Session::get('login')) {?>
+                            <legend>Мой профиль</legend>
+                            <ul>
+                            <li><a href="/users/password">Изменить пароль</a></li>
+                            </ul>
+<!--                            <div class="alert forward">* Обязательное поле</div>-->
+                            <br class="clearBoth">
+                         <fieldset>
+                            <legend>Персональная информация</legend>
+
+                            <label class="inputLabel" for="name">Имя:</label>
+                            <input id="name" type="text" value="<?=$data['user']['name']?>" name="name">
+<!--                            <span class="alert">*</span>-->
+
+                             <br class="clearBoth">
+                             <label class="inputLabel" for="middlename">Отчество:</label>
+                             <input id="middlename" type="text" value="<?=$data['user']['middlename']?>" name="middlename">
+                             <!--                            <span class="alert">*</span>-->
+
+                            <br class="clearBoth">
+                            <label class="inputLabel" for="surname">Фамилия:</label>
+                            <input id="surname" type="text" value="<?=$data['user']['surname']?>" name="surname">
+<!--                            <span class="alert">*</span>-->
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Контактная информация</legend>
+
+                            <label class="inputLabel" for="phone">Телефон:</label>
+                            <input id="phone" type="text" value="<?=$data['user']['phone']?>" name="phone">
+<!--                            <span class="alert">*</span>-->
+
+                            <br class="clearBoth">
+                            <label class="inputLabel" for="email">E-mail:</label>
+                            <input id="email" type="text" value="<?=$data['user']['email']?>" name="email" disabled="disabled">
+                        </fieldset>
+
+                         <fieldset>
+                             <legend>Адрес</legend>
+
+                             <label class="inputLabel" for="city">Город:</label>
+                             <input id="city" type="text" value="<?=$data['user']['city']?>" name="city">
+<!--                             <span class="alert">*</span>-->
+
+                             <br class="clearBoth">
+                             <label class="inputLabel" for="street">Улица:</label>
+                             <input id="street" type="text" value="<?=$data['user']['street']?>" name="street">
+
+                             <br class="clearBoth">
+                             <label class="inputLabel" for="house">№ дома:</label>
+                             <input id="house" type="text" value="<?=$data['user']['house']?>" name="house">
+
+                             <br class="clearBoth">
+                             <label class="inputLabel" for="flat">№ Квартиры:</label>
+                             <input id="flat" type="text" value="<?=$data['user']['flat']?>" name="flat">
+                         </fieldset>
+                            <div class="buttonRow back">
+                                <input class="cssButton button_update" type="submit" style="width: 80px;" value="Изменить" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">
                             </div>
-                            <div class="form-group">
-                                <label for="name">Ваше имя</label>
-                                <input type="text" id="name" name="name" value="<?=$data['user']['name']?>" class="form-control" />
+                        </fieldset>
+                    </form>
+
+                    <fieldset>
+                        <legend>Мои заказы</legend>
+
+                        <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <?php if (empty($data['orders'])) {?>
+                                Ваша корзина пуста.
+                            <?php }else {?>
+                            <tr class="cartTableHeading">
+                                <th id="ccProductsHeading" scope="col"># заказа</th>
+                                <th id="ccProductsHeading" scope="col">Дата заказа</th>
+                                <th id="ccTotalHeading" scope="col">Статус</th>
+                                <th id="ccTotalHeading" scope="col"></th>
+                            </tr>
+                            <?php foreach($data['orders'] as $order) { ?>
+                            <tr class="rowEven">
+                                <td class="cartProductDisplay"><?=$order['id']?></td>
+                                <td class="cartProductDisplay"><?=$order['date']?></td>
+                                <td class="cartProductDisplay">
+                                    <?=$order['o_status']?>
+                                </td>
+                                <td class="cartProductDisplay">
+                                    <a href="/orders/details/<?=$order['id']?>"><button class="cssButton button_update" style="width: 80px;" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Подробно</button></a>
+                                </td>
+                                <?php }?>
+                                <?php }?>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </fieldset>
+                    <?php }else{ ?>
+                        Профиль могут просматривать только зарегистрированые или авторизованые пользователи!
+                <?php }?>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
+
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <div id="bestsellers" class="box" style="width:220px;">
+                    <div class="box-head"> Bestsellers </div>
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
+                                    </li>
+                                </ol>
                             </div>
-                            <div class="form-group">
-                                <label for="middlename">Отчество</label>
-                                <input type="text" id="middlename" name="middlename" value="<?=$data['user']['middlename']?>" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Телефон</label>
-                                <input type="text" id="phone" name="phone" value="0<?=$data['user']['phone']?>" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" name="email" value="<?=$data['user']['email']?>" class="form-control" disabled="disabled" />
-                            </div>
-                            <div class="form-group">
-                                <label for="city">Город</label>
-                                <input type="text" id="city" name="city" value="<?=$data['user']['city']?>" placeholder="Город" class="form-control" /><br/>
-                                <label for="street">Улица</label>
-                                <input type="text" id="street" name="street" value="<?=$data['user']['street']?>" placeholder="Улица" class="form-control" /><br/>
-                                <label for="house">Номер дома</label>
-                                <input type="text" id="house" name="house" value="<?=$data['user']['house']?>" placeholder="Номер дома" class="form-control" /><br/>
-                                <label for="flat">Квартира</label>
-                                <input type="text" id="flat" name="flat" value="<?=$data['user']['flat']?>" placeholder="Номер квартиры" class="form-control" /><br/>
-                                <textarea class="form-control" name="additionally" id="additionally" placeholder="Здесь при желании укажите подъезд, этаж, домофон и т. д."><?=$data['user']['additionally']?></textarea>
-                            </div>
-                            <input type="submit" class="btn btn-success" value="Сохранить"/>
-                        </form>
-                        </p>
-                    </div>
-                    <div class="tab-pane" id="panel-567077">
-                        <p>
-                        <form action="/users/password" method="post" class="col-md-6">
-                            <div class="form-group">
-                                <label for="password">Новый пароль</label>
-                                <input type="password" id="password" name="password" value="" required="required" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="repeat">Повторите пароль</label>
-                                <input type="password" id="repeat" name="repeat" value="" required="required" class="form-control" />
-                            </div>
-                            <input type="submit" class="btn btn-success" value="Изменить"/>
-                        </form>
-                        </p>
-                    </div>
-                    <div class="tab-pane" id="panel-357077">
-                        <?php $count=0 ?>
-                        <p>
-                        <div class="col-md-12">
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        Название
-                                    </th>
-                                    <th>
-                                        Колличество
-                                    </th>
-                                    <th>
-                                        Цена
-                                    </th>
-                                    <th>
-                                        Статус
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($data['history'] as $history) {?>
-                                <tr>
-                                    <td>
-                                        <a href="/products/view/<?=$history['alias']?>"><?=$history['g_name']?></a>
-                                    </td>
-                                    <td>
-                                        <?=$history['count']?>
-                                    </td>
-                                    <td>
-                                        <?=$history['price']?>
-                                    </td>
-                                    <td>
-                                        <?php $count = $count + $history['count'] * $history['price']?>
-                                        Здесь будет статус
-                                    </td>
-                                </tr>
-        <?php }?>
-                                </tbody>
-                            </table>
-                            <h3 style="float: right">Итого: <?=$count?> грн.</h3>
                         </div>
-                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-    <?php }else{ ?>
-        <?php Router::redirect('/users/login')?>
-    <?php } ?>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+<form action="" method="post">
+    <input type="hidden" name="id" value="<?=$data['order']?>">
+    <select size="1" name="status" class="form-control">
+        <option value="1">Обрабатывается</option>
+        <option value="2">Комплектуется</option>
+        <option value="3">Выполнен</option>
+    </select>
+    <input type="submit" class="btn btn-success" value="Изменить" />
+</form>

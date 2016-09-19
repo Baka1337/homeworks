@@ -1,0 +1,11 @@
+<h2>Результаты поиска для: "<?=$_GET['search']?>"</h2>
+
+<?php foreach ($data['count'] as $count) {?>
+    Найдено <?=$count['count']?> товар(ов) <br/>
+<?php }?>
+
+<br/>
+<?php foreach ($data['search'] as $search) {?>
+    <li><a href="/products/view/<?=$search['alias']?>/"><?=$search['name']?></a></li><br/>
+<?php }?>
+

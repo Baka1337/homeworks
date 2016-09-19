@@ -1,0 +1,51 @@
+<h3>Корзина</h3>
+<?php $count=0?>
+<table width=100% class="table-responsive table-striped">
+    <thead>
+        <tr>
+            <td>
+                Название
+            </td>
+            <td>
+                Количество
+            </td>
+            <td align="center">
+                Цена за 100 грамм
+            </td>
+            <td align="center">
+                Цена
+            </td>
+            <td>
+                Действие
+            </td>
+        </tr>
+    </thead>
+    <?php if (Cookie::get('products')){
+        foreach ($data['cart'] as $product) {?>
+                <tr>
+                    <td>
+                        <a href="/products/view/<?=$product['alias']?>"><?=$product['name']?></a>
+                    </td>
+                    <td>
+                        <form action="/cart/" method="post" style="clear: both">
+                            <input type="hidden" name="product" value="<?=$product['id']?>"/>
+                            <input type="number" id="quantity" name="quantity" step="1" min="1" style="width: 50px" value="<?=$product['quantity']?>" /> x 100 гр.
+                            <input type="submit" value="Пересчитать">
+                            <?php $count = $count + $product['quantity'] * $product['price'];?>
+                        </form>
+                    </td>
+                    <td align="center">
+                        <?=$product['price']?> грн.
+                    </td>
+                    <td align="center">
+                        <?=$product['quantity'] * $product['price']?> грн.
+                    </td>
+                    <td>
+                        <a href="/cart/delete/<?=$product['id']?>">Удалить</a>
+                    </td>
+                </tr>
+        <?php } }  ?>
+            </table>
+    <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+<br/>
+<a href="/orders/add/"><button class="btn btn-sm btn-primary">Оформить заказ</button></a>    <a href="/cart/clear/"><button class="btn btn-sm btn-warning">Очистить корзину</button></a>

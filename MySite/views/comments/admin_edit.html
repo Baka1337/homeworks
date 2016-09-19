@@ -1,0 +1,46 @@
+<div class="placeholder col-xs-6 col-lg-12 text-right">
+    <img src="/img/comments.png" class="img-responsive">
+</div>
+</div>
+<hr>
+<h2 class="sub-header text-left">Редактировать комментарий</h2>
+<div>
+    <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+    <div class="bootstrap-iso">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?=$data['comment']['id']?>" />
+                        <div class="form-group ">
+                            <label class="control-label" for="name">
+                                Имя пользователя:
+                            </label>
+                            <?=$data['comment']['name']?>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label" for="email">
+                                E-mail:
+                            </label>
+                            <?=$data['comment']['email']?>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label" for="message">
+                                Текс комментария:
+                            </label>
+                            <textarea class="form-control" cols="40" id="message" name="message" rows="10"><?=$data['comment']['message']?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button class="btn btn-success " name="submit" type="submit">
+                                    Сохранить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

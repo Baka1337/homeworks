@@ -1,28 +1,133 @@
-<h3>Регистрация</h3><br/>
-<form method="post" action="">
-    <div class="form-group">
-        <label for="login">Логин</label>
-        <input type="email" id="login" name="login" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="password">Пароль</label>
-        <input type="password" id="password" name="password" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="mail@domain.com" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="surname">Фамилия</label>
-        <input type="text" id="surname" name="surname" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="name">Имя</label>
-        <input type="text" id="name" name="name" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="phone">Телефон</label>
-        <input type="tel" id="phone" name="phone" class="form-control" />
-    </div>
-    <input type="submit" class="btn btn-success" value="Зарегистрироваться"/>
-</form>
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="loginDefault" class="centerColumn">
+                    <h1 id="loginDefaultHeading">Регистрация нового пользователя</h1>
+                    <div class="tie">
+                        <div class="tie-indent">
+                            <form method="post" action="">
+                                <input type="hidden" value="df80fc9e4dd33a1153b7703e4efc4ff1" name="securityToken">
+                                <input type="hidden" value="process" name="action">
+                                <input type="hidden" value="email_format" name="email_pref_html">
+                                <fieldset class="second">
+                                    <legend>Регистрация нового пользователя</legend>
+                                    <div class="information">
+                                        Создайте профиль с
+                                        <strong>Магазином Чая</strong>
+                                        , который позволяет Вам делать покупки быстрее, отслеживать статус своих текущих заказов и рассматривать свои предыдущие заказы.
+                                    </div><br/>
+                                    <div class="alert forward">* Обязательное поле</div>
+                                    <br class="clearBoth">
+
+                                    <fieldset class="address">
+                                        <legend>Данные для заказа</legend>
+                                        <label class="inputLabel" for="name">Имя:</label>
+                                        <input id="name" type="text" maxlength="32" size="33" name="name">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="surname">Фамилия:</label>
+                                        <input id="surname" type="text" maxlength="32" size="33" name="surname">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="street">Улица:</label>
+                                        <input id="street" type="text" maxlength="32" size="33" name="street">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="house">Дом:</label>
+                                        <input id="house" type="text" maxlength="32" size="33" name="house">
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="flat">№ Квартиры:</label>
+                                        <input id="flat" type="text" maxlength="32" size="33" name="flat">
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="city">Город:</label>
+                                        <input id="city" type="text" maxlength="32" size="33" name="city">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Контактная информация</legend>
+                                        <label class="inputLabel" for="phone">Телефон:</label>
+                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx">
+                                        <span class="alert">*</span>
+                                        <br class="clearBoth">
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Данные для входа в систему</legend>
+
+                                        <label class="inputLabel" for="login">Логин:</label>
+                                        <input id="login" type="text" maxlength="32" size="33" name="login">
+                                        <span class="alert">*</span>
+                                        <br class="clearBoth">
+
+                                        <label class="inputLabel" for="email">Email:</label>
+                                        <input id="email" type="text" maxlength="32" size="33" name="email">
+                                        <span class="alert">*</span>
+                                        <br class="clearBoth">
+
+                                        <label class="inputLabel" for="password">Пароль:</label>
+                                        <input id="password" type="password" maxlength="32" size="33" name="password">
+                                        <span class="alert">* </span>
+                                        <br class="clearBoth">
+                                        <!--                                        <label class="inputLabel" for="password-confirm">Confirm Password:</label>-->
+                                        <!--                                        <input id="password-confirm" type="password" maxlength="40" size="21" name="confirmation">-->
+                                        <!--                                        <span class="alert">*</span>-->
+                                        <!--                                        <br class="clearBoth">-->
+                                    </fieldset>
+                                </fieldset>
+                                <div class="buttonRow">
+                                    <input class="cssButton button_submit" type="submit" style="width: 143px;" value="Зарегистрироваться">
+                                </div>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
+
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <div id="bestsellers" class="box" style="width:220px;">
+                    <div class="box-head"> Bestsellers </div>
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

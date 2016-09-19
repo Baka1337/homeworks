@@ -1,0 +1,36 @@
+<div class="placeholder col-xs-6 col-lg-12 text-right">
+    <img src="/img/cats.png" class="img-responsive" alt="Категории">
+    <h4><a href="/admin/category/add/">Создать категорию</a></h4>
+</div>
+</div>
+<hr>
+<h2 class="sub-header text-left">Список категорий</h2>
+    <table class="table table-hover text-justify">
+        <thead>
+        <tr>
+            <th width="5%">id</th>
+            <th width="60%">Название</th>
+            <th width="20%">Родительская категория</th>
+            <th width="15%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($data['categories'] as $category) { ?>
+        <tr>
+            <td><?=$category['id']?></td>
+            <td><?=$category['name']?></td>
+            <?php if ($category['parent_id'] == 0) {?>
+            <td>Самостоятельна категория</td>
+            <?php } else {?>
+            <td><?=$category['parent_id']?></td>
+            <?php }?>
+            <td>
+                <a href="/admin/category/edit/<?=$category['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
+                <a href="/admin/category/delete/<?=$category['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
+            </td>
+        </tr>
+        </tbody>
+        <?php
+        }?>
+    </table>
+</div>

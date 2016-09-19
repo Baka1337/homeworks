@@ -7,10 +7,6 @@ class PagesController extends Controller{
         $this->model = new Page();
     }
 
-    public function index(){
-        Router::redirect('/');
-    }
-
     public function view(){
         $params = App::getRouter()->getParams();
 

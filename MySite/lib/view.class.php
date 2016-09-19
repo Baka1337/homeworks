@@ -4,6 +4,8 @@ class View{
 
     protected $data;
 
+    protected $menu;
+
     protected $path;
 
     protected static function getDefaultViewPath(){
@@ -11,6 +13,7 @@ class View{
         if ( !$router ){
             return false;
         }
+
         $controller_dir = $router->getController();
         $template_name = $router->getMethodPrefix().$router->getAction().'.html';
 
@@ -26,6 +29,10 @@ class View{
         }
         $this->path = $path;
         $this->data = $data;
+
+        $cart = new Cart();
+        $cat_obj = $cart->getProducts();
+        $this->data['cart_count'] = count($cat_obj);
     }
 
     public function render(){

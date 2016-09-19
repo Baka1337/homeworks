@@ -1,0 +1,26 @@
+<h3>Результаты поиска для: "<?=$_GET['q']?>"</h3>
+
+<?php foreach ($data['count'] as $count) {?>
+    Найдено <?=$count['count']?>
+<?php
+    $number = substr($count['count'], -2);
+    if($number > 10 && $number < 15) {
+        $term = "ов";
+    } else {
+        $number = substr($number, -1);
+
+        if($number == 0) {$term = "ов";}
+        if($number == 1 ) {$term = "";}
+        if($number > 1 ) {$term = "а";}
+        if($number > 4 ) {$term = "ов";}
+    }
+    echo  ' товар'.$term;
+    ?>
+    <br/>
+<?php }?>
+
+<br/>
+<?php foreach ($data['search'] as $search) {?>
+    <li><a href="/catalog/product/<?=$search['alias']?>"><?=$search['name']?></a></li><br/>
+<?php }?>
+

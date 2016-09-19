@@ -1,0 +1,162 @@
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="loginDefault" class="centerColumn">
+                    <h1 id="loginDefaultHeading">Профиль пользователя: <b><?=$data['user']['login']?></b></h1>
+                    <div class="tie">
+                        <div class="tie-indent">
+                            <form method="post" action="">
+                                <input type="hidden" value="df80fc9e4dd33a1153b7703e4efc4ff1" name="securityToken">
+                                <input type="hidden" value="process" name="action">
+                                <input type="hidden" value="email_format" name="email_pref_html">
+                                <fieldset class="second">
+                                    <legend>Регистрация нового пользователя</legend>
+                                    <div class="information">
+                                        Создайте профиль с
+                                        <strong>Магазином Чая</strong>
+                                        , который позволяет Вам делать покупки быстрее, отслеживать статус своих текущих заказов и рассматривать свои предыдущие заказы.
+                                    </div><br/>
+                                    <div class="alert forward">* Обязательное поле</div>
+                                    <br class="clearBoth">
+
+                                    <fieldset class="address">
+                                        <legend>Персональная информация</legend>
+                                        <label class="inputLabel" for="name">Имя:</label>
+                                        <input id="name" type="text" maxlength="32" size="33" name="name" value="<?=$data['user']['name']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="middlename">Отчество:</label>
+                                        <input id="surname" type="text" maxlength="32" size="33" name="middlename" value="<?=$data['user']['middlename']?>">
+                                        <span class="alert"></span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="surname">Фамилия:</label>
+                                        <input id="surname" type="text" maxlength="32" size="33" name="surname" value="<?=$data['user']['surname']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Контактная информация</legend>
+                                        <label class="inputLabel" for="phone">Телефон:</label>
+                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx" value="<?=$data['user']['phone']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="email">Email:</label>
+                                        <input id="email" type="text" maxlength="32" size="33" name="email" value="<?=$data['user']['email']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Адрес</legend>
+
+                                        <label class="inputLabel" for="street">Улица:</label>
+                                        <input id="street" type="text" maxlength="32" size="33" name="street" value="<?=$data['user']['street']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="house">Дом:</label>
+                                        <input id="house" type="text" maxlength="32" size="33" name="house" value="<?=$data['user']['house']?>">
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="flat">№ Квартиры:</label>
+                                        <input id="flat" type="text" maxlength="32" size="33" name="flat" value="<?=$data['user']['flat']?>">
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="city">Город:</label>
+                                        <input id="city" type="text" maxlength="32" size="33" name="city" value="<?=$data['user']['city']?>">
+                                        <span class="alert">*</span>
+                                        <!--                                        <label class="inputLabel" for="password-confirm">Confirm Password:</label>-->
+                                        <!--                                        <input id="password-confirm" type="password" maxlength="40" size="21" name="confirmation">-->
+                                        <!--                                        <span class="alert">*</span>-->
+                                        <!--                                        <br class="clearBoth">-->
+                                    </fieldset>
+                                </fieldset>
+                                <div class="buttonRow">
+                                    <input class="cssButton button_submit" type="submit" style="width: 143px;" value="Сохранить">
+                                </div>
+
+                                <br class="clearBoth">
+                                <form action="/users/password" method="post">
+                                    <fieldset class="first">
+                                        <legend>Изменить пароль</legend>
+                                        <label class="inputLabel" for="password">Новый пароль:</label>
+                                        <input id="password" type="password" maxlength="32" size="33" name="password">
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="repeat">Повторите пароль:</label>
+                                        <input id="repeat" type="repeat" maxlength="32" size="33" name="repeat">
+                                        <br class="clearBoth">
+                                        <div class="buttonRow back">
+                                            <input class="cssButton button_login" type="submit" style="width: 80px;" value="Изменить">
+                                        </div>
+                                    </fieldset>
+                                    <!--                                <div class="buttonRow back">-->
+                                    <!--                                    <a class="forgot_pass" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=password_forgotten">Forgot your password?</a>-->
+                                    <!--                                </div>-->
+                                </form>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
+                <div id="categories" class="box" style="width:220px;">
+                    <div class="box-head"> Категории </div>
+                    <div class="box-body">
+
+                        <div class="sideBoxContent" id="categoriesContent">
+                            <ul>
+                                <?php foreach ($data['menu'] as $menu) {?>
+                                    <li class="category-top"><span class="top-span"><a href="/category/parent/<?=$menu['alias']?>"><span class="category-subs-parent-selected"><?=$menu['name']?></span></a></span></li>
+                                    <?php if ($menu['childs']) {?>
+                                        <?php foreach ($menu['childs'] as $child){?>
+                                            <li style="padding-left:15px" class="category-products"><span class="top-span"><a href="/category/view/<?=$child['alias']?>" class="category-products"><span class="category-subs"><?=$child['name']?></span></a></span></li>
+                                        <?php }
+                                    } ?>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="bestsellers" class="box" style="width:220px;">
+                    <div class="box-head"> Bestsellers </div>
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

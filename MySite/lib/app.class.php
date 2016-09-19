@@ -4,6 +4,8 @@ class App{
 
     protected static $router;
 
+    protected static $action;
+
     public static $db;
 
     /**
@@ -19,10 +21,10 @@ class App{
         self::$db = new DB(Config::get('db.host'), Config::get('db.user'), Config::get('db.password'), Config::get('db.db_name'));
 
         Lang::load(self::$router->getLanguage());
-        
 
         $controller_class = ucfirst(self::$router->getController()).'Controller';
         $controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction());
+
 
         $layout = self::$router->getRoute();
         if ( $layout == 'admin' && Session::get('role') != 'admin' ){
@@ -30,6 +32,7 @@ class App{
                 Router::redirect('/users/login');
             }
         }
+
 
         // Calling controller's method
         $controller_object = new $controller_class();

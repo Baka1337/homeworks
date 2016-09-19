@@ -2,46 +2,49 @@
 
 class CommentsController extends Controller{
 
-    private $product;
+    private $catalog;
 
     public function __construct($data = array()){
         parent::__construct($data);
         $this->model = new Comment();
-        $this->product = new Product();
+        $this->catalog = new Products();
     }
 
     public function add(){
-        $params = App::getRouter()->getParams();
-        if ($_POST) {
-            if (isset($params[0]) &&
-                isset($_POST['name']) && $_POST['name'] != null &&
-                isset($_POST['email']) && $_POST['email'] != null &&
-                isset($_POST['message']) && $_POST['message'] != null) {
-                $goods = $this->product->getByAlias($params[0]);
-                if ($this->model->save($_POST, $goods)) {
-                    Session::setFlash('Ваш комментрарий опубликован!');
-                } else {
-                    Session::setFlash('Необходимо заполнить все поля!');
-                }
-            }
-            Router::redirect($_SERVER['HTTP_REFERER']);
-        }
-    }
-
-    public function delete(){
         if ( isset($this->params[0]) ){
-            $result = $this->model->delete($this->params[0]);
-            if ( $result ){
-                Session::setFlash('Комментарий удален');
-            } else {
-                Session::setFlash('Ошибка!');
-            }
+            $alias = strtolower($this->params[0]);
+            $product = $this->catalog->getByAlias($alias);
+        } else {
+            Router::redirect('/');
         }
-        Router::redirect($_SERVER['HTTP_REFERER']);
+
+        $product_id = $product['id'];
+        $product_name = $product['name'];
+        $product_alias = $this->params[0];
+        $comments_model = new Comment();
+        $comments_model->add($product_id,$product_name,$product_alias, $_POST);
+        exit;
     }
 
     public function admin_index(){
         $this->data = $this->model->getComments();
+    }
+
+    public function admin_edit(){
+        if ($_POST) {
+            $id = isset($_POST['id']) ? $_POST['id'] : null;
+            $result = $this->model->edit($_POST, $id);
+            if ($result) {
+                Session::setFlash('Изменения сохранены');
+            } else {
+                Session::setFlash('Ошибка!');
+            }
+            Router::redirect('/admin/comments/');
+        }
+
+        if (isset($this->params[0])){
+            $this->data['comment'] = $this->model->getById($this->params[0]);
+        }
     }
 
     public function admin_delete(){

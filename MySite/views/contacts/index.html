@@ -1,65 +1,129 @@
-<ol class="breadcrumb">
-    <li><a href="/">Главная</a></li>
-    <li class="active">Связатся с нам</li>
-</ol>
-<h3>Связатся с нами:</h3><br/>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <form action="" method="post">
-                <label for="name">Ваше имя</label>
-                <input type="text" class="form-control" name="name" placeholder="Ваше Имя" /><br/>
-                <label for="phone">Контактный телефон</label>
-                <input type="text" class="form-control" name="phone" placeholder="Ваш Телефон" /><br/>
-                <label for="email">Электронная почта</label>
-                <input type="text" class="form-control" name="email" placeholder="mail@domen.com" /><br/>
-                <label for="message">Ваш вопрос</label>
-                <textarea name="message" class="form-control" placeholder="Сообщение здесь" rows="5"></textarea><br/>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить сообщение</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <p>
-                        <i class="fa fa-phone-square"></i>
-                        <span><a class="ringo-href" href="tel:+38093333-23-32">+38 (093) 333-23-32</a></span>
-                    </p>
-                    <p>
-                        <i class="fa fa-envelope"></i>
-                        info@mysite.local
-                    </p>
-                    <p> <b class="label label-success">Киев</b><br>
-                        <i class="fa fa-home"></i>
-                        ул. Крещатик, 20/224.<br>
-                        <br/>
-                        <b>График работы:</b>
-                        <br>Пн. – Пт.: с 10:00 до 19:00, Сб.: с 10-16:00, Вс.: выходной
-                    </p>
-                    <p>
-                        <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-                    <div id="map" style="width: 80%; height: 200px;">
-                    <script type="text/javascript">
-                        ymaps.ready(init);
-                        ymaps.disableScrollZoom();
-                        var myMap,
-                            myPlacemark;
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="contactUsDefault" class="centerColumn">
+                    <h1 id="gvFaqDefaultHeading">Контакты</h1>
+                    <div class="tie text2">
+                        <div class="tie-indent">
+                            <form action="" method="post">
+                                <address>
+                                    <i class="fa fa-phone-square"></i>
+                                    <span class="top-span"><a href="tel:+38093333-23-32">+38 (093) 333-23-32</a></span>
+                                    <p>
+                                        <i class="fa fa-envelope"></i>
+                                        info@mysite.local
+                                    </p>
+                                    <p> <b>Г. Киев</b>
+                                        <br class="clearBoth">
+                                        <i class="fa fa-home"></i>
+                                        ул. Крещатик, 20/224.
+                                        <br class="clearBoth">
+                                        <b>График работы:</b>
+                                        <br>Пн. – Пт.: с 10:00 до 19:00, Сб.: с 10-16:00, Вс.: выходной
+                                    </p>
+                                    <p>
+                                </address>
+                                <div id="contactUsNoticeContent" class="content">
+                                    <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+                                    <div id="map" style="width: 100%; height: 200px;">
+                                        <script type="text/javascript">
+                                            ymaps.ready(init);
+                                            ymaps.disableScrollZoom();
+                                            var myMap,
+                                                myPlacemark;
 
-                        function init(){
-                            myMap = new ymaps.Map("map", {
-                                center: [50.449660, 30.522870],
-                                zoom: 15
-                            });
+                                            function init(){
+                                                myMap = new ymaps.Map("map", {
+                                                    center: [50.449660, 30.522870],
+                                                    zoom: 15
+                                                });
 
-                            myPlacemark = new ymaps.Placemark([50.449660, 30.522870], {
-                                hintContent: 'Интернет-магазин Чая',
-                                balloonContent: 'ул. Крещатик, 20/224'
-                            });
+                                                myPlacemark = new ymaps.Placemark([50.449660, 30.522870], {
+                                                    hintContent: 'Интернет-магазин Чая',
+                                                    balloonContent: 'ул. Крещатик, 20/224'
+                                                });
 
-                            myMap.geoObjects.add(myPlacemark);
-                            myMap.behaviors.disable('scrollZoom');
-                        }
-                    </script>
+                                                myMap.geoObjects.add(myPlacemark);
+                                                myMap.behaviors.disable('scrollZoom');
+                                            }
+                                        </script>
+                                </div>
+                                <fieldset id="contactUsForm">
+                                    <legend>Написать нам</legend>
+                                    <div class="alert alignright">* Обязательное поле</div>
+                                    <label class="inputLabel" for="name">
+                                        Имя:
+                                        <span class="alert">*</span>
+                                    </label>
+                                    <input id="name" type="text" size="40" name="name" value="<?php if( Session::get('login')){ ?><?=Session::get('name')?><?php } ?>" >
+                                    <br class="clearBoth">
+
+                                    <label class="inputLabel" for="phone">
+                                        Телефон:
+<!--                                        <span class="alert">*</span>-->
+                                    </label>
+                                    <input id="phone" type="text" size="40" name="phone">
+                                    <br class="clearBoth">
+
+                                    <label class="inputLabel" for="email">
+                                        E-mail:
+                                        <span class="alert">*</span>
+                                    </label>
+                                    <input id="email" type="text" size="40" name="email" value="<?php if( Session::get('login')){ ?><?=Session::get('email')?><?php } ?>">
+                                    <br class="clearBoth">
+
+                                    <label class="inputLabel" for="message">
+                                        Сообщение:
+                                        <span class="alert">*</span>
+                                    </label>
+                                    <textarea id="message" rows="7" cols="20" name="message"></textarea>
+
+                                </fieldset>
+                                <div class="buttonRow back">
+                                        <input class="cssButton button_send" type="submit" style="width: 80px;" value="Отправить" onmouseout="this.className='cssButton button_send'" onmouseover="this.className='cssButtonHover button_send button_sendHover'">
+                                </div>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
                     </div>
-                    </p>
-        </div>
-    </div>
-</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
+
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <div class="box" id="bestsellers" style="width:220px;">
+
+
+
+                    <div class="box-head">
+                        Бестселлеры
+                    </div>
+
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li><a class="screenshot" rel="images/27.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=27">SerendipiTea Iron Go...</a></li>
+                                    <li><a class="screenshot" rel="images/30.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=30">SerendipiTea Yin Zhe...</a></li>
+                                    <li><a class="screenshot" rel="images/33.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=33">Taylors of Harrogate...</a></li>
+                                    <li><a class="screenshot" rel="images/36.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=36">Tazo Passion Herbal ...</a></li>
+                                    <li><a class="screenshot" rel="images/39.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=39">Tienxi Pu-Erh Tea Ca...</a></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

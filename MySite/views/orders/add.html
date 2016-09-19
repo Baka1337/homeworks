@@ -1,120 +1,158 @@
-<?php $count=0?>
-<?php if (Session::get('login')) {?>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <form method="post" action="">
-                <div class="form-group">
-                    <label for="city">Город:</label>
-                    <input type="text" id="city" name="city" value="<?=$data['user']['city']?>" placeholder="Киев" class="form-control" />
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="loginDefault" class="centerColumn">
+                    <?php $count=0?>
+                    <?php if (Session::get('login')) {?>
+                    <?php } else {?>
+                        <?php Session::setFlash('Для заказа нужно зарегистрироватся или войти в аккаунт')?>
+                        <?=Router::redirect('/users/login')?>
+                    <?php }?>
+                    <h1 id="loginDefaultHeading">Оформление заказа</h1>
+                    <div class="tie">
+                        <div class="tie-indent">
+                            <form method="post" action="">
+                                <input type="hidden" value="df80fc9e4dd33a1153b7703e4efc4ff1" name="securityToken">
+                                <input type="hidden" value="process" name="action">
+                                <input type="hidden" value="email_format" name="email_pref_html">
+
+                                    <div class="alert forward">* Обязательное поле</div>
+                                    <br class="clearBoth">
+
+                                    <fieldset class="address">
+                                        <legend>Данные для заказа</legend>
+                                        <label class="inputLabel" for="name">Имя:</label>
+                                        <input id="name" type="text" maxlength="32" size="33" name="name" value="<?=$data['user']['name']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="surname">Фамилия:</label>
+                                        <input id="surname" type="text" maxlength="32" size="33" name="surname" value="<?=$data['user']['surname']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="phone">Телефон:</label>
+                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx" value="<?=$data['user']['phone']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="city">Город:</label>
+                                        <input id="city" type="text" maxlength="32" size="33" name="city" value="<?=$data['user']['city']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="street">Улица:</label>
+                                        <input id="street" type="text" maxlength="32" size="33" name="street" value="<?=$data['user']['street']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="house">Дом:</label>
+                                        <input id="house" type="text" maxlength="32" size="33" name="house" value="<?=$data['user']['house']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                        <label class="inputLabel" for="flat">№ Квартиры:</label>
+                                        <input id="flat" type="text" maxlength="32" size="33" name="flat" value="<?=$data['user']['flat']?>">
+                                        <span class="alert">*</span>
+
+                                        <br class="clearBoth">
+                                    </fieldset>
+
+                                <fieldset class="address">
+                                    <legend>Способ доставки</legend>
+
+                                    <input type="radio" name="delivery" value="3" /> Самовывоз из офиса (Киев) ул. Крещатик, 20/224, 3-й этаж, офис 315 — <b>бесплатно</b>
+
+                                    <br class="clearBoth">
+                                    <input type="radio" name="delivery" value="1" /> Курьером по Киеву — 35 грн <b>(Бесплатно от 600 грн.)</b>
+
+                                    <br class="clearBoth">
+                                    <input type="radio" name="delivery" value="2" /> На склад "Новой почты" в Киеве — 15 грн
+
+                                    <br class="clearBoth">
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Ваш заказ</legend>
+
+                                    <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr class="cartTableHeading">
+                                            <th id="ccProductsHeading" scope="col">Название</th>
+                                            <th id="ccProductsHeading" scope="col">Количество</th>
+                                            <th id="ccTotalHeading" scope="col">Цена</th>
+                                        </tr>
+                                        <?php foreach ($data['order'] as $order) {?>
+                                        <tr class="rowEven">
+                                            <td class="cartProductDisplay"><a href="/product/view/<?=$order['alias']?>"><?=$order['name']?></a></td>
+                                            <td class="cartProductDisplay"><?=$order['quantity']?></td>
+                                            <td class="cartProductDisplay"><?=$order['quantity'] * $order['price']?> грн.</td>
+                                            <?php $count = $count + $order['quantity'] * $order['price'];?>
+                                        </tr>
+                                        </tbody>
+                                        <?php }  ?>
+                                    </table>
+                                    <br class="clearBoth">
+                                    <h3 style="float: right">Итого к оплате: <?=$count?> грн.</h3>
+                                </fieldset>
+
+                                <fieldset class="address">
+                                    <legend>Форма оплаты</legend>
+
+                                    <input type="radio" name="payment" value="1"/> Наличными
+                                    Оплата при получении товара (только гривнами)<br/>
+                                    <input type="radio" name="payment" value="2" "/> Безналичная оплата с НДС<br/>
+                                    <input type="radio" name="payment" value="3" /> Оплата по безналичному расчёту для физ.лиц (физ. лиц-предпринимателей)<br/>
+
+                                    <br class="clearBoth">
+                                </fieldset>
+
+                                <div class="buttonRow">
+                                    <input class="cssButton button_submit" type="submit" style="width: 143px;" value="Заказать">
+                                </div>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="delivery">Способ доставки:</label><br/>
-                    <input type="radio" name="delivery" value="1" /> Самовывоз из офиса (Киев) ул. Крещатик, 20/224, 3-й этаж, офис 315 — <b>бесплатно</b>
-                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <abbr title="Показать на карте" class="initialism">Показать на карте</abbr>
-                    </a>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-block">
-                            <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-                            <div id="map" style="width: 100%; height: 157px;">
-                                <script type="text/javascript">
-                                    ymaps.ready(init);
-                                    ymaps.disableScrollZoom();
-                                    var myMap,
-                                        myPlacemark;
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
 
-                                    function init(){
-                                        myMap = new ymaps.Map("map", {
-                                            center: [50.449660, 30.522870],
-                                            zoom: 14
-                                        });
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
 
-                                        myPlacemark = new ymaps.Placemark([50.449660, 30.522870], {
-                                            hintContent: 'Интернет-магазин Чая',
-                                            balloonContent: 'ул. Крещатик, 20/224'
-                                        });
-
-                                        myMap.geoObjects.add(myPlacemark);
-                                        myMap.behaviors.disable('scrollZoom');
-                                    }
-                                </script>
+                <div id="bestsellers" class="box" style="width:220px;">
+                    <div class="box-head"> Bestsellers </div>
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
+                                    </li>
+                                </ol>
                             </div>
                         </div>
                     </div>
-                    <br/>
-                    <input type="radio" name="delivery" value="2" /> Курьером по Киеву — 35 грн <b>(Бесплатно от 600 грн.)</b><br/>
-                    <input type="radio" name="delivery" value="3" /> На склад "Новой почты" в Киеве — 15 грн <br/>
                 </div>
-                <div class="form-group">
-                    <label for="surname">Фамилия:</label>
-                    <input type="text" id="surname" name="surname" value="<?=$data['user']['surname']?>" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="name">Имя:</label>
-                    <input type="text" id="name" name="name" value="<?=$data['user']['name']?>" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="middle_name">Отчество:</label>
-                    <input type="text" id="middle_name" name="middle_name" value="<?=$data['user']['middlename']?>" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="phone">Телефон:</label>
-                    <input type="text" id="phone" name="phone" value="0<?=$data['user']['phone']?>" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="payment_method">Форма оплаты:</label><br/>
-                    <input type="radio" name="payment_method" value="1"/> Наличными
-                    Оплата при получении товара (только гривнами)<br/>
-                    <input type="radio" name="payment_method" value="2" "/> Безналичная оплата с НДС<br/>
-                    <input type="radio" name="payment_method" value="3" /> Оплата по безналичному расчёту для физ.лиц (физ. лиц-предпринимателей)<br/>
-                </div>
-                <input type="submit" class="btn btn-success" value="Заказать"/>
-            </form>
-
-        </div>
-        <?php } else {?>
-            <?php Session::setFlash('Для заказа нужно зарегистрироватся или войти в аккаунт')?>
-            <?=Router::redirect('/users/login')?>
-        <?php }?>
-        <div class="col-md-6">
-            <?php if ($data['order']) {?>
-            <h3>
-                Ваша корзина:
-            </h3>
-            <table class="table table-hover table-condensed">
-                <thead>
-                <tr>
-                    <th>
-                        Название
-                    </th>
-                    <th>
-                        Количество
-                    </th>
-                    <th>
-                        Цена
-                    </th>
-                </tr>
-                </thead>
-                <?php foreach ($data['order'] as $order) {?>
-                <tbody>
-                <tr>
-                    <td>
-                        <a href="/products/view/<?=$order['alias']?>"><?=$order['name']?></a>
-                    </td>
-                    <td>
-                        <?=$order['quantity']?>
-                    </td>
-                    <td>
-                        <?=$order['quantity'] * $order['price']?> грн.
-                    </td>
-                </tr>
-                <?php $count = $count + $order['quantity'] * $order['price'];
-                }?>
-                </tbody>
-            </table>
-                <h3 style="float: right">Итого: <?=$count?> грн.</h3>
-            <?php }?>
-        </div>
-    </div>
-</div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

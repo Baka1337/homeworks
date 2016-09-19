@@ -1,0 +1,24 @@
+
+
+<h2>Корзина</h2>
+<br>
+<table class="table">
+
+    <tr>
+        <td><b>Наименование</b></td>
+        <td><b>Сумма, грн.</b></td>
+        <td><b>Кол-во</b></td>
+        <td><b></b></td>
+    </tr>
+
+    <?php
+    foreach ($data['cart'] as $good => $item){
+        ?>
+        <tr>
+            <td><a href="/products/view/<?=$item['alias']?>"><?=$item['name']?></a></td>
+            <td><?=$item['price']?></td>
+            <td><a href="/orders/delete/<?=$item['alias']?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+        </tr>
+    <?php }?>
+</table>
+<div align="right"><b>Итого: </b><?=$data['total'] .' грн'?><br/><a href="/orders/add/" <button type="button" class="btn btn-success">Оформить заказ</button></a></div>

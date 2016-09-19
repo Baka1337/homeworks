@@ -1,0 +1,29 @@
+<div class="col-md-9">
+    <h3>Товары</h3>
+    <br>
+
+    <div class="container">
+        <?php foreach($data['goods'] as $good){ ?>
+            <div class="col-md-3 product-box"><br>
+                <p><a href="/products/view/<?=$good['alias']?>/"><?=$good['name']?></a></p>
+                <div><img src="<?=IMG_PATH_ASSET?><?=$good['id']?>.jpeg" width="200px" class="img-rounded"> </div>
+                <p class="price"><b><?=$good['price']?></b> грн. / 100 г.</p>
+                <a href="/products/cartadd/<?=$good['id']?>"><button class="btn btn-sm btn-primary">Добавить в корзину</button></a>
+            </div>
+        <?php } ?>
+    </div>
+    <br/>
+    <nav>
+        <ul class="pagination pagination-sm">
+            <li class="page-item">
+                <?php
+                foreach ($data['pagination']->buttons as $button) {
+                    if ($button->isActive) { ?>
+                        <a class="page-link" href="/products/<?=Config::get('default_action')?>/page/<?= $button->page ?>"><?= $button->text ?></a>
+                    <?php } else { ?>
+                        <span style="color:#555555"><?= $button->text ?></span>
+                    <?php }
+                } ?>
+            </li>
+        </ul>
+    </nav>

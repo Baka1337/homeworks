@@ -1,7 +1,54 @@
-<ol class="breadcrumb">
-    <li><a href="/">Главная</a></li>
-    <li class="active"><?=$data['page']['title']?></li>
-</ol>
-<h1><?=$data['page']['title']?></h1>
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="gvFaqDefault" class="centerColumn">
+                    <h1 id="gvFaqDefaultHeading"><?=$data['page']['title']?></h1>
+                    <div class="tie">
+                        <div class="tie-indent">
+                            <div id="gvFaqDefaultMainContent" class="content">
+                                <?=$data['page']['content']?>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
 
-<?=$data['page']['content']?>
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <div class="box" id="bestsellers" style="width:220px;">
+
+
+
+                    <div class="box-head">
+                        Бестселлеры
+                    </div>
+
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li><a class="screenshot" rel="images/27.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=27">SerendipiTea Iron Go...</a></li>
+                                    <li><a class="screenshot" rel="images/30.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=30">SerendipiTea Yin Zhe...</a></li>
+                                    <li><a class="screenshot" rel="images/33.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=33">Taylors of Harrogate...</a></li>
+                                    <li><a class="screenshot" rel="images/36.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=36">Tazo Passion Herbal ...</a></li>
+                                    <li><a class="screenshot" rel="images/39.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=39">Tienxi Pu-Erh Tea Ca...</a></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

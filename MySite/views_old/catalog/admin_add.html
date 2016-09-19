@@ -1,0 +1,101 @@
+<div class="placeholder col-xs-6 col-lg-12 text-right">
+    <img src="/img/order.png" class="img-responsive" alt="Добавление нового товара">
+    <h4><a href="/admin/pages/add/">Добавить товар</a></h4>
+</div>
+</div>
+<hr>
+<h2 class="sub-header text-left">Добавление нового товара</h2>
+<div>
+    <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+    <div class="bootstrap-iso">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="name">
+                                Название
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input onkeyup="$('#alias').val(urlRusLat($(this).val()));" class="form-control" id="name" name="name" placeholder="Название товара" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="alias">
+                                Алиас
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="alias" name="alias" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="category">
+                                Категория
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <select class="select form-control" id="category" name="category">
+                                <?php
+                                foreach ($data['categories_list'] as $category){
+                                    ?>
+                                    <option value="<?=$category['id']?>"><?=$category['name']?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="price">
+                                Цена
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="price" name="price" placeholder="Цена товара" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label " for="photo">
+                                Картинка
+                            </label>
+                            <input class="form-control" id="photo" name="photo" type="file"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="description">
+                                Описание
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <textarea class="form-control" cols="40" id="description" name="description" placeholder="Описание товара" rows="10"></textarea>
+                        </div>
+                        <div class="form-group" id="div_checkbox">
+                            <label class="control-label requiredField" for="is_published">
+                                Опубликовать на сайте?
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <div class=" ">
+                                <label class="checkbox-inline">
+                                    <input name="is_published" id="is_published" type="checkbox"/>
+                                    Да?
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button class="btn btn-success " name="submit" type="submit">
+                                    Опубликовать
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

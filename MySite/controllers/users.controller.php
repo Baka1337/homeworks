@@ -18,30 +18,31 @@ class UsersController extends Controller{
         $hash = $this->params[0];
     }
 
-    protected function sendWelcomeMail($email, $login){
+    public function sendWelcomeEmail($login, $email){
         $mail = new PHPMailer();
-        $mail->SMTPDebug  = 0;
+        $mail->setLanguage('ru', ROOT.DS.'lib'.DS.'PHPMailer'.DS.'language'.DS);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->SMTPAuth = 'ssl';
-        $mail->Host = "smtp.mail.ru";
-        $mail->Port = 465;
-        $mail->isHTML(true);
-        $mail->Username = "baka@mail.ua";
-        $mail->Password = "";
+        $mail->Port = 587;
         $mail->CharSet = 'UTF-8';
-        $mail->SetFrom = 'baka@mail.ua';
-        $mail->Subject = 'Успешная регистрация!';
-        $mail->Body = 'Вы зарегистрировались, ваш логин: '.$login;
-        $mail->addAddress('igor.baka@gmail.com');
+        $body = file_get_contents(VIEWS_PATH.DS.'mailer'.DS.'mail.html');
+        $body = str_replace('{%LOGIN%}', $login, $body);
+        $body = str_replace('{%EMAIL%}', $email, $body);
+        $mail->Username = '';
+        $mail->Password = '^';
+        $mail->setFrom('', 'info');
+        $mail->Subject = 'Регистрация на сайте Mysitex';
+        $mail->addAddress($email);
+        $mail->Body = $body;
+        $mail->isHTML(true);
         if(!$mail->send()) {
-            echo "Сообщение не может быть отправлено. <p>";
-            echo "Mailer Error: " . $mail->ErrorInfo;
+            echo "Ошибка: " . $mail->ErrorInfo;
         } else{
             echo "Сообщение отправлено";
         }
-
-        echo "<pre>";
-        var_dump($mail);
+        $mail->clearAddresses();
     }
 
     public function login(){
@@ -67,10 +68,11 @@ class UsersController extends Controller{
             $result = $this->model->register($_POST);
             if ($result){
                 $user = $this->model->getById($result);
+                $user = $this->sendWelcomeEmail($user['login'], $user['email']);
                 Session::set('login', $user['login']);
+                Session::set('email', $user['email']);
                 Session::set('role', $user['role']);
                 Session::setFlash('Регистрация успешно завершена!');
-                $this->sendWelcomeMail($user['email'], $user['login']);
                 Router::redirect('/');
             } else {
                 Session::setFlash('Ошибка при регистрации!');
@@ -82,13 +84,13 @@ class UsersController extends Controller{
     public function profile(){
         $user = (int)Session::get('id');
 
-        $this->data['history'] = $this->order->getOrderById($user);
-
             if (isset($user)) {
                 $this->data['user'] = $this->model->getById($user);
+                $this->data['orders'] = $this->order->getOrdersListByUser($user);
             } else {
                 Session::setFlash('Ошибка, такого пользователя не существует!');
             }
+
 
             if ($_POST) {
                 if (isset($_POST['name']) && $_POST['name'] != null &&
@@ -123,6 +125,43 @@ class UsersController extends Controller{
                 Session::setFlash('Ошибка, Вы не заполнили все поля!');
             }
         }
+    }
+
+    public function admin_index(){
+        $this->data = $this->model->getUsers();
+    }
+
+    public function admin_edit(){
+        if ( $_POST ){
+            $id = isset($_POST['id']) ? $_POST['id'] : null;
+            $result = $this->model->editUser($_POST, $id);
+            if ( $result ){
+                Session::setFlash('Пользователь изменен');
+            } else {
+                Session::setFlash('Ошибка!');
+            }
+            Router::redirect('/admin/users/');
+        }
+
+        if ( isset($this->params[0]) ){
+            $this->data = $this->model->getById($this->params[0]);
+            $this->data['users'] = $this->model->getUsers();
+        } else {
+            Session::setFlash('Неправильный id пользователя!');
+            Router::redirect('/admin/users/');
+        }
+    }
+
+    public function admin_delete(){
+        if ( isset($this->params[0]) ){
+            $result = $this->model->delete($this->params[0]);
+            if ( $result ){
+                Session::setFlash('Пользователь удален');
+            } else {
+                Session::setFlash('Ошибка!');
+            }
+        }
+        Router::redirect('/admin/users/');
     }
 
     public function admin_logout(){

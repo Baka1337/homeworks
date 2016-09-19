@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Разделы</h3>
+            <?=Helper::getMenu()?>
+        </div>
+        <div class="col-md-9">
+
+            <?php if(empty($data['goods'])){ ?>
+
+                Товаров пока нет.
+
+            <?php } else { ?>
+
+            <div class="row">
+                <?php $i = 0; foreach($data['goods'] as $product){ ?>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img alt="<?=$product['name']?>" src="<?=IMG_PATH_ASSET?><?=$product['id']?>.jpeg" />
+                        <div class="caption">
+                            <p align="center">
+                                <a href="/catalog/product/<?=$product['alias']?>"><?=$product['name']?></a>
+                            </p>
+                            <p align="center">
+                                <b>Цена: <?=number_format($product['price'],2)?> грн</b>
+                            </p>
+                            <p align="center">
+                                <a href="/cart/add/<?=$product['id']?>"><button class="btn btn-sm btn-primary">В корзину</button></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                    <?php $i++?>
+                    <?php if($i % 3 == 0){ ?>
+                    <div class="clearfix"></div>
+                    <?php } ?>
+                <?php } ?>
+
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div align="center">
+    <nav>
+        <ul class="pagination pagination-sm">
+            <li class="page-item">
+                <?php
+                foreach ($data['pagination']->buttons as $button) {
+                    if ($button->isActive) { ?>
+                        <a class="page-link" href="/?page=<?= $button->page ?>"><?= $button->text ?></a>
+                    <?php } else { ?>
+                        <span style="color:#555555"><?= $button->text ?></span>
+                    <?php }
+                } ?>
+            </li>
+        </ul>
+    </nav>
+</div>

@@ -2,6 +2,8 @@
 
 class ContactsController extends Controller{
 
+    protected $title = 'Контактная информация';
+
     public function __construct($data = array()){
         parent::__construct($data);
         $this->model = new Message();
@@ -19,6 +21,7 @@ class ContactsController extends Controller{
                 Session::setFlash('Необходимо заполнить все поля!');
             }
         }
+        $this->data['title'] = $this->title;
     }
 
     public function admin_index(){

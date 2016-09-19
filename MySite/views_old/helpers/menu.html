@@ -1,0 +1,10 @@
+<?php foreach ($menu as $parent) { ?>
+    <?php if ($parent['parent_id'] == 0) { ?>
+        <li class="parent_li"><a href="/catalog/parent/<?=$parent['alias']?>"><?=$parent['name']?></a></li>
+        <?php foreach ($menu as $child) { ?>
+            <?php if ($child ['parent_id'] == $parent['id']) { ?>
+                <li class="child_li"><a href="/catalog/category/<?=$child['alias']?>"><?=$child['name']?></a></li>
+            <?php }
+        }
+    }
+}?>

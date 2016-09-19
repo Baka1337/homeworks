@@ -1,0 +1,52 @@
+<div class="placeholder col-xs-6 col-lg-12 text-right">
+    <img src="/img/users.png" class="img-responsive">
+</div>
+</div>
+<hr>
+<h2 class="sub-header text-left">Список пользователей </h2>
+<div class="table-responsive">
+    <table class="table table-hover text-justify">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Логин</th>
+            <th>E-mail</th>
+            <th>Группа</th>
+            <th>Доступ к сайту</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <?php foreach($data as $user) { ?>
+
+        <tbody>
+        <tr>
+            <td>
+                <?=$user['id']?>
+            </td>
+            <td>
+                <?=$user['login']?>
+            </td>
+            <td>
+                <?=$user['email']?>
+            </td>
+            <td>
+                <?=$user['role']?>
+            </td>
+            <td>
+                <?php if ($user['is_active'] == 0) {
+                echo '<span class="text-danger">Закрыт</span>';
+                    } else {
+                echo '<span class="text-success">Открыт</span>';
+                }?>
+            </td>
+            <td>
+                <a href="/admin/users/edit/<?=$user['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
+                <a href="/admin/users/delete/<?=$user['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
+            </td>
+            <?php }?>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

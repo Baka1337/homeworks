@@ -1,0 +1,39 @@
+
+<div class="col-md-9">
+    <h3><?=$data['goods']['name']?></h3>
+    <br>
+    <div><img src="<?=IMG_PATH_ASSET?><?=$data['goods']['id']?>.jpeg" class="img-rounded"></div>
+    <div class="row"><p class="price"><b>Цена:</b> <?=$data['goods']['price']?> грн</p></div>
+    <p><b>Описание:</b></p>
+    <p><?=$data['goods']['description']?></p>
+
+    <div class="col-md-12 white-bg show-comments">
+        <h3>Отзывы</h3>
+        <?php foreach($data['comments'] as $comment){ ?>
+            <b><?=$comment['name']?></b> <?=$comment['date_add']?>
+            <div class="well well-sm">
+                <?php if(Session::get('login')){ ?>
+                    <span class="pull-right"><a href="/comments/delete/<?=$comment['id']?>">Удалить</a></span>
+                <?php } ?>
+                <p><?=$comment['message']?></p>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="col-md-12 comments white-bg">
+            <h3>Оставить отзыв</h3>
+            <form id="" method="post" action="/comments/add">
+                <div>
+                    <input type="hidden" name="alias" value="<?=$data['goods']['alias']?>">
+                    <input type="hidden" name="product_name" value="<?=$data['goods']['name']?>">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" name="name" />
+                    <label for="email">Эл. почта</label>
+                    <input type="email" class="form-control" name="email" />
+                    <label for="message">Сообщение</label>
+                    <textarea class="form-control" name="message" rows="5"></textarea>
+                    <br/>
+                    <input type="submit" id="submit" class="btn btn-success" value="Опубликовать" />
+                </div>
+            </form>
+    </div>
+</div>

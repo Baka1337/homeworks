@@ -1,0 +1,14 @@
+<?php
+$category_obj = new Category();
+$category = $category_obj->getCategoriesList();
+?>
+<?php foreach ($category as $parent) { ?>
+    <?php if ($parent['parent_id'] == 0) { ?>
+        <li class="parent_li"><a href="/catalog/parent/<?=$parent['alias']?>"><?=$parent['name']?></a></li>
+        <?php foreach ($category as $child) { ?>
+            <?php if ($child ['parent_id'] == $parent['id']) { ?>
+                <li class="child_li"><a href="/catalog/category/<?=$child['alias']?>"><?=$child['name']?></a></li>
+            <?php }
+        }
+    }
+}?>

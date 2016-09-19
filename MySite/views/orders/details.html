@@ -1,0 +1,71 @@
+<table id="contentMainWrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <td id="column-center" valign="top">
+            <div class="column-center-padding">
+                <div id="accountPassword" class="centerColumn">
+                        <fieldset>
+                            <legend>Просмотр заказа</legend>
+                            <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                <?php $count = 0?>
+                                <tr class="cartTableHeading">
+                                    <th id="ccProductsHeading" scope="col"># заказа</th>
+                                    <th id="ccProductsHeading" scope="col">Наименование</th>
+                                    <th id="ccTotalHeading" scope="col">Цена</th>
+                                    <th id="ccTotalHeading" scope="col">Кол-во</th>
+                                </tr>
+                                <?php foreach($data['order_details'] as $order) { ?>
+                                <tr class="rowEven">
+                                    <td class="cartProductDisplay"><?=$order['order_id']?></td>
+                                    <td class="cartProductDisplay"><a href="/product/view/<?=$order['alias']?>"><?=$order['g_name']?></a></td>
+                                    <td class="cartProductDisplay"><?=$order['price']?> грн.</td>
+                                    <td class="cartProductDisplay"><?=$order['count']?></td>
+                                    <?php $count = $count + $order['count'] * $order['price']?>
+                                    <?php }?>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br class="clearBoth">
+                            <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+                        </fieldset>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </td>
+        <td id="column_right" style="width:220px">
+            <div style="width:220px;">
+
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <div id="bestsellers" class="box" style="width:220px;">
+                    <div class="box-head"> Bestsellers </div>
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
+                                    </li>
+                                    <li>
+                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

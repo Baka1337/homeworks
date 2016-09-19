@@ -1,0 +1,156 @@
+<h1 id="productListHeading"><?=$data['parent']['name']?></h1>
+<div class="tie3 text2 tie-margin1">
+    <div class="tie3-indent">
+        <div class="wrapper">
+            <strong class="title">Property categories:</strong>
+            <br>
+            <div class="fleft">
+                <div id="categoryImgListing" class="categoryImg">
+                    <img width="196" height="196" alt="" src="images/cat1.jpg">
+                </div>
+            </div>
+            <div id="indexProductListCatDescription" class="fleft"> </div>
+            <div class="content_desc"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam mattis, augue a pharetra aliquet, turpis magna sagittis odio, non lobortis dolor nulla a massa. </div>
+        </div>
+    </div>
+</div>
+<br class="clearBoth" />
+<table border="0" cellspacing="0" cellpadding="0" width="100%" id="contentMainWrapper">
+
+    <tr>
+
+
+
+        <td id="column-center" valign="top">
+
+            <div class="column-center-padding">
+
+                <!--content_center-->
+
+
+                <!-- bof breadcrumb -->
+                <!-- eof breadcrumb -->
+
+
+                <!-- bof upload alerts -->
+                <!-- eof upload alerts -->
+
+
+                <div class="centerColumn" id="indexDefault">
+
+
+                    <!-- deprecated - to use uncomment this section
+                    <div id="" class="content">This is the main define statement for the page for english when no template defined file exists. It is located in: <strong>/includes/languages/english/index.php</strong></div>
+                    -->
+
+                    <!-- deprecated - to use uncomment this section
+                    <div id="" class="content">Define your main Index page copy here.</div>
+                    -->
+
+                    <div id="indexDefaultMainContent"></div>
+
+
+
+                    <!-- bof: featured products  -->
+                    <div class="centerBoxWrapper" id="featuredProducts">
+
+                        <h2 class="centerBoxHeading">Featured Products</h2>
+                        <?php if (empty($data['goods'])):?>
+                            <h3>Товаров пока нет</h3>
+                        <?php else:?>
+
+                        <?php $i= 0; foreach ($data['goods'] as $good):?>
+                            <div class="centerBoxContentsFeatured centeredContent back" style="width:33%;"><div class="product-col" >
+                                    <div class="img">
+                                        <a href="/product/view/<?=$good['alias']?>"><img src="<?=IMG_PATH_ASSET?><?=$good['img']?>" alt="<?=$good['name']?>" title="<?=$good['name']?>" width="196" height="192" /></a>
+                                    </div>
+                                    <div class="prod-info">
+                                        <a class="name" href="/product/view/<?=$good['alias']?>"><?=$good['name']?></a>
+                                        <div class="wrapper">
+                                            <div class="price">
+                                                <strong><?=$good['price']?> грн.</strong>
+                                            </div>
+                                            <div class="button"><a href="/product/view/<?=$good['alias']?>"><span class="cssButton button_goto_prod_details" onmouseover="this.className='cssButtonHover button_goto_prod_details button_goto_prod_detailsHover'" onmouseout="this.className='cssButton button_goto_prod_details'" style="width: 80px;" >&nbsp;Подробнее&nbsp;</span></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php $i++;?>
+                            <?php if($i % 3 == 0): ?>
+                                <br class="clearBoth" />
+                            <?php endif;?>
+                        <?php endforeach;?>
+
+                    </div>
+                    <!-- eof: featured products  -->
+
+
+
+
+
+                </div>
+
+                <div class="clear"></div>
+
+                <!--eof content_center-->
+
+            </div>
+            <div id="allProductsListingBottomLinks" class="navSplitPagesLinks forward">
+                <?php
+                foreach ($data['pagination']->buttons as $button) {
+                    if ($button->isActive) { ?>
+                        <a title="<?= $button->page ?>" href="/category/parent/<?=$data['parent']['alias']?>/?page=<?= $button->page ?>"><?= $button->text ?></a>
+                    <?php } else { ?>
+                        <strong class="current"><?= $button->text ?></strong>
+                    <?php }
+                } ?>
+            </div>
+            <?php endif;?>
+
+        </td>
+
+
+        <td id="column_right" style="width:220px">
+
+            <div style="width:220px;">
+                <!--// bof: categories //-->
+
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
+
+                <!--// eof: categories //-->
+
+                <!--// bof: bestsellers //-->
+                <div class="box" id="bestsellers" style="width:220px;">
+
+
+
+                    <div class="box-head">
+                        Бестселлеры
+                    </div>
+
+                    <div class="box-body">
+                        <div id="bestsellersContent" class="sideBoxContent">
+                            <div class="wrapper">
+                                <ol>
+                                    <li><a class="screenshot" rel="images/27.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=27">SerendipiTea Iron Go...</a></li>
+                                    <li><a class="screenshot" rel="images/30.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=30">SerendipiTea Yin Zhe...</a></li>
+                                    <li><a class="screenshot" rel="images/33.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=33">Taylors of Harrogate...</a></li>
+                                    <li><a class="screenshot" rel="images/36.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=36">Tazo Passion Herbal ...</a></li>
+                                    <li><a class="screenshot" rel="images/39.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=39">Tienxi Pu-Erh Tea Ca...</a></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!--// eof: bestsellers //-->
+
+            </div>
+
+        </td>
+
+
+    </tr>
+</table>

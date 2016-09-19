@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Панель-управления <?=Config::get('site_name')?></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/admin/dashboard.css" rel="stylesheet">
+    <link href="/css/admin/style-auto.css" rel="stylesheet">
+    <!-- Подключаем красивый редактор -->
+    <script src="/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand text-center" href="/" target="_blank"><?=Config::get('site_name')?></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/" target="_blank">На сайт</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Настройки <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/users/profile">Профиль</a></li>
+                        <li><a href="/users/logout">Выйти</a></li>
+                    </ul>
+            </ul>
+            <form action="/admin/catalog/search" method="post" class="navbar-form navbar-right">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Искать..." vk_1d1aa="subscribed" vk_12850="subscribed" vk_11ab7="subscribed" vk_1bbbf="subscribed" vk_1230b="subscribed" vk_14e5b="subscribed" vk_13f55="subscribed" vk_14848="subscribed" vk_18867="subscribed" vk_1e5ac="subscribed" vk_172ee="subscribed" vk_1aca7="subscribed" vk_100b1="subscribed" vk_187bc="subscribed" vk_19ee8="subscribed">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li <?php if( App::getRouter()->getController() == 'product' ) {?>class="active"<?php } ?>><a href="/admin/product/">Товары</a></li>
+                <li <?php if( App::getRouter()->getController() == 'orders' ) {?>class="active"<?php } ?>><a href="/admin/orders/">Заказы</a></li>
+                <li <?php if( App::getRouter()->getController() == 'pages' ) {?>class="active"<?php } ?>><a href="/admin/pages/">Страницы</a></li>
+                <li <?php if( App::getRouter()->getController() == 'category' ) {?>class="active"<?php } ?>><a href="/admin/category/">Категории</a></li>
+                <li <?php if( App::getRouter()->getController() == 'comments' ) {?>class="active"<?php } ?>><a href="/admin/comments/">Комментарии</a></li>
+                <li <?php if( App::getRouter()->getController() == 'users' ) {?>class="active"<?php } ?>><a href="/admin/users/">Пользователи</a></li>
+                <li <?php if( App::getRouter()->getController() == 'contacts' ) {?>class="active"<?php } ?>><a href="/admin/contacts/">Сообщения</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Панель управления</h1>
+            <div class="row placeholders text-center">
+                <?=$data['content']?>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/js/admin.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

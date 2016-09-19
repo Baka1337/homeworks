@@ -2,8 +2,9 @@
 
 class Helper {
 
-    public static function getNameTranslite($string) {
-        $replace=array(
+    public static function translit($string) {
+
+        $replace = array(
             "'"=>"",
             "`"=>"",
             "а"=>"a","А"=>"a",
@@ -43,9 +44,11 @@ class Helper {
             "ї"=>"yi","Ї"=>"yi",
             "є"=>"e","Є"=>"e"
         );
+
         $str=iconv("UTF-8","UTF-8//IGNORE",strtr($string,$replace));
         $str = preg_replace ("/[^a-z0-9-]/i"," ",$str);
         $str = preg_replace("/ +/", "-", trim($str));
+
         return strtolower($str);
     }
 
@@ -66,4 +69,24 @@ class Helper {
         }
         return $limit;
     }
+
+    public static function getTree(){
+        $menu_obj = new Categorys();
+        $menu = $menu_obj->getCategoriesList();
+
+        $newArray = [];
+        foreach($menu as $category){
+            $newArray[$category['id']] = $category;
+        }
+
+        $tree = [];
+        foreach ($newArray as $id=>&$node){
+            if (!$node['parent_id'])
+                $tree[$id] = &$node;
+            else
+                $newArray[$node['parent_id']]['childs'][$node['id']] = &$node;
+        }
+        return $tree;
+    }
+
 }

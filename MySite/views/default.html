@@ -1,80 +1,297 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
 <head>
-  <title><?=Config::get('site_name')?></title>
-    <meta charset="utf-8" />
+    <title><?=Config::get('site_name')?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="<?=Config::get('keywords')?>" />
     <meta name="description" content="<?=Config::get('description')?>" />
-    <!--    Font awesome css -->
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <!--    Style css-->
-  <link rel="stylesheet" href="/css/style.css">
-    <!--    Jquery-->
-  <script src="/js/jquery-3.1.0.min.js"></script>
-    <!--    Bootstrap js-->
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <!--    Jquery MASKED INPUT PLUGIN-->
-  <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
-    <!--    Bootsrap css-->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <meta http-equiv="imagetoolbar" content="no" />
+    <link rel="icon" href="includes/templates/theme712/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="FAVICON" type="image/x-icon" />
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:700' rel='stylesheet' type='text/css'/>
+
+<!--    <base href="http://livedemo00.template-help.com/zencart_44395/" />-->
+<!--    <link rel="canonical" href="http://livedemo00.template-help.com/zencart_44395/includes/templates/theme712/css/stylesheet_ezpages_footer_columns.css" />-->
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_boxes.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_css_buttons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_ezpages_footer_columns.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_lightbox-0.5.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_social_media_icons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet_tm.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index_home.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/css/print_stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" />
+
+    <script type="text/javascript" src="/js/js_jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/js_jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="/js/js_nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="/js/js_script.js"></script>
+    <script type="text/javascript" src="/js/js_xeasyTooltip.js"></script>
+    <script type="text/javascript" src="/js/js_xeasyTooltipIMG.js"></script>
+    <script type="text/javascript" src="/js/js_xjquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/js/js_xjquery.jqtransform.js"></script>
+    <script type="text/javascript" src="/js/js_xjquery.lightbox-0.5.js"></script>
+
+    <!--[if IE]>
+    <script type="text/javascript" src="catalog/view/javascript/jquery/fancybox/jquery.fancybox-1.3.4-iefix.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]><div style='clear:both;height:59px;padding:0 15px 0 15px;position:relative;z-index:10000;text-align:center;'><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("a.tooltips").easyTooltip();
+        });
+        $(function(){
+            $('.currencies').jqTransform({imgPath:'/images/'}).css('display', 'block');
+        });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $('.currencies form').jqTransform({imgPath:'jqtransformplugin/img/'});
+        });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $(document).ready(function(){
+                $(".cart a.on").click(function(){
+                    $(this).toggleClass("active");
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.cart .cart-down, .cart .none').hide();
+            $('.cart').hover(function(){
+                $('.cart .cart-down, .cart .none').stop(true, true).slideDown(400);
+            },function(){
+                $('.cart .cart-down, .cart .none').stop(true, true).delay(400).slideUp(300);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $('.messageStackSuccess').delay(5000).fadeOut('slow');
+        });
+    </script>
 </head>
-<body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><?=Config::get('site_name')?></a>
+
+
+<body id="indexHomeBody">
+
+<!-- ========== IMAGE BORDER TOP ========== -->
+
+
+
+<!-- ====================================== -->
+
+<!-- ========== HEADER ========== -->
+
+
+
+
+<div id="header">
+    <div class="extra">
+        <div class="main-width">
+            <div class="logo">
+                <!-- ========== LOGO ========== -->
+                <a href="/"><img src="/images/logo.png" title="<?=Config::get('site_name')?>" alt="<?=Config::get('site_name')?>" width="298" height="68" /></a>
+                <!-- ========================== -->
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav left">
-                        <li><a href="/cart/">Корзина</a></li>
-                        <li><a href="/pages/view/dostavka-i-oplata/">Доставка и оплата</a></li>
-                        <li><a href="/contacts/">Связатся с нами</a></li>
-                        <li><a href="/pages/view/about/">О Нас</a></li>
+            <div class="menu">
+                <!-- ========== MENU ========== -->
+                <div id="navEZPagesTop">
+                    <ul>
+
+                        <li class="  ">
+                            <a href="/">
+                                <span class="corner"></span>
+                                <span>
+                            <span>Товары</span>
+                        </span>
+                            </a>
+                        </li>
+
+                        <li class="  ">
+                            <a href="">
+                                <span class="corner"></span>
+                                <span>
+                            <span>Specials</span>
+                        </span>
+                            </a>
+                        </li>
+
+                        <li class="  ">
+                            <a href="">
+                                <span class="corner"></span>
+                                <span>
+                            <span>All products</span>
+                        </span>
+                            </a>
+                        </li>
+
+                        <li class="  ">
+                            <a href="/pages/view/dostavka-i-oplata">
+                                <span class="corner"></span>
+                                <span>
+                            <span>Доставка</span>
+                        </span>
+                            </a>
+                        </li>
+
+                        <li class="  ">
+                            <a href="/pages/view/about">
+                                <span class="corner"></span>
+                                <span>
+                            <span>О нас</span>
+                        </span>
+                            </a>
+                        </li>
+
+                        <li class=" last ">
+                            <a href="/contacts/">
+                                <span class="corner"></span>
+                                <span>
+                            <span>Контакты</span>
+                        </span>
+                            </a>
+                        </li>
+
                     </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <?php if (Session::get('login')) {?>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Привет, <?=Session::get('login')?>! <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php if (Session::get('role') == 'admin') {?>
-                            <li><a href="/admin" target="_blank">Админ-панель</a></li>
-                                <?php }?>
-                            <li><a href="/users/profile">Профиль</a></li>
-                            <li><a href="/users/logout">Выйти</a></li>
-                            <?php } else {?>
-                            <li><a href="/users/login">Войти</a></li>
-                            <?php }?>
-                        </ul>
-                    </li>
+                </div>
 
-                </ul>
+                <!-- ========================== -->
+            </div>
+            <div class="navigation">
+                <!-- ========== NAVIGATION LINKS ========== -->
+                <a class="frst" href="/">Главная</a>
+
+                <?php if (Session::get('login')) {?>
+                <?php if (Session::get('role') == 'admin') {?>
+                <a href="/admin" target="_blank">Админ-панель</a>
+                <?php }?>
+                <a href="/users/profile">Профиль</a>
+                <a href="/users/logout">Выйти (<?=Session::get('login')?>)</a>
+                <?php } else{ ?>
+                <a href="/users/login">Войти</a>
+                <?php }?>
+
+                <!-- ====================================== -->
+            </div>
+            <div class="cart">
+                <!-- ========== SHOPPING CART ========== -->
+                <a class="st1" href="/cart/"><span>Корзина</span></a>(<?=$data['cart_count']?>)
+                <!-- =================================== -->
+            </div>
+            <div id="head-search">
+                <!-- ========== SEARCH ========== -->
+                <span class="label">Поиск:</span>
+                <form name="quick_find_header" method="post" action="">
+                    <div>
+                        <input type="text" id="search" name="search" size="18" class="input1" maxlength="100" style="width: -30px" />
+                        <span class="input2"><input class="cssButton search" onmouseover="this.className='cssButtonHover search searchHover'" onmouseout="this.className='cssButton search'" type="submit" value="Искать" style="width: 80px;" /></span>
                     </div>
+                </form>
+                <!-- ============================ -->
             </div>
-    </nav>
+        </div>
+    </div>
+</div>
 
-    <div class="container">
 
-        <div class="starter-template">
 
-            <?php if( Session::hasFlash() ){ ?>
-            <div class="alert alert-info" role="alert">
-                <?php Session::flash(); ?>
+
+
+
+
+
+<!-- ========== CATEGORIES TABS ========= -->
+<!-- ==================================== -->
+
+
+<!-- ============================ -->
+<div class="extra">
+    <div class="main-width">
+<!--        <div class="slider">-->
+<!--            <!-- begin edit for ZX Slideshow -->
+<!--            <script language="javascript" type="text/javascript">-->
+<!--                jQuery(window).load(function() {-->
+<!--                    jQuery('#slider').nivoSlider({-->
+<!--                        effect: 'fade',-->
+<!--                        animSpeed: 500,-->
+<!--                        pauseTime: 4000,-->
+<!--                        directionNav: true,-->
+<!--                        directionNavHide: true,-->
+<!--                        controlNav: false,-->
+<!--                        pauseOnHover: true,-->
+<!--                        captionOpacity: 0.8			});-->
+<!--                });-->
+<!---->
+<!--            </script>-->
+<!---->
+<!--            <div class="slider-wrapper theme-default">-->
+<!--                <div id="slider" class="nivoSlider">-->
+<!--                    <a href=""><img src="/images/banner1.jpg" alt="" width="930" height="330" /></a>-->
+<!--                    <a href=""><img src="/images/banner2.jpg" alt="" width="930" height="330" /></a>-->
+<!--                    <a href=""><img src="/images/banner3.jpg" alt="" width="930" height="330" /></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <!-- end edit for ZX Slideshow -->
+<!--        </div>-->
+
+        <?=$data['content']?>
+
+        <!-- ========== FOOTER ========== -->
+
+
+        <div id="footer">
+            <div class="wrapper">
+                <div class="footer-menu">
+                    <div id="navSupp">
+
+                    </div>
+                </div>
+                <div class="copyright">
+                    <!-- ========== COPYRIGHT ========== -->
+                    Copyright &copy; 2016 <a href="/" target="_blank"><?=Config::get('site_name')?></a>.
+
+                    <!-- =============================== -->
+                </div>
+                <div><!-- {%FOOTER_LINK} --></div>
+                <!--<div class="cards">
+            <img src="includes/templates/template_default/images/paypal.gif" alt="" />		</div>-->
+                <div class="back_to_top">
+                    <a href="#"><span>&uarr;</span> Вверх</a>
+                </div>
             </div>
-            <?php } ?>
-
-            <?=$data['content']?>
-
         </div>
 
-    </div>
 
-</body>
+
+
+
+
+        <!-- BOF- BANNER #5 display -->
+        <!-- EOF- BANNER #5 display -->
+
+        <!-- ============================ -->
+
+        <!--bof- parse time display -->
+        <!--eof- parse time display -->
+
+        <!-- BOF- BANNER #6 display -->
+        <!-- EOF- BANNER #6 display -->
+
+        <!-- ========== IMAGE BORDER BOTTOM ========== -->
+
+    </div>
+</div>
+
+<!-- ========================================= -->
+
 </html>

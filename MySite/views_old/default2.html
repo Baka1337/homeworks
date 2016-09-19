@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru" xml:lang="ru">
+<head>
+    <title>Чайная церемония</title>
+    <meta name="description" content="Китайский Чай" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="/css/slideshow.css" media="screen" />
+    <script type="text/javascript" src="/js/jquery/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/js/jquery/ui/themes/ui-lightness/jquery-ui-1.8.16.custom.css" />
+    <script type="text/javascript" src="/js/jquery/ui/external/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/js/jquery/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+    <script type="text/javascript" src="/js/jquery/tabs.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/jquery/nivo-slider/jquery.nivo.slider.pack.js"></script>
+</head>
+<body>
+
+<div id="container">
+    <div id="header">
+        <div id="logo"><a href="http://colaweb.ru/store/"><img src="/img/dec-2.png" title="Китайский Чай" alt="Китайский Чай" /></a></div>
+        <div id="cart">
+            <div class="heading">
+                <h4>Корзина</h4>
+                <a><span id="cart_total">0 шт. - 0,00 р.</span></a></div>
+            <div class="content"></div>
+        </div>
+        <div id="search">
+            <div class="button-search"></div>
+            <input type="text" name="filter_name" value="Поиск" onclick="this.value = '';" onkeydown="this.style.color = '#000000';" />
+        </div>
+        <!-- <div id="welcome">
+              Войти в <a rel="nofollow" href="http://colaweb.ru/store/index.php?route=account/login">личный кабинет</a> или <a rel="nofollow" href="http://colaweb.ru/store/index.php?route=account/register">зарегистрироваться</a>.      </div> -->
+        <div class="links"><!-- <a href="http://colaweb.ru/store/">Главная --></a><a href="http://colaweb.ru/store/index.php?route=account/wishlist" id="wishlist_total">Заметки (0)</a><a href="http://colaweb.ru/store/index.php?route=account/account">Личный Кабинет</a><a href="http://colaweb.ru/store/index.php?route=checkout/cart">Корзина</a><a href="http://colaweb.ru/store/index.php?route=checkout/checkout">Оформить</a></div>
+    </div>
+    <div id="menu">
+        <ul>
+            <li>	<a href="http://colaweb.ru/store/green-tea/">Зеленый чай</a>
+
+            </li>
+            <li>	<a href="http://colaweb.ru/store/white-tea/">Белый чай</a>
+
+            </li>
+            <li>	<a href="http://colaweb.ru/store/jasmine-tea/">Жасминовый чай</a>
+
+                <div>
+                    <ul>
+                        <li><a href="http://colaweb.ru/store/jasmine-tea/tea-12/">чай-12 (0)</a></li>
+                        <li><a href="http://colaweb.ru/store/jasmine-tea/tea-36/">чай-36 (1)</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="notification"></div>
+
+    <div id="content"><div class="slideshow">
+            <div id="slideshow0" class="nivoSlider" style="width: 980px; height: 440px;">
+                <a href="http://colaweb.ru/store/green-tea/zen.html"><p class="button_caption">КУПИТЬ СЕЙЧАС</p><img src="http://colaweb.ru/store/image/cache/data/slaids/1 (1)-980x440.jpg" alt="slaids_1" /></a>
+                <a href="http://colaweb.ru/store/Hong-Zhu-E/leaflets.html"><p class="button_caption">КУПИТЬ СЕЙЧАС</p><img src="http://colaweb.ru/store/image/cache/data/slaids/1 (2)-980x440.jpg" alt="slaids_2" /></a>
+                <a href="http://colaweb.ru/store/Hong-Zhu-E/teacup.html"><p class="button_caption">КУПИТЬ СЕЙЧАС</p><img src="http://colaweb.ru/store/image/cache/data/slaids/1 (3)-980x440.jpg" alt="slaids_3" /></a>
+                <a href="http://colaweb.ru/store/Hong-Zhu-E/tea-72/teakettle.html"><p class="button_caption">КУПИТЬ СЕЙЧАС</p><img src="http://colaweb.ru/store/image/cache/data/slaids/1 (4)-980x440.jpg" alt="slaids_4" /></a>
+            </div>
+        </div>
+        <script type="text/javascript"><!--
+            $(document).ready(function() {
+                $('#slideshow0').nivoSlider({beforeChange: function(){$('p.button_caption').fadeIn().fadeOut();}});
+            });
+            --></script><div class="box">
+            <div class="box-heading">Рекомендуем</div>
+            <div class="box-content">
+                <div class="box-product">
+
+            <?=$data['content']?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 style="display: none;">Чайная церемония</h1>
+    </div>
+    <div id="footer">
+        <div class="column">
+            <h3>Информация</h3>
+            <ul>
+                <li><a href="http://colaweb.ru/store/about_us.html">О нас</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=information/information&information_id=6">Информация о доставке</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=information/information&information_id=3">Политика Безопасности</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=information/information&information_id=5">Условия соглашения</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Поддержка</h3>
+            <ul>
+                <li><a href="http://colaweb.ru/store/index.php?route=information/contact">Контакты</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=account/return/insert">Возврат товара</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=information/sitemap">Карта сайта</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Дополнительно</h3>
+            <ul>
+                <li><a href="http://colaweb.ru/store/index.php?route=product/manufacturer">Производители</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=checkout/voucher">Подарочные сертификаты</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=affiliate/account">Партнерская программа</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=product/special">Акции</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Личный Кабинет</h3>
+            <ul>
+                <li><a href="http://colaweb.ru/store/index.php?route=account/account">Личный Кабинет</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=account/order">История заказов</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=account/wishlist">Заметки</a></li>
+                <li><a href="http://colaweb.ru/store/index.php?route=account/newsletter">Подписка</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="powered">Разработка сайта <a href="http://colaweb.ru/internet-magazinyi">ColaWeb</a><br /> Китайский Чай &copy; 2016</div>
+</div>
+</body></html>

@@ -1,0 +1,149 @@
+<div class="placeholder col-xs-6 col-lg-12 text-right">
+    <img src="/img/users.png" class="img-responsive">
+</div>
+</div>
+<hr>
+<h2 class="sub-header text-left">Редактировать профиль пользователя: <b><?=$data['login']?></b></h2>
+<div>
+    <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+    <div class="bootstrap-iso">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?=$data['id']?>" />
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="login">
+                                Логин
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="login" name="login" value="<?=$data['login']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="email">
+                                E-mail
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="email" name="email" value="<?=$data['email']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="role">
+                                Группа
+                                <span class="asteriskField">
+       </span>
+                            </label>
+                            <select class="select form-control" id="role" name="role">
+                                        <option value="admin">Администратор</option>
+                                        <option value="user">Пользователь</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="is_active">
+                                Доступ к сайту
+                                <span class="asteriskField">
+       </span>
+                            </label>
+                            <select class="select form-control" id="is_active" name="is_active">
+                                <option value="1">Открыт</option>
+                                <option value="0">Закрыт</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="name">
+                                Имя
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="name" name="name" value="<?=$data['name']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="middlename">
+                                Отчество
+                                <span class="asteriskField">
+
+       </span>
+                            </label>
+                            <input class="form-control" id="middlename" name="middlename" value="<?=$data['middlename']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="surname">
+                                Фамилия
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="surname" name="surname" value="<?=$data['surname']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="phone">
+                                Телефон
+                                <span class="asteriskField">
+        *
+       </span>
+                            </label>
+                            <input class="form-control" id="phone" name="phone" value="<?=$data['phone']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="city">
+                                Город
+                                <span class="asteriskField">
+
+       </span>
+                            </label>
+                            <input class="form-control" id="city" name="city" value="<?=$data['city']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="street">
+                                Улица
+                                <span class="asteriskField">
+
+       </span>
+                            </label>
+                            <input class="form-control" id="street" name="street" value="<?=$data['street']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="house">
+                                Дом
+                                <span class="asteriskField">
+
+       </span>
+                            </label>
+                            <input class="form-control" id="house" name="house" value="<?=$data['house']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="flat">
+                                Квартира
+                                <span class="asteriskField">
+
+       </span>
+                            </label>
+                            <input class="form-control" id="flat" name="flat" value="<?=$data['flat']?>" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="additionally">
+                                Дополнительная информация
+                                <span class="asteriskField">
+
+       </span>
+                            </label>
+                            <input class="form-control" id="additionally" name="additionally" value="<?=$data['additionally']?>" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button class="btn btn-success " name="submit" type="submit">
+                                    Сохранить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

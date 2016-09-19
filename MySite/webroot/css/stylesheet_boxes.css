@@ -1,0 +1,219 @@
+
+/* ----------------------- BOXES ------------------------- */
+
+.box {margin-bottom:20px;}
+
+.box-head { background:url(/images/wrapper-1.jpg) repeat-x 0 0; color:#fff; text-transform:none; font-family:"Times New Roman", Times, serif; font-size:19px; line-height:20px; font-weight:normal; padding:10px 0 11px 13px; margin:1px 0 5px; border-radius:2px;
+-moz-border-radius:2px; -webkit-border-radius:2px; position:relative;}
+.box-head a { text-decoration:none; color:#fff; text-transform:none; font-family:"Times New Roman", Times, serif; font-size:19px; line-height:20px; font-weight:normal;}
+.box-head a:hover { color:#ffcd56;}
+
+.box-body { background:#fff;}
+
+.box-body ul {margin:0; padding:11px 0 15px 0 !important; list-style:none;}
+.box-body ul li {
+	padding:0 0 0 24px;
+}
+.box-body ul li a {
+	font-size:12px;
+	line-height:25px;
+	color:#737373;
+	text-decoration:none;
+	text-transform:none;
+	background:url(/images/arrow_right_2.png) no-repeat 0 4px;
+	padding:0 0 0 11px;
+}
+
+.box-body ul li.category-products a:hover,
+.box-body ul li .category-subs-parent-selected,
+.box-body ul li .category-subs-selected,
+.box-body ul li a:hover {color:#749607;}
+
+.box-body ul li.category-products{ padding-left:35px !important;}
+
+.box-body ol {margin:0; padding:11px 0 15px 0; list-style:none;}
+.box-body ol li {padding:0 0 0 24px;}
+.box-body ol li a {
+	font-size:12px;
+	line-height:25px;
+	color:#737373;
+	text-decoration:none;
+	text-transform:none;
+	background:url(/images/arrow_right_2.png) no-repeat 0 4px;
+	padding:0 0 0 11px;
+}
+.box-body ol li a:hover {color:#749607;}
+
+
+/* ----------------------- LISTING BOXES ------------------------- */
+
+
+#categories {}
+
+
+#moreinformation {}
+
+
+#information {}
+
+
+#bestsellers {}
+#screenshot{
+	position:absolute;
+	display:none;
+	color:#fff;
+	background:#FFFFFF;
+	border:1px solid #cacaca;
+	z-index:9999;
+	-moz-transition: all 0.4s ease 0s;
+	-webkit-transition: all 0.4s ease 0s;
+	-o-transition: all 0.4s ease 0s;
+}
+#screenshot img{
+	width:146px;
+	height:146px;
+
+}
+
+#ezpages {}
+
+
+#orderhistory {}
+#orderhistory .box-body img {background:#FFFFFF; padding:2px; border:1px solid #AAAAAA; vertical-align:middle; margin:2px 0px 2px 0px;}
+#orderhistory .no-bg{ background:none; padding:0;}
+#orderhistory a{ display:inline; background:none; padding:0;}
+
+
+/* ----------------------- BANNER BOXES ------------------------- */
+
+#bannerbox {}
+
+#bannerbox2 {}
+
+#bannerboxall {}
+
+
+
+/* ----------------------- PRODUCT BOXES ------------------------- */
+
+#featured a img, 
+#whatsnew a img, 
+#specials a img, 
+#reviews a img, 
+#manufacturerinfo img, 
+#productnotifications img {margin:0 0 8px;}
+
+#reviews img {margin:5px 0 0;}
+
+
+
+#featured {}
+#featured .box-body{ text-align:center;}
+#featured .box-body .sb-info{ padding:10px;}
+#featured .box-body .name{font-size:10px; color:#3b3b3b;}
+#featured .box-body .name:hover{}
+#featured .box-body .normalprice {text-decoration:line-through; color:#749607; font-size:17px; line-height:20px; font-weight:bold; font-family:"Times New Roman", Times, serif;}
+#featured .box-body .productSpecialPrice, .productSalePrice, .productSpecialPriceSale {color:#749607; font-size:17px; line-height:20px; font-weight:bold; font-family:"Times New Roman", Times, serif;}
+
+
+#whatsnew {}
+#whatsnew .box-body{ text-align:center;}
+#whatsnew .box-body .sb-info{ padding:10px;}
+#whatsnew .box-body .name{font-size:10px; color:#3b3b3b;}
+#whatsnew .box-body .name:hover{}
+#whatsnew .box-body .normalprice {text-decoration:line-through; color:#749607; font-size:17px; line-height:20px; font-weight:bold; font-family:"Times New Roman", Times, serif;}
+#whatsnew .box-body .productSpecialPrice, .productSalePrice, .productSpecialPriceSale {color:#749607; font-size:17px; line-height:20px; font-weight:bold; font-family:"Times New Roman", Times, serif;}
+
+
+#specials {}
+#specials .box-body{ text-align:center;}
+#specials .box-body .desc{ padding:10px;}
+#specials .box-body .name{ font-size:10px; color:#3b3b3b;}
+#specials .box-body .name:hover{}
+#specials .box-body .normalprice {text-decoration:line-through; color:#749607; font-size:17px; line-height:20px; font-weight:bold; font-family:"Times New Roman", Times, serif;}
+#specials .box-body .productSpecialPrice, .productSalePrice, .productSpecialPriceSale {color:#749607; font-size:17px; line-height:20px; font-weight:bold; font-family:"Times New Roman", Times, serif;}
+
+
+#reviews {}
+#reviews .box-body{ text-align:center;  padding:0 10px 20px;}
+
+#manufacturerinfo {}
+
+
+#productnotifications {}
+#productnotifications .box-body{ text-align:center;}
+
+
+
+
+/* ----------------------- FORM BOXES ------------------------- */
+
+#search {}
+#search .box-body{
+	overflow:hidden;
+	width:100%;
+	padding:10px;
+}
+#search .advsearch{
+	color:#464646;
+	font-size:13px;
+	line-height:24px;
+	text-decoration:underline;
+	text-transform:lowercase;
+	font-family: 'Droid Sans', sans-serif;
+	float:left;
+	display:inline-block;
+}
+#search .advsearch:hover{ text-decoration:none;}
+#search input{ border:solid 0px; padding:0; background:url(/images/search.gif) no-repeat 0 0;  width:24px !important; height:24px !important; vertical-align:middle; float:left; display:block; text-indent:-1000px; cursor: pointer;}
+#search .input1{
+	border:solid 1px #e8e8e7;
+	margin-right:2px;
+	width:165px!important;
+	cursor:text;
+	padding: 2px 2px 2px 2px; 
+	float:left;
+	margin-bottom:11px;
+	background:#fff;
+	text-indent:0;
+	height:18px!important;
+}
+
+
+#manufacturers {}
+#manufacturers .box-body {text-align:center; padding:10px 0;}
+
+
+#currencies {}
+#currencies .box-body {text-align:center; padding:10px 0;}
+#currencies select{ width:90%;}
+
+
+#recordcompanies {}
+#recordcompanies .box-body {text-align:center;}
+
+
+#musicgenres {}
+#musicgenres .box-body {text-align:center;}
+
+
+
+/* ----------------------- TEXT BOXES ------------------------- */
+
+#languages {}
+#languages .box-head{ margin-bottom:-1px;}
+#languages .box-body {text-align:center; background:url(/images/wrapper-1.jpg) repeat 0 0; padding-bottom:10px;}
+
+
+#whosonline {}
+#whosonline .box-body {text-align:center; padding:10px;}
+
+
+#documentcategories {}
+
+
+#shoppingcart {}
+#shoppingcart .cart_line {}
+#shoppingcart #cartBoxEmpty {text-align:center; padding:10px;}
+#shoppingcart li a{ padding:0; background:none;}
+#shoppingcart  .price{ padding:0 10px 10px;}

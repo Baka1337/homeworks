@@ -31,7 +31,7 @@ class Page extends Model{
             return false;
         }
         $id = (int)$id;
-        $alias = $this->db->escape(App::getNameTranslite($data['alias']));
+        $alias = $this->db->escape($data['alias']);
         $title = $this->db->escape($data['title']);
         $content = $this->db->escape($data['content']);
         $is_published = isset($data['is_published']) ? 1 : 0;

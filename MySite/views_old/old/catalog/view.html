@@ -1,0 +1,78 @@
+<ol class="breadcrumb" style="margin-bottom: 5px;">
+    <li><a href="/">Главная</a></li>
+<?php foreach ($data['parent'] as $parent){
+        if ($data['category']['parent_id'] == $parent['id']){?>
+    <li><a href="/catalog/parent/<?=$parent['alias']?>"><?=$parent['name']?></a></li>
+    <li><a href="/catalog/category/<?=$data['category']['alias']?>"><?=$data['category']['name']?></a></li>
+    <li class="active"><?=$data['goods']['name']?></li>
+</ol>
+<?php
+        }
+        } ?>
+<div class="col-md-9">
+    <h3><?=$data['goods']['name']?></h3>
+    <br>
+    <div><img src="<?=IMG_PATH_ASSET?><?=$data['goods']['id']?>.jpeg" class="img-rounded"></div>
+    <div class="row"><p class="price"><b>Цена:</b> <?=$data['goods']['price']?> грн</p></div>
+    <p><b>Описание:</b></p>
+    <p><?=$data['goods']['description']?><?php if (Session::get('role') == 'admin') {?>
+            <a href="/admin/catalog/edit/<?=$data['goods']['id']?>" title="Редактировать товар">
+                Редактировать
+            </a>
+        <?php }?>
+    <div class="col-md-12 white-bg show-comments">
+        <?php if($data['comments']){ ?>
+
+            <h3>Комментарии (<?=count($data['comments'])?>)</h3><br>
+
+            <?php foreach($data['comments'] as $comment){?>
+                <?php if ($comment['reply_to'] == 0){?>
+                    <div style="padding:10px; margin-top: 20px; border: 1px solid #dedede;">
+                        <b style="color: #1a9cff;"><?=$comment['name']?></b><br>
+                        <?=$comment['message']?><br><br>
+                        <a href="javascript:void(0);" onclick="$(this).replaceWith($('#comment_form').clone().append('<input value=<?=$comment['id']?> name=reply_to type=hidden />'));">Ответить</a>
+                    </div>
+                <?php }?>
+                <?php foreach ($data['reply_to'] as $reply){?>
+                    <?php if ($reply['reply_to'] == $comment['id']){?>
+                        <b style="color: #1a9cff;"><?=$reply['name']?></b><br>
+                        <?=$reply['message']?><br><br>
+                        <a href="javascript:void(0);" onclick="$(this).replaceWith($('#comment_form').clone().append('<input value=<?=$reply['id']?> name=reply_to type=hidden />'));">Ответить</a>
+                    <?php }?>
+                <?php }?>
+            <?php }?>
+
+        <?php }?>
+    <div class="col-md-12 comments white-bg">
+            <h3>Оставить отзыв</h3>
+            <form id="comment_form" method="post" action="/catalog/addComment/<?=$data['goods']['alias']?>">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<?php if( Session::get('login')){ ?><?=Session::get('name')?><?php } ?>"/>
+                    <label for="email">Эл. почта</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php if( Session::get('login')){ ?><?=Session::get('email')?><?php } ?>"/>
+                    <label for="message">Сообщение</label>
+                    <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                    <br/>
+                    <input type="submit" class="btn btn-success" onclick="sendComment($(this).parent(), event);" value="Добавить" />
+            </form>
+
+        <script>
+            function sendComment(form, event){
+                event.preventDefault();
+                // Переменная, куда отправляется форма
+                var post_url = $(form).attr('action');
+                my_form = form;
+                console.log(form);
+                $.post(post_url, $(form).serialize())
+                    .done(function(data) {
+                        console.log(my_form);
+                        $(my_form).replaceWith(data);
+                    });
+            }
+            $(".comment_form").submit(function(event) {
+                sendComment(this, event);
+            });
+        </script>
+    </div>
+</div>
+    </div>
