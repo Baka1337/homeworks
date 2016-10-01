@@ -1,19 +1,4 @@
 <h1 id="productListHeading"><?=$data['parent']['name']?></h1>
-<div class="tie3 text2 tie-margin1">
-    <div class="tie3-indent">
-        <div class="wrapper">
-            <strong class="title">Property categories:</strong>
-            <br>
-            <div class="fleft">
-                <div id="categoryImgListing" class="categoryImg">
-                    <img width="196" height="196" alt="" src="images/cat1.jpg">
-                </div>
-            </div>
-            <div id="indexProductListCatDescription" class="fleft"> </div>
-            <div class="content_desc"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam mattis, augue a pharetra aliquet, turpis magna sagittis odio, non lobortis dolor nulla a massa. </div>
-        </div>
-    </div>
-</div>
 <br class="clearBoth" />
 <table border="0" cellspacing="0" cellpadding="0" width="100%" id="contentMainWrapper">
 
@@ -120,31 +105,7 @@
                 <!--// eof: categories //-->
 
                 <!--// bof: bestsellers //-->
-                <div class="box" id="bestsellers" style="width:220px;">
-
-
-
-                    <div class="box-head">
-                        Бестселлеры
-                    </div>
-
-                    <div class="box-body">
-                        <div id="bestsellersContent" class="sideBoxContent">
-                            <div class="wrapper">
-                                <ol>
-                                    <li><a class="screenshot" rel="images/27.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=27">SerendipiTea Iron Go...</a></li>
-                                    <li><a class="screenshot" rel="images/30.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=30">SerendipiTea Yin Zhe...</a></li>
-                                    <li><a class="screenshot" rel="images/33.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=33">Taylors of Harrogate...</a></li>
-                                    <li><a class="screenshot" rel="images/36.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=36">Tazo Passion Herbal ...</a></li>
-                                    <li><a class="screenshot" rel="images/39.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=39">Tienxi Pu-Erh Tea Ca...</a></li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'bestsellers.html')?>
                 <!--// eof: bestsellers //-->
 
             </div>

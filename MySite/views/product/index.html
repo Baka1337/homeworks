@@ -1,3 +1,28 @@
+<div class="slider">
+    <script language="javascript" type="text/javascript">
+        jQuery(window).load(function() {
+            jQuery('#slider').nivoSlider({
+                effect: 'fade',
+                animSpeed: 500,
+                pauseTime: 4000,
+                directionNav: true,
+                directionNavHide: true,
+                controlNav: false,
+                pauseOnHover: true,
+                captionOpacity: 0.8			});
+        });
+
+    </script>
+
+    <div class="slider-wrapper theme-default">
+        <div id="slider" class="nivoSlider">
+            <a href=""><img src="/images/banner1.jpg" alt="" width="930" height="330" /></a>
+            <a href=""><img src="/images/banner2.jpg" alt="" width="930" height="330" /></a>
+            <a href=""><img src="/images/banner3.jpg" alt="" width="930" height="330" /></a>
+        </div>
+    </div>
+</div>
+
 <div class="bot-banner">
     <?php include (VIEWS_PATH.DS.'helper'.DS.'botbanners.html')?>
 </div>
@@ -106,31 +131,9 @@
                 <!--// eof: categories //-->
 
                 <!--// bof: bestsellers //-->
-                <div class="box" id="bestsellers" style="width:220px;">
 
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'bestsellers.html')?>
 
-
-                    <div class="box-head">
-                        Бестселлеры
-                    </div>
-
-                    <div class="box-body">
-                        <div id="bestsellersContent" class="sideBoxContent">
-                            <div class="wrapper">
-                                <ol>
-                                    <li><a class="screenshot" rel="images/27.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=27">SerendipiTea Iron Go...</a></li>
-                                    <li><a class="screenshot" rel="images/30.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=30">SerendipiTea Yin Zhe...</a></li>
-                                    <li><a class="screenshot" rel="images/33.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=33">Taylors of Harrogate...</a></li>
-                                    <li><a class="screenshot" rel="images/36.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=36">Tazo Passion Herbal ...</a></li>
-                                    <li><a class="screenshot" rel="images/39.jpg" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&amp;products_id=39">Tienxi Pu-Erh Tea Ca...</a></li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
                 <!--// eof: bestsellers //-->
 
             </div>

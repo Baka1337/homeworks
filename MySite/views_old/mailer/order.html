@@ -1,51 +1,75 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                Ваш заказ:
-            </h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>
-                        Название
-                    </th>
-                    <th>
-                        Количество
-                    </th>
-                    <th>
-                        Цена за 100 грамм
-                    </th>
-                    <th>
-                        Цена
-                    </th>
-                    <td>
-
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($product as $item){?>
-                <tr>
-                    <td>
-                        <?=$item['name']?>
-                    </td>
-                    <td>
-                        <?=$item['quantity']?>
-                    </td>
-                    <td>
-                        <?=$item['price']?>
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
-                <?php }?>
-                </tbody>
-            </table>
-            <h3 class="text-right">
-                h3. Lorem ipsum dolor sit amet.
-            </h3>
-        </div>
-    </div>
+<div class="table-responsive">
+    <h3>Уважаемый покупатель.
+        Ваш заказ, № принят в обработку.</h3>
+    <table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;">
+        <thead>
+        <tr style="background: #f9f9f9;">
+            <th style="padding: 8px; border: 1px solid #ddd;">Наименование</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $count = 0; foreach ($product as $item) :?>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $item['name']?></td>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $item['quantity']?></td>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $item['price']?></td>
+                <?php $count = $count + $product['quantity'] * $product['price'];?>
+            </tr>
+        <?php endforeach?>
+        <tr>
+            <td colspan="3" style="padding: 8px; border: 1px solid #ddd;">На сумму: </td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$count?></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+<!--    <table style="width: 25%; border: 1px solid #ddd; border-collapse: collapse;">-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Имя</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$_POST['name']?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Фамилия</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$_POST['surname']?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Телефон</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$_POST['phone']?><!--</td>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">E-mail</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$_POST['email']?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Город</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$_POST['city']?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Улица</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$order->street?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Дом</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$order->house?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">№ квартиры</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$order->apartment?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Способ доставки</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$order->delivery->title?><!--</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">Метод оплаты</td>-->
+<!--            <td style="padding: 8px; border: 1px solid #ddd;">--><?//=$order->payment->title?><!--</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+    <p>
+        Желаем Вам приятных покупок в нашем магазине!
+    </p>
 </div>

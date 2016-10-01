@@ -35,5 +35,6 @@ class Controller{
         $this->data = $data;
         $this->params = App::getRouter()->getParams();
         $this->data['menu'] = Helper::getTree();
+        $this->data['bestsellers'] = Helper::getBestsellers();
     }
 }

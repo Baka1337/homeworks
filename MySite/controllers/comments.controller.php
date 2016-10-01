@@ -11,19 +11,21 @@ class CommentsController extends Controller{
     }
 
     public function add(){
-        if ( isset($this->params[0]) ){
+        if (isset($this->params[0])) {
             $alias = strtolower($this->params[0]);
             $product = $this->catalog->getByAlias($alias);
-        } else {
-            Router::redirect('/');
+            if ($_POST) {
+                if (isset($_POST['name']) && $_POST['name'] != null &&
+                    isset($_POST['email']) && $_POST['email'] != null &&
+                    isset($_POST['message']) && $_POST['message'] != null
+                ) {
+                    $product_id = $product['id'];
+                    $comments_model = new Comment();
+                    $comments_model->add($product_id, $_POST);
+                }
+            }
         }
-
-        $product_id = $product['id'];
-        $product_name = $product['name'];
-        $product_alias = $this->params[0];
-        $comments_model = new Comment();
-        $comments_model->add($product_id,$product_name,$product_alias, $_POST);
-        exit;
+        Router::redirect('/product/view/'.$alias);
     }
 
     public function admin_index(){

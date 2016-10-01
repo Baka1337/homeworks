@@ -42,7 +42,6 @@ class Order extends Model {
     public function add($data, $order){
         $city = $this->db->escape($data['city']);
         $name = $this->db->escape($data['name']);
-        $middlename = $this->db->escape($data['middle_name']);
         $surname = $this->db->escape($data['surname']);
         $phone = $this->db->escape($data['phone']);
         $street = $this->db->escape($data['street']);
@@ -50,22 +49,19 @@ class Order extends Model {
         $flat = (int)$data['flat'];
         $delivery_type = (int)$data['delivery'];
         $payment_type = (int)$data['payment'];
-        $additionally = $this->db->escape($data['additionally']);
         $user_id = (int)Session::get('id');
 
         $sql = "insert into {$this->table}
                       set name = '{$name}',
                           user_id = '{$user_id}',
                           surname = '{$surname}',
-                          middlename = '{$middlename}',
-                          phone = {$phone},
+                          phone = '{$phone}',
                           payment_type = '{$payment_type}',
                           delivery_type = '{$delivery_type}',
                           city = '{$city}',
                           street = '{$street}',
                           house = '{$house}',
                           flat = '{$flat}',
-                          additionally = '{$additionally}',
                           status = 1,
                           date = NOW()
                           ";

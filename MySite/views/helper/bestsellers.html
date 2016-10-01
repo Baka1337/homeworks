@@ -1,0 +1,23 @@
+<div class="box" id="bestsellers" style="width:220px;">
+
+
+
+    <div class="box-head">
+        Бестселлеры
+    </div>
+
+    <div class="box-body">
+        <div id="bestsellersContent" class="sideBoxContent">
+            <div class="wrapper">
+                <ol>
+                    <?php foreach ($data['bestsellers'] as $bestseller) {?>
+                    <li><a class="screenshot" rel="<?=IMG_PATH_ASSET?><?=$bestseller['img']?>" href="/product/view/<?=$bestseller['alias']?>"><?=$bestseller['name']?></a></li>
+                    <?php }?>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

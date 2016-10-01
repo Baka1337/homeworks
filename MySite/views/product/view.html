@@ -3,22 +3,11 @@
     <tr>
 
 
-
         <td valign="top" id="column-center">
 
             <div class="column-center-padding">
 
                 <!--content_center-->
-
-
-                <!-- bof breadcrumb -->
-                <!-- eof breadcrumb -->
-
-
-                <!-- bof upload alerts -->
-                <!-- eof upload alerts -->
-
-
 
                 <div id="productGeneral" class="centerColumn">
                     <!--bof Product Name-->
@@ -35,56 +24,55 @@
 
 
 
-                                        <!--bof Category Icon -->
+                                    <!--bof Category Icon -->
 
 
-                                        <!--bof Prev/Next top position -->
-                                        <!--eof Prev/Next top position-->
+                                    <!--bof Prev/Next top position -->
+                                    <!--eof Prev/Next top position-->
 
-                                        <div class="fleft">
-                                            <!--bof Main Product Image -->
+                                    <div class="fleft">
+                                        <!--bof Main Product Image -->
 
 
 
-                                            <div class="centeredContent back" id="productMainImage">
-                                                <span class="image"><a href="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><img width="196" height="192" title="<?=$data['goods']['name']?>" alt="<?=$data['goods']['name']?>" src="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><span class="zoom"></span></a></span>
+                                        <div class="centeredContent back" id="productMainImage">
+                                            <span class="image"><a href="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><img width="196" height="192" title="<?=$data['goods']['name']?>" alt="<?=$data['goods']['name']?>" src="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><span class="zoom"></span></a></span>
 
-                                            </div>
-                                            <!--eof Main Product Image-->
-                                            <div class="clear"></div>
                                         </div>
+                                        <!--eof Main Product Image-->
+                                        <div class="clear"></div>
+                                    </div>
 
-                                        <div class="fleft desc2">
-                                            <!--bof free ship icon  -->
-                                            <!--eof free ship icon  -->
-                                            <div class="name-type bot-border"><?=$data['goods']['name']?> <?php if (Session::get('role') == 'admin') {?>
-                                                    <a href="/admin/catalog/edit/<?=$data['goods']['id']?>" title="Редактировать товар"><i class="fa fa-pencil fa-lg" aria-hidden="true">
-                                                        </i></a>
-                                                <?php }?></div>
+                                    <div class="fleft desc2">
+                                        <!--bof free ship icon  -->
+                                        <!--eof free ship icon  -->
+                                        <div class="name-type bot-border"><?=$data['goods']['name']?> <?php if (Session::get('role') == 'admin') {?>
+                                                <a href="/admin/product/edit/<?=$data['goods']['id']?>" title="Редактировать товар"><i class="fa fa-pencil fa-lg" aria-hidden="true">
+                                                    </i></a>
+                                            <?php }?></div>
 
 
-                                            <!--bof Product details list  -->
-<!--                                            <ul class="instock">-->
-<!--                                                <li><strong>Model: </strong>Model1</li>-->
-<!--                                                <li><strong>Shipping Weight: </strong>2lbs</li>-->
-<!--                                                <li><strong> Units in Stock: </strong>999</li>-->
-<!--                                                <li><strong>Manufactured by: </strong>Example 1</li>-->
-<!--                                            </ul>-->
-                                            <!--eof Product details list -->
+                                        <!--bof Product details list  -->
+                                        <!--                                            <ul class="instock">-->
+                                        <!--                                                <li><strong>Model: </strong>Model1</li>-->
+                                        <!--                                                <li><strong>Shipping Weight: </strong>2lbs</li>-->
+                                        <!--                                                <li><strong> Units in Stock: </strong>999</li>-->
+                                        <!--                                                <li><strong>Manufactured by: </strong>Example 1</li>-->
+                                        <!--                                            </ul>-->
+                                        <!--eof Product details list -->
 
-                                            <!--bof Product Price block -->
-                                            <h2 class="productGeneral" id="productPrices">
-                                                <span class="price-text">Цена: &nbsp;</span>
-                                                <?=$data['goods']['price']?> грн.  / 100 грамм </h2>
-                                            <!--eof Product Price block -->
+                                        <!--bof Product Price block -->
+                                        <h2 class="productGeneral" id="productPrices">
+                                            <span class="price-text">Цена: &nbsp;</span>
+                                            <?=$data['goods']['price']?> грн.  / 100 грамм </h2>
+                                        <!--eof Product Price block -->
 
-                                            <!--bof Add to Cart Box -->
-                                            <div id="cartAdd">
-                                                <strong class="fleft text2"><span class="buttonRow"><input type="submit" style="width: 80px;" value="Купить" onmouseout="this.className='cssButton button_in_cart'" onmouseover="this.className='cssButtonHover button_in_cart button_in_cartHover'" class="cssButton button_in_cart"></span>
-                                            </div>
-                                            <!--eof Add to Cart Box-->
+                                        <!--bof Add to Cart Box -->
+                                        <div id="cartAdd">
+                                            <strong class="fleft text2"><span class="buttonRow"><a href="/cart/add/<?=$data['goods']['id']?>"><button style="width: 80px;" onmouseout="this.className='cssButton button_in_cart'" onmouseover="this.className='cssButtonHover button_in_cart button_in_cartHover'" class="cssButton button_in_cart">Купить</button></a></span>
                                         </div>
-                                </div>
+                                        <!--eof Add to Cart Box-->
+                                    </div>
 
 
 
@@ -164,6 +152,7 @@
                                     <!--eof Product URL -->
 
                                 </div>
+                                </div>
 
                                 <!--bof also purchased products module-->
 
@@ -198,7 +187,7 @@
                 <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
 
                 <!--// eof: categories //-->
-
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'bestsellers.html')?>
             </div>
 
         </td>

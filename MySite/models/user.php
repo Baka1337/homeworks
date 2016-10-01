@@ -40,14 +40,12 @@ class User extends Model {
         $role = $this->db->escape($data['role']);
         $access = (int)$data['is_active'];
         $name = $this->db->escape($data['name']);
-        $middlename = $this->db->escape($data['middlename']);
         $surname = $this->db->escape($data['surname']);
         $phone = $this->db->escape($data['phone']);
         $city = $this->db->escape($data['city']);
         $street = $this->db->escape($data['street']);
         $house = $this->db->escape($data['house']);
         $flat = $this->db->escape($data['flat']);
-        $additionally = $this->db->escape($data['additionally']);
 
         $sql = "update {$this->table}
                         set login = '{$login}',
@@ -55,14 +53,12 @@ class User extends Model {
                             role = '{$role}',
                             is_active = '{$access}',
                             name = '{$name}',
-                            middlename = '{$middlename}',
                             surname = '{$surname}',
                             phone = '{$phone}',
                             city = '{$city}',
                             street = '{$street}',
                             house = '{$house}',
                             flat = '{$flat}',
-                            additionally = '{$additionally}'
                             where id = {$id}
                         ";
         return $this->db->query($sql);
@@ -72,24 +68,20 @@ class User extends Model {
         $id = (int)$id;
         $surname = $this->db->escape($data['surname']);
         $name = $this->db->escape($data['name']);
-        $middlename = $this->db->escape($data['middlename']);
         $city = $this->db->escape($data['city']);
         $street = $this->db->escape($data['street']);
         $house = $this->db->escape($data['house']);
         $flat = $this->db->escape($data['flat']);
-        $additionally = $this->db->escape($data['additionally']);
         $phone = $this->db->escape($data['phone']);
 
         $sql = "update {$this->table}
                    set surname = '{$surname}',
                        name = '{$name}',
-                       middlename = '{$middlename}',
                        city = '{$city}',
                        street = '{$street}',
                        house = {$house},
                        flat = {$flat},
-                       additionally = '{$additionally}',
-                       phone = {$phone}
+                       phone = '{$phone}'
                    where id = {$id}
         ";
         return $this->db->query($sql);
@@ -112,12 +104,14 @@ class User extends Model {
     }
 
     public function register($data){
-        if (!isset($data['login']) || !isset($data['password'])){
+        if (!isset($data['name']) || !isset($data['surname']) || !isset($data['city']) || !isset($data['street']) || !isset($data['phone']) || !isset($data['login']) || !isset($data['email']) || !isset($data['password'])){
             return false;
         }
         $login = $this->db->escape(strtolower($data['login']));
         $name = $this->db->escape($data['name']);
         $surname = $this->db->escape($data['surname']);
+        $city = $this->db->escape($data['city']);
+        $street = $this->db->escape($data['street']);
         $email = $this->db->escape(strtolower($data['email']));
         $phone = $this->db->escape($data['phone']);
 
@@ -133,6 +127,8 @@ class User extends Model {
                     set login = '{$login}',
                         name = '{$name}',
                         surname = '{$surname}',
+                        city = '{$city}',
+                        street = '{$street}',
                         email = '{$email}',
                         role = 'user',
                         phone = '{$phone}',

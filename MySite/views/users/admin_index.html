@@ -34,19 +34,19 @@
                 <?=$user['role']?>
             </td>
             <td>
-                <?php if ($user['is_active'] == 0) {
-                echo '<span class="text-danger">Закрыт</span>';
-                    } else {
-                echo '<span class="text-success">Открыт</span>';
-                }?>
+                            <?php if ($user['is_active'] == 0) {
+                            echo '<span class="text-danger">Закрыт</span>';
+                                } else {
+                            echo '<span class="text-success">Открыт</span>';
+                            }?>
             </td>
             <td>
                 <a href="/admin/users/edit/<?=$user['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
                 <a href="/admin/users/delete/<?=$user['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
             </td>
-            <?php }?>
         </tr>
         </tbody>
+                    <?php }?>
     </table>
 </div>
 </div>

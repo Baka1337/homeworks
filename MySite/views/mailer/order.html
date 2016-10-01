@@ -1,0 +1,67 @@
+<div class="table-responsive">
+    <h3>Уважаемый покупатель.
+        Ваш заказ принят в обработку.</h3>
+    <table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;">
+        <thead>
+        <tr style="background: #f9f9f9;">
+            <th style="padding: 8px; border: 1px solid #ddd;">Наименование</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $count = 0; foreach ($message as $item) :?>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #ddd;"><a href="http://mysitex.zzz.com.ua/product/view/<?=$item['alias']?>"><?= $item['name']?></a></td>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $item['quantity']?></td>
+                <td style="padding: 8px; border: 1px solid #ddd;"><?= $item['price']?> грн.</td>
+                <?php $count = $count + $item['quantity'] * $item['price'];?>
+            </tr>
+        <?php endforeach?>
+        <tr>
+            <td colspan="2" style="padding: 8px; border: 1px solid #ddd;">На сумму: </td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$count?> грн.</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <table style="width: 25%; border: 1px solid #ddd; border-collapse: collapse;">
+        <tbody>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Имя</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['name']?></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Фамилия</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['surname']?></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Телефон</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['phone']?></td>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">E-mail</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$email?></td>
+        <tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Город</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['city']?></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Улица</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['street']?></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Дом</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['house']?></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">№ квартиры</td>
+            <td style="padding: 8px; border: 1px solid #ddd;"><?=$data['flat']?></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        Желаем Вам приятных покупок в нашем магазине!
+    </p>
+</div>

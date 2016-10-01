@@ -16,7 +16,7 @@ Config::set('default_route', 'default');
 Config::set('default_language', 'en');
 Config::set('default_controller', 'product');
 Config::set('default_action', 'index');
-Config::set('items_per_page', '9');
+Config::set('items_per_page', 9);
 
 Config::set('db.host', 'localhost');
 Config::set('db.user', 'root');

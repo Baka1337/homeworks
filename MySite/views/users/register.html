@@ -8,9 +8,6 @@
                     <div class="tie">
                         <div class="tie-indent">
                             <form method="post" action="">
-                                <input type="hidden" value="df80fc9e4dd33a1153b7703e4efc4ff1" name="securityToken">
-                                <input type="hidden" value="process" name="action">
-                                <input type="hidden" value="email_format" name="email_pref_html">
                                 <fieldset class="second">
                                     <legend>Регистрация нового пользователя</legend>
                                     <div class="information">
@@ -24,17 +21,17 @@
                                     <fieldset class="address">
                                         <legend>Данные для заказа</legend>
                                         <label class="inputLabel" for="name">Имя:</label>
-                                        <input id="name" type="text" maxlength="32" size="33" name="name">
+                                        <input id="name" type="text" maxlength="32" size="33" name="name" required="required" >
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
                                         <label class="inputLabel" for="surname">Фамилия:</label>
-                                        <input id="surname" type="text" maxlength="32" size="33" name="surname">
+                                        <input id="surname" type="text" maxlength="32" size="33" name="surname" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
                                         <label class="inputLabel" for="street">Улица:</label>
-                                        <input id="street" type="text" maxlength="32" size="33" name="street">
+                                        <input id="street" type="text" maxlength="32" size="33" name="street" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
@@ -47,7 +44,7 @@
 
                                         <br class="clearBoth">
                                         <label class="inputLabel" for="city">Город:</label>
-                                        <input id="city" type="text" maxlength="32" size="33" name="city">
+                                        <input id="city" type="text" maxlength="32" size="33" name="city" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
@@ -56,7 +53,7 @@
                                     <fieldset>
                                         <legend>Контактная информация</legend>
                                         <label class="inputLabel" for="phone">Телефон:</label>
-                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx">
+                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx" required="required">
                                         <span class="alert">*</span>
                                         <br class="clearBoth">
                                     </fieldset>
@@ -65,17 +62,17 @@
                                         <legend>Данные для входа в систему</legend>
 
                                         <label class="inputLabel" for="login">Логин:</label>
-                                        <input id="login" type="text" maxlength="32" size="33" name="login">
+                                        <input id="login" type="text" maxlength="32" size="33" name="login" required="required">
                                         <span class="alert">*</span>
                                         <br class="clearBoth">
 
                                         <label class="inputLabel" for="email">Email:</label>
-                                        <input id="email" type="text" maxlength="32" size="33" name="email">
+                                        <input id="email" type="email" maxlength="32" size="33" name="email" required="required">
                                         <span class="alert">*</span>
                                         <br class="clearBoth">
 
                                         <label class="inputLabel" for="password">Пароль:</label>
-                                        <input id="password" type="password" maxlength="32" size="33" name="password">
+                                        <input id="password" type="password" maxlength="32" size="33" name="password" required="required">
                                         <span class="alert">* </span>
                                         <br class="clearBoth">
                                         <!--                                        <label class="inputLabel" for="password-confirm">Confirm Password:</label>-->
@@ -100,32 +97,7 @@
 
                 <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
 
-                <div id="bestsellers" class="box" style="width:220px;">
-                    <div class="box-head"> Bestsellers </div>
-                    <div class="box-body">
-                        <div id="bestsellersContent" class="sideBoxContent">
-                            <div class="wrapper">
-                                <ol>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'bestsellers.html')?>
             </div>
         </td>
     </tr>

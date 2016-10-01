@@ -7,7 +7,7 @@ class ExcelController extends Controller{
     public function __construct($data = array())
     {
         parent::__construct($data);
-        $this->model = new Catalogs();
+        $this->model = new Products();
         $this->excel = new Excels();
     }
 
@@ -240,8 +240,12 @@ class ExcelController extends Controller{
 
 
         header("Content-Type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename='list.xls'");
+        header("Content-Disposition:attachment;filename=list.xls");
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
         $objWriter->save('php://output');
+    }
+
+    public function admin_index(){
+
     }
 }

@@ -91,33 +91,16 @@ class ProductController extends Controller{
     }
 
     public function search(){
-        $page = Helper::Pagination();
-        $limit = Helper::getLimitPagesPagination($page);
-
-        if (isset($_GET['q'])){
-            $this->data['search'] = $this->model->search($_GET['q'], $limit);
-            $this->data['count'] = $this->model->searchCount($_GET['q']);
-        } else {
-            Session::setFlash('Ничего не найдено!');
+        $this->data['goods'] = $this->model->search($_POST['search']);
+        if (empty($this->data['goods'])){
+            Session::setFlash('Ничего не найдено.');
         }
 
-        $count = $this->model->getCount();
-        $count = (int)$count['count'];
-        $this->data['pagination'] = new Pagination($count, Config::get('items_per_page'), $page);
     }
 
     public function admin_search(){
-        $page = Helper::Pagination();
-        $limit = Helper::getLimitPagesPagination($page);
-
-        $this->data['goods'] = $this->model->search($_POST['search'], $limit);
+        $this->data['goods'] = $this->model->search($_POST['search']);
         $this->data['categories_list'] = $this->category->getCategoriesList();
-
-        $count = $this->model->getCount();
-        $count = (int)$count['count'];
-        $this->data['pagination'] = new Pagination($count, Config::get('items_per_page'), $page);
-
-        return VIEWS_PATH.DS.'catalog'.DS.'admin_index.html';
     }
 
 }

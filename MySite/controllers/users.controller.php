@@ -3,6 +3,8 @@
 class UsersController extends Controller{
 
     private $order;
+    private $subject = 'Регистрация на сайте: Чайный-магазин';
+    private $template = 'mail.html';
 
     public function __construct($data = array()){
         parent::__construct($data);
@@ -12,37 +14,6 @@ class UsersController extends Controller{
 
     public function index(){
         Router::redirect('/');
-    }
-
-    public function confirm(){
-        $hash = $this->params[0];
-    }
-
-    public function sendWelcomeEmail($login, $email){
-        $mail = new PHPMailer();
-        $mail->setLanguage('ru', ROOT.DS.'lib'.DS.'PHPMailer'.DS.'language'.DS);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->SMTPAuth = 'ssl';
-        $mail->Port = 587;
-        $mail->CharSet = 'UTF-8';
-        $body = file_get_contents(VIEWS_PATH.DS.'mailer'.DS.'mail.html');
-        $body = str_replace('{%LOGIN%}', $login, $body);
-        $body = str_replace('{%EMAIL%}', $email, $body);
-        $mail->Username = '';
-        $mail->Password = '^';
-        $mail->setFrom('', 'info');
-        $mail->Subject = 'Регистрация на сайте Mysitex';
-        $mail->addAddress($email);
-        $mail->Body = $body;
-        $mail->isHTML(true);
-        if(!$mail->send()) {
-            echo "Ошибка: " . $mail->ErrorInfo;
-        } else{
-            echo "Сообщение отправлено";
-        }
-        $mail->clearAddresses();
     }
 
     public function login(){
@@ -64,19 +35,29 @@ class UsersController extends Controller{
     }
 
     public function register(){
-        if ($_POST){
-            $result = $this->model->register($_POST);
-            if ($result){
-                $user = $this->model->getById($result);
-                $user = $this->sendWelcomeEmail($user['login'], $user['email']);
-                Session::set('login', $user['login']);
-                Session::set('email', $user['email']);
-                Session::set('role', $user['role']);
-                Session::setFlash('Регистрация успешно завершена!');
-                Router::redirect('/');
-            } else {
-                Session::setFlash('Ошибка при регистрации!');
-                Router::redirect('/users/login/');
+        if ($_POST) {
+            if (isset($_POST['name']) && $_POST['name'] != null &&
+                isset($_POST['surname']) && $_POST['surname'] != null &&
+                isset($_POST['city']) && $_POST['city'] != null &&
+                isset($_POST['street']) && $_POST['street'] != null &&
+                isset($_POST['phone']) && $_POST['phone'] != null &&
+                isset($_POST['login']) && $_POST['login'] != null &&
+                isset($_POST['email']) && $_POST['email'] != null &&
+                isset($_POST['password']) && $_POST['password'] != null
+            ) {
+                $result = $this->model->register($_POST);
+                if ($result) {
+                    $user = $this->model->getById($result);
+                    $user = Mail::send($user['email'], $this->subject, $user, $this->template, $_POST);
+                    Session::set('login', $user['login']);
+                    Session::set('email', $user['email']);
+                    Session::set('role', $user['role']);
+                    Session::setFlash('Регистрация успешно завершена!');
+                    Router::redirect('/');
+                } else {
+                    Session::setFlash('Ошибка при регистрации!');
+                    Router::redirect('/users/login/');
+                }
             }
         }
     }
@@ -107,14 +88,14 @@ class UsersController extends Controller{
         }
 
     public function password(){
-        $params = (int)Session::get('id');
+        $user = (int)Session::get('id');
 
         if($_POST){
             if (isset($params) &&
                 isset($_POST['password']) && $_POST['password'] != null &&
                 isset($_POST['repeat']) && $_POST['repeat'] != null){
                 if ($_POST['password'] == $_POST['repeat']) {
-                    $this->model->password($_POST, $params);
+                    $this->model->password($_POST, $user);
                     Session::setFlash('Пароль успешно изменен!');
                     Router::redirect('/users/profile');
                 } else {

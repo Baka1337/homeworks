@@ -1,5 +1,5 @@
 function confirmDelete(){
-    if ( confirm("Delete this item?") ){
+    if ( confirm("Удалить этот пункт?") ){
         return true;
     } else {
         return false;

@@ -15,6 +15,11 @@ class Products extends Model {
         return $this->db->query($sql);
     }
 
+    public function getBestsellers(){
+        $sql = "select * from {$this->table} where bestseller = 1";
+        return $this->db->query($sql);
+    }
+
     public function getCount(){
         $sql = "select count(*) as count from {$this->table}";
         $result = $this->db->query($sql);
@@ -31,6 +36,13 @@ class Products extends Model {
     public function getByAlias($alias){
         $alias = $this->db->escape($alias);
         $sql = "select * from {$this->table} where alias = '{$alias}' limit 1";
+        $result = $this->db->query($sql);
+        return isset($result[0]) ? $result[0] : null;
+    }
+
+    public function cart($id){
+        $id = (int)$id;
+        $sql = "select id, name, alias, price, img from {$this->table} where id = '{$id}' limit 1";
         $result = $this->db->query($sql);
         return isset($result[0]) ? $result[0] : null;
     }
@@ -124,13 +136,12 @@ class Products extends Model {
 
     public function search($search){
         $search = $this->db->escape($search);
-        $sql = "select * from {$this->table} where name like '%{$search}%' ";
+        $sql = "select goods.*, category.name as cat_name from {$this->table} 
+                        join category on (goods.category_id = category.id)
+                        where goods.name like '%{$search}%' 
+                        or category.name like '%{$search}%' 
+                        order by goods.id asc";
         return $this->db->query($sql);
     }
 
-    public function searchCount($search){
-        $search = $this->db->escape($search);
-        $sql = "select count(*) as count from {$this->table} where name like '%{$search}%' ";
-        return $this->db->query($sql);
-    }
 }

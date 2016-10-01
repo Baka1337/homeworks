@@ -10,53 +10,40 @@ class CartController extends Controller{
     }
 
     public function index(){
-        $quantity = null;
-        $product = null;
-        if ($_POST) {
-            $quantity = (int)$_POST['quantity'];
-            $product = (int)$_POST['product'];
-        }
 
         $this->data['cart'] = $this->cart->getProducts();
 
-        if(isset($this->data['cart'])) {
+        if ($_POST) {
+            $quantity = (int)$_POST['quantity'];
+            $product = (int)$_POST['product'];
+
             if (Cookie::get('products')) {
                 $this->data['cart'] = unserialize(Cookie::get('products'));
-            } else {
+
                 foreach ($this->data['cart'] as $key => $value) {
-                    $this->data['cart'][$key]['quantity'] = 1;
+                    if ($value['id'] == $product) {
+                        $this->data['cart'][$key]['quantity'] = $quantity;
+                    }
                 }
                 Cookie::set('products', serialize($this->data['cart']));
             }
-            foreach ($this->data['cart'] as $key => $value) {
-                if ($value['id'] == $product) {
-                    $this->data['cart'][$key]['quantity'] = $quantity;
-                }
-            }
-            Cookie::set('products', serialize($this->data['cart']));
-        }
-        if ($this->cart->isEmpty()) {
-            Session::setFlash('Корзина пуста');
+
         }
     }
 
     public function add(){
         if(isset($this->params[0])) {
             $id = (int)$this->params[0];
-            $product = $this->model->getById($id);
-            $result = $this->cart->addProduct($product);
-            if($result) {
-                Session::setFlash('Товар добавлен в корзину');
-            }else{
-                Session::setFlash('Ошибка!');
-            }
+            $product = $this->model->cart($id);
+            $product['quantity'] = 1;
+            $this->cart->addProduct($product);
         }
-        Router::redirect('/cart/');
+        Router::redirect('/cart');
     }
 
     public function clear(){
         $this->cart->clear();
-        Router::redirect('/cart/');
+        Router::redirect('/cart');
     }
 
     public function delete(){

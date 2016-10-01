@@ -41,7 +41,7 @@
                         <li><a href="/users/logout">Выйти</a></li>
                     </ul>
             </ul>
-            <form action="/admin/catalog/search" method="post" class="navbar-form navbar-right">
+            <form action="/admin/product/search" method="post" class="navbar-form navbar-right">
                 <input type="text" name="search" id="search" class="form-control" placeholder="Искать..." vk_1d1aa="subscribed" vk_12850="subscribed" vk_11ab7="subscribed" vk_1bbbf="subscribed" vk_1230b="subscribed" vk_14e5b="subscribed" vk_13f55="subscribed" vk_14848="subscribed" vk_18867="subscribed" vk_1e5ac="subscribed" vk_172ee="subscribed" vk_1aca7="subscribed" vk_100b1="subscribed" vk_187bc="subscribed" vk_19ee8="subscribed">
             </form>
         </div>
@@ -64,6 +64,12 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Панель управления</h1>
             <div class="row placeholders text-center">
+                <?php if( Session::hasFlash() ){ ?>
+                <div class="alert alert-info" role="alert">
+                    <?php Session::flash(); ?>
+                </div>
+                <?php } ?>
+
                 <?=$data['content']?>
     </div>
 </div>

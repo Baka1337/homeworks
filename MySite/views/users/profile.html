@@ -20,11 +20,6 @@
                             <input id="name" type="text" value="<?=$data['user']['name']?>" name="name">
 <!--                            <span class="alert">*</span>-->
 
-                             <br class="clearBoth">
-                             <label class="inputLabel" for="middlename">Отчество:</label>
-                             <input id="middlename" type="text" value="<?=$data['user']['middlename']?>" name="middlename">
-                             <!--                            <span class="alert">*</span>-->
-
                             <br class="clearBoth">
                             <label class="inputLabel" for="surname">Фамилия:</label>
                             <input id="surname" type="text" value="<?=$data['user']['surname']?>" name="surname">
@@ -74,7 +69,7 @@
                         <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                             <?php if (empty($data['orders'])) {?>
-                                Ваша корзина пуста.
+                                Вы еще ничего не завазали.
                             <?php }else {?>
                             <tr class="cartTableHeading">
                                 <th id="ccProductsHeading" scope="col"># заказа</th>
@@ -100,7 +95,9 @@
 
                     </fieldset>
                     <?php }else{ ?>
-                        Профиль могут просматривать только зарегистрированые или авторизованые пользователи!
+                        <?=Session::setFlash('Профиль пользователя могут просматривать только зарегистрированые или авторизованые пользователи!');
+                           Router::redirect('/users/login')
+                        ?>
                 <?php }?>
                 </div>
                 <div class="clear"></div>
@@ -111,32 +108,7 @@
 
                 <?php include (VIEWS_PATH.DS.'helper'.DS.'menu.html')?>
 
-                <div id="bestsellers" class="box" style="width:220px;">
-                    <div class="box-head"> Bestsellers </div>
-                    <div class="box-body">
-                        <div id="bestsellersContent" class="sideBoxContent">
-                            <div class="wrapper">
-                                <ol>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=27" rel="images/27.jpg">SerendipiTea Iron Go...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=30" rel="images/30.jpg">SerendipiTea Yin Zhe...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=33" rel="images/33.jpg">Taylors of Harrogate...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=36" rel="images/36.jpg">Tazo Passion Herbal ...</a>
-                                    </li>
-                                    <li>
-                                        <a class="screenshot" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=product_info&products_id=39" rel="images/39.jpg">Tienxi Pu-Erh Tea Ca...</a>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php include (VIEWS_PATH.DS.'helper'.DS.'bestsellers.html')?>
             </div>
         </td>
     </tr>

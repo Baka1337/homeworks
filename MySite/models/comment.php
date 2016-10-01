@@ -16,7 +16,8 @@ class Comment extends Model {
     }
 
     public function getComments(){
-        $sql = "select * from {$this->table} order by dt desc";
+        $sql = "select comments.*, goods.name as good_name, goods.alias as good_alias from {$this->table} 
+                join goods on (goods.id = comments.product_id)order by dt desc";
         return $this->db->query($sql);
     }
 
@@ -35,14 +36,12 @@ class Comment extends Model {
         return $this->db->query($sql);
     }
 
-    public function add($product_id, $product_alias, $product_name, $data){
+    public function add($product_id, $data){
         if( !isset($data['name']) || !isset($data['message']) || !isset($data['email']) ){
             return null;
         }
 
         $product_id = (int)$product_id;
-        $product_name = $this->db->escape($product_name);
-        $product_alias = $this->db->escape($product_alias);
         $name = $this->db->escape($data['name']);
         $email = $this->db->escape($data['email']);
         $message = $this->db->escape($data['message']);
@@ -50,8 +49,6 @@ class Comment extends Model {
         $sql = "
             insert into {$this->table} 
             set product_id = {$product_id},
-                product_name = '{$product_name}',
-                product_alias = '{$product_alias}',
                 name = '{$name}',
                 email = '{$email}',
                 message = '{$message}'

@@ -17,17 +17,18 @@
         </tr>
         </thead>
 
-        <?php foreach($data as $comment) { ?>
         <tbody>
+        <?php foreach($data as $comment) { ?>
         <tr>
             <td><?=$comment['id']?></td>
             <td><?=$comment['name']?></td>
             <td><?=$comment['email']?></td>
-            <td><a href="/product/view/<?=$comment['product_alias']?>"><?=$comment['product_name']?></a></td>
+            <td><a href="/product/view/<?=$comment['good_alias']?>"><?=$comment['good_name']?></a></td>
             <td><?=$comment['dt']?></td>
             <td>
                 <a href="/admin/comments/edit/<?=$comment['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
-                <a href="/admin/comments/delete/<?=$comment['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a></td>
+                <a href="/admin/comments/delete/<?=$comment['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
+            </td>
             <?php }?>
         </tr>
         </tbody>

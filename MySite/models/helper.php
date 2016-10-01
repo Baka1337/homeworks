@@ -1,6 +1,6 @@
 <?php
 
-class Helper {
+class Helper extends Model {
 
     public static function translit($string) {
 
@@ -68,6 +68,12 @@ class Helper {
             $limit = ($page * (Config::get('items_per_page')) - Config::get('items_per_page'));
         }
         return $limit;
+    }
+
+    public static function getBestsellers(){
+        $bestseller_obj = new Products();
+        $bestsellers = $bestseller_obj->getBestsellers();
+        return $bestsellers;
     }
 
     public static function getTree(){

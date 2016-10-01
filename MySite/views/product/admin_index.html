@@ -44,17 +44,15 @@
 <div class="text-center col-lg-12 col-xs-6">
     <ul class="text-center pagination pagination-sm">
         <li class="page-item">
+            <?php foreach ($data['pagination']->buttons as $button) {
+                if ($button->isActive) { ?>
 
-        <?php foreach ($data['pagination']->buttons as $button) {
-        if ($button->isActive) { ?>
+                    <a class="page-link" href="/admin/?page=<?= $button->page ?>"><?= $button->text ?></a>
 
-        <a class="page-link" href="/admin/?page=<?= $button->page ?>"><?= $button->text ?></a>
-
-        <?php } else { ?>
-            <span style="color:#555555"><?= $button->text ?></span>
-        <?php }
-        } ?>
-
+                <?php } else { ?>
+                    <span style="color:#555555"><?= $button->text ?></span>
+                <?php }
+            }?>
         </li>
     </ul>
 </div>

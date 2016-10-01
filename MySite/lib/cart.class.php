@@ -13,7 +13,7 @@ class Cart {
     public function addProduct($product){
         if (!in_array($product, $this->products)) {
             $this->products[] = $product;
-            }
+        }
         Cookie::set('products', serialize($this->products));
     }
 

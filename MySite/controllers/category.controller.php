@@ -54,7 +54,7 @@ class CategoryController extends Controller{
     }
 
     public function  admin_add(){
-        if ($_POST) {
+        if ($_POST ) {
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->saveCategory($_POST, $id);
             if ($result) {
