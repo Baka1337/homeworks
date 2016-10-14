@@ -67,7 +67,7 @@
 
                         <h2 class="centerBoxHeading">Featured Products</h2>
                         <?php if (empty($data['goods'])):?>
-                        <h3>Товаров пока нет</h3>
+                        <h3>Товарів покищо немає</h3>
                         <?php else:?>
 
                         <?php $i= 0; foreach ($data['goods'] as $good):?>
@@ -81,7 +81,7 @@
                                         <div class="price">
                                             <strong><?=$good['price']?> грн.</strong>
                                         </div>
-                                        <div class="button"><a href="/product/view/<?=$good['alias']?>"><span class="cssButton button_goto_prod_details" onmouseover="this.className='cssButtonHover button_goto_prod_details button_goto_prod_detailsHover'" onmouseout="this.className='cssButton button_goto_prod_details'" style="width: 80px;" >&nbsp;Подробнее&nbsp;</span></a></div>
+                                        <div class="button"><a href="/product/view/<?=$good['alias']?>"><span class="cssButton button_goto_prod_details" onmouseover="this.className='cssButtonHover button_goto_prod_details button_goto_prod_detailsHover'" onmouseout="this.className='cssButton button_goto_prod_details'" style="width: 80px;" >&nbsp;Детальніше&nbsp;</span></a></div>
                                     </div>
                                 </div>
                             </div>

@@ -3,7 +3,7 @@
 class UsersController extends Controller{
 
     private $order;
-    private $subject = 'Регистрация на сайте: Чайный-магазин';
+    private $subject = 'Реєстрація на сайті: Чайний-магазин';
     private $template = 'mail.html';
 
     public function __construct($data = array()){
@@ -36,15 +36,10 @@ class UsersController extends Controller{
 
     public function register(){
         if ($_POST) {
-            if (isset($_POST['name']) && $_POST['name'] != null &&
-                isset($_POST['surname']) && $_POST['surname'] != null &&
-                isset($_POST['city']) && $_POST['city'] != null &&
-                isset($_POST['street']) && $_POST['street'] != null &&
-                isset($_POST['phone']) && $_POST['phone'] != null &&
-                isset($_POST['login']) && $_POST['login'] != null &&
-                isset($_POST['email']) && $_POST['email'] != null &&
-                isset($_POST['password']) && $_POST['password'] != null
-            ) {
+            if (isset($_POST['name']) && isset($_POST['surname']) &&
+                isset($_POST['city']) && isset($_POST['street']) &&
+                isset($_POST['phone']) && isset($_POST['login']) &&
+                isset($_POST['email']) && isset($_POST['password'])) {
                 $result = $this->model->register($_POST);
                 if ($result) {
                     $user = $this->model->getById($result);
@@ -52,10 +47,10 @@ class UsersController extends Controller{
                     Session::set('login', $user['login']);
                     Session::set('email', $user['email']);
                     Session::set('role', $user['role']);
-                    Session::setFlash('Регистрация успешно завершена!');
+                    Session::setFlash('Реєстрація успішно завершена!');
                     Router::redirect('/');
                 } else {
-                    Session::setFlash('Ошибка при регистрации!');
+                    Session::setFlash('Помилка при реєстрації!');
                     Router::redirect('/users/login/');
                 }
             }
@@ -63,26 +58,28 @@ class UsersController extends Controller{
     }
 
     public function profile(){
+        if (Session::has('login')){
         $user = (int)Session::get('id');
 
             if (isset($user)) {
                 $this->data['user'] = $this->model->getById($user);
                 $this->data['orders'] = $this->order->getOrdersListByUser($user);
             } else {
-                Session::setFlash('Ошибка, такого пользователя не существует!');
+                Session::setFlash('Помилка, такого користувача не існує!');
             }
-
+        } else {
+                Session::setFlash('Профіль користувача можуть переглядати тільки зареєстровані або авторизовані користувачі!');
+                Router::redirect('/users/login');
+        }
 
             if ($_POST) {
-                if (isset($_POST['name']) && $_POST['name'] != null &&
-                    isset($_POST['phone']) && $_POST['phone'] != null
-                ) {
+                if (isset($_POST['name']) && isset($_POST['phone'])) {
                     if ($this->model->update($_POST, $user)) {
-                        Session::setFlash('Информация изменена');
+                        Session::setFlash('Зміни збережені');
                         Router::redirect('/users/profile');
                     }
                 } else {
-                    Session::setFlash('Необходимо заполнить все поля!');
+                    Session::setFlash('Необхідно заповнити всі поля!');
                 }
             }
         }
@@ -91,19 +88,17 @@ class UsersController extends Controller{
         $user = (int)Session::get('id');
 
         if($_POST){
-            if (isset($params) &&
-                isset($_POST['password']) && $_POST['password'] != null &&
-                isset($_POST['repeat']) && $_POST['repeat'] != null){
+            if (isset($_POST['password']) && isset($_POST['repeat'])){
                 if ($_POST['password'] == $_POST['repeat']) {
                     $this->model->password($_POST, $user);
-                    Session::setFlash('Пароль успешно изменен!');
+                    Session::setFlash('Пароль успішно змінений!');
                     Router::redirect('/users/profile');
                 } else {
-                    Session::setFlash('Ошибка, пароли не совподают!');
+                    Session::setFlash('Помилка, паролі не співпадають!');
                     Router::redirect('/users/profile');
                 }
             } else {
-                Session::setFlash('Ошибка, Вы не заполнили все поля!');
+                Session::setFlash('Необхідно заповнити всі поля!');
             }
         }
     }
@@ -117,9 +112,9 @@ class UsersController extends Controller{
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->editUser($_POST, $id);
             if ( $result ){
-                Session::setFlash('Пользователь изменен');
+                Session::setFlash('Пароль успішно змінений!');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/users/');
         }
@@ -128,7 +123,7 @@ class UsersController extends Controller{
             $this->data = $this->model->getById($this->params[0]);
             $this->data['users'] = $this->model->getUsers();
         } else {
-            Session::setFlash('Неправильный id пользователя!');
+            Session::setFlash('Неправильний id користувача!');
             Router::redirect('/admin/users/');
         }
     }
@@ -137,9 +132,9 @@ class UsersController extends Controller{
         if ( isset($this->params[0]) ){
             $result = $this->model->delete($this->params[0]);
             if ( $result ){
-                Session::setFlash('Пользователь удален');
+                Session::setFlash('Користувач вилучений');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
         }
         Router::redirect('/admin/users/');

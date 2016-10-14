@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ua">
 <head>
     <title><?=Config::get('site_name')?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -78,7 +78,7 @@
                             <a href="/pages/view/about">
                                 <span class="corner"></span>
                                 <span>
-                            <span>О нас</span>
+                            <span>Про компанію</span>
                         </span>
                             </a>
                         </li>
@@ -87,7 +87,7 @@
                             <a href="/contacts/">
                                 <span class="corner"></span>
                                 <span>
-                            <span>Контакты</span>
+                            <span>Контакти</span>
                         </span>
                             </a>
                         </li>
@@ -99,28 +99,28 @@
             </div>
             <div class="navigation">
                 <!-- ========== NAVIGATION LINKS ========== -->
-                <a class="frst" href="/">Главная</a>
+                <a class="frst" href="/">Головна</a>
 
                 <?php if (Session::get('login')) {?>
                 <?php if (Session::get('role') == 'admin') {?>
-                <a href="/admin" target="_blank">Админ-панель</a>
+                <a href="/admin" target="_blank">Адмін-панель</a>
                 <?php }?>
-                <a href="/users/profile">Профиль</a>
-                <a href="/users/logout">Выйти (<?=Session::get('login')?>)</a>
+                <a href="/users/profile">Профіль</a>
+                <a href="/users/logout">Вийти (<?=Session::get('login')?>)</a>
                 <?php } else{ ?>
-                <a href="/users/login">Войти</a>
+                <a href="/users/login">Ввійти</a>
                 <?php }?>
 
                 <!-- ====================================== -->
             </div>
             <div class="cart">
                 <!-- ========== SHOPPING CART ========== -->
-                <a class="st1" href="/cart/"><span>В корзине</span></a>(<?=$data['cart_count']?>) шт.
+                <a class="st1" href="/cart/"><span>У кошику</span></a>(<?=$data['cart_count']?>) шт.
                 <!-- =================================== -->
             </div>
             <div id="head-search">
                 <!-- ========== SEARCH ========== -->
-                <span class="label">Поиск:</span>
+                <span class="label">Пошук:</span>
                 <form method="post" action="/product/search" method="post">
                     <div>
                         <input class="input1" name="search" size="18" maxlength="100" style="width: -30px" type="text">
@@ -175,7 +175,7 @@
                 </div>
                 <div><!-- {%FOOTER_LINK} --></div>
                 <div class="back_to_top">
-                    <a href="#"><span>&uarr;</span> Вверх</a>
+                    <a href="#"><span>&uarr;</span> Вгору</a>
                 </div>
             </div>
         </div>

@@ -5,15 +5,15 @@
             <div class="column-center-padding">
                 <div id="accountPassword" class="centerColumn">
                         <fieldset>
-                            <legend>Просмотр заказа</legend>
+                            <legend>Перегляд замовлення</legend>
                             <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
                                 <tbody>
                                 <?php $count = 0?>
                                 <tr class="cartTableHeading">
-                                    <th id="ccProductsHeading" scope="col"># заказа</th>
-                                    <th id="ccProductsHeading" scope="col">Наименование</th>
-                                    <th id="ccTotalHeading" scope="col">Цена</th>
-                                    <th id="ccTotalHeading" scope="col">Кол-во</th>
+                                    <th id="ccProductsHeading" scope="col"># замовлення</th>
+                                    <th id="ccProductsHeading" scope="col">Найменування</th>
+                                    <th id="ccTotalHeading" scope="col">Ціна</th>
+                                    <th id="ccTotalHeading" scope="col">Кількість</th>
                                 </tr>
                                 <?php foreach($data['order_details'] as $order) { ?>
                                 <tr class="rowEven">
@@ -27,7 +27,7 @@
                                 </tbody>
                             </table>
                             <br class="clearBoth">
-                            <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+                            <h3 style="float: right">Всьго: <?=$count?> грн.</h3>
                         </fieldset>
                 </div>
                 <div class="clear"></div>

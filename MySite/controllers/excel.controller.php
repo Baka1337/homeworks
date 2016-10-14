@@ -4,20 +4,16 @@ class ExcelController extends Controller{
 
     protected $excel;
 
-    public function __construct($data = array())
-    {
+    public function __construct($data = array()){
         parent::__construct($data);
         $this->model = new Products();
-        $this->excel = new Excels();
     }
 
-    public function index()
-    {
+    public function index(){
         Router::redirect('/');
     }
 
-    public function create()
-    {
+    public function create(){
         $this->data['products'] = $this->model->getList();
         $objPHPExcel = new PHPEXcel();
 
@@ -55,13 +51,13 @@ class ExcelController extends Controller{
 
         $active_sheet->mergeCells('A1:D1');
         $active_sheet->getRowDimension('1')->setRowHeight(40);
-        $active_sheet->setCellValue('A1', 'Интернет-магазин Чая');
+        $active_sheet->setCellValue('A1', 'Інтернет-магазин Чаю');
 
         $active_sheet->mergeCells('A2:D2');
-        $active_sheet->setCellValue('A2', 'Эксклюзивные сорта китайского чая с быстрой доставкой по Киеву и Украине!');
+        $active_sheet->setCellValue('A2', 'Ексклюзивні сорти китайського чаю з швидкою доставкою по Києву та Україні!');
 
         $active_sheet->mergeCells('A4:C4');
-        $active_sheet->setCellValue('A4', 'Дата создания прайслиста');
+        $active_sheet->setCellValue('A4', 'Дата створення прайс листа');
 
         $date = date('d-m-Y');
         $active_sheet->setCellValue('D4', $date);
@@ -70,9 +66,8 @@ class ExcelController extends Controller{
             setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_XLSX14);
 
         $active_sheet->setCellValue('A6', '№');
-        $active_sheet->setCellValue('B6', 'Название');
-        $active_sheet->setCellValue('C6', 'Цена');
-        $active_sheet->setCellValue('D6', 'Описание');
+        $active_sheet->setCellValue('B6', 'Назва');
+        $active_sheet->setCellValue('C6', 'Ціна');
 
         $row_start = 7;
         $i = 0;
@@ -82,7 +77,6 @@ class ExcelController extends Controller{
             $active_sheet->setCellValue('A' . $row_next, $item['id']);
             $active_sheet->setCellValue('B' . $row_next, $item['name']);
             $active_sheet->setCellValue('C' . $row_next, $item['price'] . 'грн');
-            $active_sheet->setCellValue('D' . $row_next, strip_tags($item['description']));
 
             $i++;
         }
@@ -243,9 +237,5 @@ class ExcelController extends Controller{
         header("Content-Disposition:attachment;filename=list.xls");
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
         $objWriter->save('php://output');
-    }
-
-    public function admin_index(){
-
     }
 }

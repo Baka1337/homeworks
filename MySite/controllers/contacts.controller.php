@@ -2,7 +2,7 @@
 
 class ContactsController extends Controller{
 
-    protected $title = 'Контактная информация';
+    protected $title = 'Контакти';
 
     public function __construct($data = array()){
         parent::__construct($data);
@@ -11,14 +11,15 @@ class ContactsController extends Controller{
 
     public function index(){
         if($_POST) {
-            if(isset($_POST['name']) && $_POST['name'] != null &&
-                isset($_POST['email']) && $_POST['email'] != null &&
-                isset($_POST['message']) && $_POST['message'] != null) {
-                if($this->model->save($_POST)) {
-                    Session::setFlash('Сообщение отправлено');
+            if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message'])) {
+                if($_POST['code'] == Session::get('captcha')) {
+                    $this->model->save($_POST);
+                    Session::setFlash('Повідомлення відправлено');
+                } else {
+                    Session::setFlash('Невірно введений код');
                 }
             }else{
-                Session::setFlash('Необходимо заполнить все поля!');
+                Session::setFlash('Необхідно заповнити всі поля!');
             }
         }
         $this->data['title'] = $this->title;
@@ -32,9 +33,9 @@ class ContactsController extends Controller{
         if (isset($this->params[0])) {
             $result = $this->model->delete($this->params[0]);
             if ($result) {
-                Session::setFlash('Сообщение удалено');
+                Session::setFlash('Повідомлення видлено');
         } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
         }
         Router::redirect('/admin/contacts/');

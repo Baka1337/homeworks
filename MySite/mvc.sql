@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Окт 01 2016 г., 10:23
+-- Время создания: Окт 15 2016 г., 00:09
 -- Версия сервера: 10.1.9-MariaDB
 -- Версия PHP: 5.6.15
 
@@ -74,7 +74,10 @@ INSERT INTO `comments` (`id`, `product_id`, `name`, `message`, `email`, `dt`, `s
 (13, 3, 'Игорь', 'test!', 'admin@your-site.com', '2016-08-15 13:16:15', 1),
 (14, 1, 'Игорь', '12345', 'admin@your-site.com', '2016-09-09 10:30:35', 1),
 (15, 1, 'test', 'test', 'testix@test.ru', '2016-09-13 16:51:07', 1),
-(20, 2, 'Дима', 'test!', 'testix@test.ru', '2016-09-30 21:31:48', 1);
+(20, 2, 'Дима', 'test!', 'testix@test.ru', '2016-09-30 21:31:48', 1),
+(21, 9, 'Дима', 'dsadasda', 'baka@mail.ua', '2016-10-02 22:03:26', 1),
+(22, 3, 'Дима', 'Советую!!!', 'admin@sada', '2016-10-03 14:16:36', 1),
+(23, 3, 'Ваня', 'Тест!', 'testix@test.ru', '2016-10-03 14:57:13', 1);
 
 -- --------------------------------------------------------
 
@@ -92,9 +95,9 @@ CREATE TABLE `delivery_types` (
 --
 
 INSERT INTO `delivery_types` (`id`, `title`) VALUES
-(1, 'Курьер'),
-(2, 'Новая почта'),
-(3, 'Самовывоз');
+(1, 'Кур''єр'),
+(2, 'Нова пошта'),
+(3, 'Самовивіз');
 
 -- --------------------------------------------------------
 
@@ -204,7 +207,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `date`, `name`, `surname`, `phone`, `payment_type`, `delivery_type`, `city`, `street`, `house`, `flat`, `status`) VALUES
-(1, 1, '2016-09-28 10:50:55', 'Игорь', 'Бакал', '(050)123-53-25', 1, 3, 'Киев', 'Урловская', '17', '50', 2);
+(1, 1, '2016-10-14 22:08:25', 'Игорь', 'Бакал', '(050)123-53-25', 1, 3, 'Киев', 'Урловская', '17', '50', 3),
+(2, 1, '2016-10-14 22:08:30', 'Игорь', 'Бакал', '(050)123-53-25', 1, 3, 'Киев', 'Урловская', '17', '50', 3),
+(3, 1, '2016-10-14 22:08:17', 'Игорь', 'Бакал', '(050)123-53-25', 3, 2, 'Киев', 'Урловская', '17', '51', 2);
 
 -- --------------------------------------------------------
 
@@ -230,7 +235,9 @@ INSERT INTO `order_details` (`id`, `user_id`, `order_id`, `goods_id`, `count`, `
 (2, 1, 1, 1, 1, '69.00'),
 (3, 1, 1, 9, 3, '66.00'),
 (4, 1, 1, 5, 1, '120.00'),
-(5, 1, 1, 4, 1, '102.00');
+(5, 1, 1, 4, 1, '102.00'),
+(6, 1, 2, 3, 1, '98.00'),
+(7, 1, 3, 3, 7, '98.00');
 
 -- --------------------------------------------------------
 
@@ -290,9 +297,9 @@ CREATE TABLE `payment_types` (
 --
 
 INSERT INTO `payment_types` (`id`, `title`) VALUES
-(1, 'Наличными'),
-(2, 'Безналичная оплата с НДС'),
-(3, 'Безналичный расчёту для физ. лиц-предпринимателей');
+(1, 'Готівкою'),
+(2, 'Безготівкова оплата з ПДВ'),
+(3, 'Безготівковий розрахунок для фіз. -осіб підприємців');
 
 -- --------------------------------------------------------
 
@@ -412,7 +419,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT для таблицы `delivery_types`
 --
@@ -422,7 +429,7 @@ ALTER TABLE `delivery_types`
 -- AUTO_INCREMENT для таблицы `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT для таблицы `messages`
 --
@@ -432,12 +439,12 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT для таблицы `order_statuses`
 --

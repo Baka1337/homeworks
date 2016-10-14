@@ -4,7 +4,7 @@ class OrdersController extends Controller{
 
     private $cart;
     private $user;
-    private $subject = 'Заказ на сайте: Чайный-магазин';
+    private $subject = 'Замовлення з сайту: Чайний-магазин';
     private $template = 'order.html';
 
     public function __construct($data = array()){
@@ -16,27 +16,33 @@ class OrdersController extends Controller{
 
     public function add(){
         if (Session::get('id')){
-            $id = Session::get('id');
+            $id = (int)Session::get('id');
             $this->data['user'] = $this->user->getById($id);
+        } else{
+            Session::setFlash('Для замовлення потрібно зареєструватися або увійти в обліковий запис');
+            Router::redirect('/users/login');
         }
 
         $this->data['order'] = $this->cart->getProducts();
 
-        if ($this->cart->isEmpty()){
-            Session::setFlash('Нету товаров.');
+        if (empty($this->data['order'])){
+            $this->cart->isEmpty();
+            Session::setFlash('Немає товарів у кошику');
+            Router::redirect('/cart');
         }
 
         if ($_POST){
-            if (isset($_POST['city'], $_POST['delivery'], $_POST['surname'], $_POST['name'], $_POST['phone'], $_POST['payment'])) {
+            if (isset($_POST['city']) && isset($_POST['delivery']) &&
+                isset($_POST['surname']) && isset($_POST['name']) &&
+                isset($_POST['phone']) && isset($_POST['payment'])) {
                 Mail::send($this->data['user']['email'], $this->subject, $this->data['order'], $this->template, $_POST);
                 $result = $this->model->add($_POST, $this->data['order']);
                 $this->cart->clear();
                 if($result) {
-                    Session::setFlash('Вы сделали заказ, ожидайте звонка менеджера');
-                    Router::redirect('/');
+                    Session::setFlash('Ви зробили замовлення, чекайте дзвінка менеджера');
                 }
             }else{
-                Session::setFlash('Необходимо заполнить все поля!');
+                Session::setFlash('Необхідно заповнити всі поля!');
             }
         }
     }

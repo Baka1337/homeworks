@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 class Mail extends Model{
 
@@ -13,7 +13,7 @@ class Mail extends Model{
         $mail->CharSet = 'UTF-8';
         $mail->Username = 'username';
         $mail->Password = 'password';
-        $mail->setFrom('admin@your-site.com', 'Чайный-магазин');
+        $mail->setFrom('admin@your-site.com', 'Чайний-магазин');
         $mail->Subject = $subject;
         $mail->addAddress($email);
 
@@ -23,11 +23,7 @@ class Mail extends Model{
 
         $mail->Body = $html;
         $mail->isHTML(true);
-        if(!$mail->send()) {
-            echo "Ошибка: " . $mail->ErrorInfo;
-        } else{
-            echo "Сообщение отправлено";
-        }
+
         $mail->clearAddresses();
     }
 }

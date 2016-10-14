@@ -6,22 +6,21 @@
                 <div id="accountEditDefault" class="centerColumn">
                     <form action="" method="post">
                         <fieldset>
-                            <?php if (Session::get('login')) {?>
-                            <legend>Мой профиль</legend>
+                            <legend>Мій профіль</legend>
                             <ul>
-                            <li><a href="/users/password">Изменить пароль</a></li>
+                            <li><a href="/users/password">Змінити пароль</a></li>
                             </ul>
 <!--                            <div class="alert forward">* Обязательное поле</div>-->
                             <br class="clearBoth">
                          <fieldset>
-                            <legend>Персональная информация</legend>
+                            <legend>Персональна інформація</legend>
 
-                            <label class="inputLabel" for="name">Имя:</label>
+                            <label class="inputLabel" for="name">Ім'я:</label>
                             <input id="name" type="text" value="<?=$data['user']['name']?>" name="name">
 <!--                            <span class="alert">*</span>-->
 
                             <br class="clearBoth">
-                            <label class="inputLabel" for="surname">Фамилия:</label>
+                            <label class="inputLabel" for="surname">Прізвище:</label>
                             <input id="surname" type="text" value="<?=$data['user']['surname']?>" name="surname">
 <!--                            <span class="alert">*</span>-->
                         </fieldset>
@@ -39,41 +38,41 @@
                         </fieldset>
 
                          <fieldset>
-                             <legend>Адрес</legend>
+                             <legend>Адреса</legend>
 
-                             <label class="inputLabel" for="city">Город:</label>
+                             <label class="inputLabel" for="city">Місто:</label>
                              <input id="city" type="text" value="<?=$data['user']['city']?>" name="city">
 <!--                             <span class="alert">*</span>-->
 
                              <br class="clearBoth">
-                             <label class="inputLabel" for="street">Улица:</label>
+                             <label class="inputLabel" for="street">Вулиця:</label>
                              <input id="street" type="text" value="<?=$data['user']['street']?>" name="street">
 
                              <br class="clearBoth">
-                             <label class="inputLabel" for="house">№ дома:</label>
+                             <label class="inputLabel" for="house">№ дому:</label>
                              <input id="house" type="text" value="<?=$data['user']['house']?>" name="house">
 
                              <br class="clearBoth">
-                             <label class="inputLabel" for="flat">№ Квартиры:</label>
+                             <label class="inputLabel" for="flat">№ Квартири:</label>
                              <input id="flat" type="text" value="<?=$data['user']['flat']?>" name="flat">
                          </fieldset>
                             <div class="buttonRow back">
-                                <input class="cssButton button_update" type="submit" style="width: 80px;" value="Изменить" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">
+                                <input class="cssButton button_update" type="submit" style="width: 80px;" value="Змінити" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">
                             </div>
                         </fieldset>
                     </form>
 
                     <fieldset>
-                        <legend>Мои заказы</legend>
+                        <legend>Мої замовлення</legend>
 
                         <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                             <?php if (empty($data['orders'])) {?>
-                                Вы еще ничего не завазали.
+                                Ви ще нічого не замовили.
                             <?php }else {?>
                             <tr class="cartTableHeading">
-                                <th id="ccProductsHeading" scope="col"># заказа</th>
-                                <th id="ccProductsHeading" scope="col">Дата заказа</th>
+                                <th id="ccProductsHeading" scope="col"># замовлення</th>
+                                <th id="ccProductsHeading" scope="col">Дата замовлення</th>
                                 <th id="ccTotalHeading" scope="col">Статус</th>
                                 <th id="ccTotalHeading" scope="col"></th>
                             </tr>
@@ -85,7 +84,7 @@
                                     <?=$order['o_status']?>
                                 </td>
                                 <td class="cartProductDisplay">
-                                    <a href="/orders/details/<?=$order['id']?>"><button class="cssButton button_update" style="width: 80px;" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Подробно</button></a>
+                                    <a href="/orders/details/<?=$order['id']?>"><button class="cssButton button_update" style="width: 80px;" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Детально</button></a>
                                 </td>
                                 <?php }?>
                                 <?php }?>
@@ -94,11 +93,6 @@
                         </table>
 
                     </fieldset>
-                    <?php }else{ ?>
-                        <?=Session::setFlash('Профиль пользователя могут просматривать только зарегистрированые или авторизованые пользователи!');
-                           Router::redirect('/users/login')
-                        ?>
-                <?php }?>
                 </div>
                 <div class="clear"></div>
             </div>

@@ -22,10 +22,14 @@ class Session{
     }
 
     public static function get($key){
-        if ( isset($_SESSION[$key]) ){
+        if (self::has($key)) {
             return $_SESSION[$key];
         }
         return null;
+    }
+
+    public static function has($key){
+        return isset($_SESSION[$key]);
     }
 
     public static function delete($key){

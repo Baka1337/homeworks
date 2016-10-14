@@ -4,32 +4,32 @@
         <td id="column-center" valign="top">
             <div class="column-center-padding">
                 <div id="loginDefault" class="centerColumn">
-                    <h1 id="loginDefaultHeading">Корзина</h1>
+                    <h1 id="loginDefaultHeading">Кошик</h1>
                     <div class="tie">
                         <div class="tie-indent">
                             <?php $count=0;?>
                             <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
                                 <tbody>
                                 <?php if (empty($data['cart'])){?>
-                                    <span class="cart-text">Ваша корзина пока пуста. Нажмите <a href="/">сюда</a>, чтобы вернуться к покупкам.</span>
+                                    <span class="cart-text">Ваш кошик порожній. натисніть <a href="/">сюди</a>, щоб повернутися до покупок.</span>
                                 <?php }else {?>
                                 <tr class="cartTableHeading">
-                                    <th id="ccProductsHeading" scope="col">Название</th>
-                                    <th id="ccProductsHeading" scope="col">Количество</th>
-                                    <th id="ccTotalHeading" scope="col">Цена за 100 грамм</th>
-                                    <th id="ccTotalHeading" scope="col">Цена</th>
+                                    <th id="ccProductsHeading" scope="col">Назва</th>
+                                    <th id="ccProductsHeading" scope="col">Кількість</th>
+                                    <th id="ccTotalHeading" scope="col">Ціна за 100 грам</th>
+                                    <th id="ccTotalHeading" scope="col">Ціна</th>
                                     <th id="ccTotalHeading" scope="col"></th>
                                 </tr>
                                 <?php foreach ($data['cart'] as $product) {?>
                                 <tr class="rowEven">
                                     <td class="cartProductDisplay"><a href="/product/view/<?=$product['alias']?>"><?=$product['name']?></a></td>
                                     <td class="cartProductDisplay">
-                                        <form action="/cart/" method="post" style="clear: both">
-                                            <input type="hidden" name="product" value="<?=$product['id']?>"/>
-                                            <input type="number" id="quantity" name="quantity" step="1" min="1" style="width: 50px" value="<?=$product['quantity']?>" /> x 100 гр.
-                                            <input type="submit" value="Пересчитать">
-                                            <?php $count = $count + $product['quantity'] * $product['price'];?>
-                                        </form>
+                                    <form action="/cart/" method="post" style="clear: both">
+                                         <input type="hidden" name="product" value="<?=$product['id']?>"/>
+                                         <input type="number" id="quantity" name="quantity" step="1" min="1" style="width: 50px" value="<?=$product['quantity']?>" /> x 100 гр.
+                                         <input type="submit" value="Пересчитать">
+                                         <?php $count = $count + $product['quantity'] * $product['price'];?>
+                                    </form>
                                     </td>
                                     <td class="cartProductDisplay">
                                         <?=$product['price']?> грн.
@@ -38,22 +38,22 @@
                                         <?=$product['quantity'] * $product['price']?> грн.
                                     </td>
                                     <td class="cartProductDisplay">
-                                        <a href="/cart/delete/<?=$product['id']?>"><button class="cssButton button_update" style="width: 80px;" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Удалить</button></a>
+                                        <a href="/cart/delete/<?=$product['id']?>"><button class="cssButton button_update" style="width: 80px;" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Видалити</button></a>
                                     </td>
                                 </tr>
                                 </tbody>
                                 <?php }
                                 } ?>
                             </table>
-                            <h3 style="float: right">Итого: <?=$count?> грн.</h3>
+                            <h3 style="float: right">Всьго: <?=$count?> грн.</h3>
 
                             <br class="clearBoth">
                                 <div class="buttonRow back">
-                                    <a href="/orders/add/"><button class="cssButton button_update" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Оформить заказ</button></a>
+                                    <a href="/orders/add/"><button class="cssButton button_update" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Оформити замовлення</button></a>
                                 </div>
 
                             <div class="buttonRow forward">
-                                <a href="/cart/clear/"><button class="cssButton button_update" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Очистить корзину</button></a>
+                                <a href="/cart/clear/"><button class="cssButton button_update" onmouseout="this.className='cssButton button_update'" onmouseover="this.className='cssButtonHover button_update button_updateHover'">Очистити кошик</button></a>
                             </div>
                                 <!--                                <div class="buttonRow back">-->
                                 <!--                                    <a class="forgot_pass" href="http://livedemo00.template-help.com/zencart_44395/index.php?main_page=password_forgotten">Forgot your password?</a>-->

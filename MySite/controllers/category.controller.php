@@ -58,9 +58,9 @@ class CategoryController extends Controller{
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->saveCategory($_POST, $id);
             if ($result) {
-                Session::setFlash('Категория создана');
+                Session::setFlash('Категорія створена');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/category');
         }
@@ -73,9 +73,9 @@ class CategoryController extends Controller{
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->saveCategory($_POST, $id);
             if ( $result ){
-                Session::setFlash('Изменения сохранены');
+                Session::setFlash('Зміни збережено');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/category');
         }
@@ -84,7 +84,7 @@ class CategoryController extends Controller{
             $this->data['category'] = $this->model->getCategoryById($this->params[0]);
             $this->data['categories_list'] = $this->model->getCategoriesList();
         } else {
-            Session::setFlash('Ошибка!');
+            Session::setFlash('Помилка!');
             Router::redirect('/admin/category/');
         }
     }
@@ -93,9 +93,9 @@ class CategoryController extends Controller{
         if ( isset($this->params[0]) ){
             $result = $this->model->delete($this->params[0]);
             if ( $result ){
-                Session::setFlash('Категория удалена');
+                Session::setFlash('Категорія видалена');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
         }
         Router::redirect('/admin/category');

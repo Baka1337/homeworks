@@ -3,7 +3,7 @@
 class ProductController extends Controller{
 
     private $category;
-    public $attachment;
+
     public function __construct($data = array()){
         parent::__construct($data);
         $this->model = new Products();
@@ -47,9 +47,9 @@ class ProductController extends Controller{
         if ( $_POST || $_FILES ){
             $result = $this->model->add($_POST,$_FILES);
             if ( $result ){
-                Session::setFlash('Товар сохраненен');
+                Session::setFlash('Товар збережено');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/product/');
         }
@@ -61,9 +61,9 @@ class ProductController extends Controller{
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->save($_POST, $_FILES);
             if ( $result ){
-                Session::setFlash('Товар сохранен');
+                Session::setFlash('Товар збережено');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/product/');
         }
@@ -73,7 +73,7 @@ class ProductController extends Controller{
             $this->data['goods']['category'] = $this->category->getCategoryById($this->params[0]);
             $this->data['categories_list'] = $this->category->getCategoriesList();
         } else {
-            Session::setFlash('Неправильный id товара!');
+            Session::setFlash('Неправильний ідентифікатор товару!');
             Router::redirect('/admin/product/');
         }
     }
@@ -82,9 +82,9 @@ class ProductController extends Controller{
         if ( isset($this->params[0]) ){
             $result = $this->model->delete($this->params[0]);
             if ( $result ){
-                Session::setFlash('Товар удален');
+                Session::setFlash('Товар вилучено');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Товар збережено!');
             }
         }
         Router::redirect('/admin/product/');
@@ -93,7 +93,7 @@ class ProductController extends Controller{
     public function search(){
         $this->data['goods'] = $this->model->search($_POST['search']);
         if (empty($this->data['goods'])){
-            Session::setFlash('Ничего не найдено.');
+            Session::setFlash('Нічого не знайдено');
         }
 
     }
@@ -103,4 +103,10 @@ class ProductController extends Controller{
         $this->data['categories_list'] = $this->category->getCategoriesList();
     }
 
+    public function captcha_index(){
+        $code = rand();
+        Session::set('captcha', $code);
+        $captcha = new Captcha($code);
+        $captcha->output();
+    }
 }

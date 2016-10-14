@@ -1,8 +1,8 @@
 <?php
 
-Config::set('site_name', 'Интернет-магазин чая');
-Config::set('keywords', 'Чай, китайский, купить, цена, Украина, Киев, интернет-магазин');
-Config::set('description', 'Заказывайте китайский чай по самым низким ценам в интернет-магазине. Эксклюзивные сорта китайского чая с быстрой доставкой по Киеву и Украине!');
+Config::set('site_name', 'Інтернет-магазин чаю');
+Config::set('keywords', 'Чай, китайський, купити, ціна, Україна, Київ, інтернет-магазин');
+Config::set('description', 'Замовляйте китайський чай по Найнижчим цінами в інтернет-магазині. Ексклюзивні сорти китайського чаю з швидкою доставкою по Києву та Україні!');
 
 Config::set('languages', array('en', 'fr', 'ua'));
 
@@ -10,6 +10,7 @@ Config::set('languages', array('en', 'fr', 'ua'));
 Config::set('routes', array(
     'default' => '',
     'admin'   => 'admin_',
+    'captcha' => 'captcha_',
 ));
 
 Config::set('default_route', 'default');

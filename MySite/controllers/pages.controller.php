@@ -24,9 +24,9 @@ class PagesController extends Controller{
         if ( $_POST ){
             $result = $this->model->save($_POST);
             if ( $result ){
-                Session::setFlash('Страница сохранена');
+                Session::setFlash('Сторінка збережена');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/pages/');
         }
@@ -38,9 +38,9 @@ class PagesController extends Controller{
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->save($_POST, $id);
             if ( $result ){
-                Session::setFlash('Страница сохранена');
+                Session::setFlash('Сторінка збережена');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/pages/');
         }
@@ -48,7 +48,7 @@ class PagesController extends Controller{
         if ( isset($this->params[0]) ){
             $this->data['page'] = $this->model->getById($this->params[0]);
         } else {
-            Session::setFlash('Неправильный id страницы!');
+            Session::setFlash('Неправильний ідентифікатор сторінки!');
             Router::redirect('/admin/pages/');
         }
     }
@@ -57,9 +57,9 @@ class PagesController extends Controller{
         if ( isset($this->params[0]) ){
             $result = $this->model->delete($this->params[0]);
             if ( $result ){
-                Session::setFlash('Страница удалена');
+                Session::setFlash('Сторінку вилучено');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
         }
         Router::redirect('/admin/pages/');

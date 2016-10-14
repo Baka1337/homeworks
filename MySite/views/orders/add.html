@@ -5,81 +5,76 @@
             <div class="column-center-padding">
                 <div id="loginDefault" class="centerColumn">
                     <?php $count=0;?>
-                    <?php if (Session::get('login')) {?>
-                    <?php } else {?>
-                        <?php Session::setFlash('Для заказа нужно зарегистрироватся или войти в аккаунт')?>
-                        <?=Router::redirect('/users/login')?>
-                    <?php }?>
-                    <h1 id="loginDefaultHeading">Оформление заказа</h1>
+                    <h1 id="loginDefaultHeading">Оформлення замовлення</h1>
                     <div class="tie">
                         <div class="tie-indent">
                             <form method="post" action="">
 
-                                    <div class="alert forward">* Обязательное поле</div>
+                                    <div class="alert forward">* Обов'язкове поле</div>
                                     <br class="clearBoth">
 
                                     <fieldset class="address">
-                                        <legend>Данные для заказа</legend>
-                                        <label class="inputLabel" for="name">Имя:</label>
-                                        <input id="name" type="text" maxlength="32" size="33" name="name" value="<?=$data['user']['name']?>">
+                                        <legend>Дані для замовлення</legend>
+                                        <label class="inputLabel" for="name">Ім'я:</label>
+                                        <input id="name" type="text" maxlength="32" size="33" name="name" value="<?=$data['user']['name']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
-                                        <label class="inputLabel" for="surname">Фамилия:</label>
-                                        <input id="surname" type="text" maxlength="32" size="33" name="surname" value="<?=$data['user']['surname']?>">
+                                        <label class="inputLabel" for="surname">Прізвище:</label>
+                                        <input id="surname" type="text" maxlength="32" size="33" name="surname" value="<?=$data['user']['surname']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
                                         <label class="inputLabel" for="phone">Телефон:</label>
-                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx" value="<?=$data['user']['phone']?>">
+                                        <input id="phone" type="text" maxlength="32" size="33" name="phone" placeholder="0xx xxx xx xx" value="<?=$data['user']['phone']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
-                                        <label class="inputLabel" for="city">Город:</label>
-                                        <input id="city" type="text" maxlength="32" size="33" name="city" value="<?=$data['user']['city']?>">
+                                        <label class="inputLabel" for="city">Місто:</label>
+                                        <input id="city" type="text" maxlength="32" size="33" name="city" value="<?=$data['user']['city']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
-                                        <label class="inputLabel" for="street">Улица:</label>
-                                        <input id="street" type="text" maxlength="32" size="33" name="street" value="<?=$data['user']['street']?>">
+                                        <label class="inputLabel" for="street">Вулиця:</label>
+                                        <input id="street" type="text" maxlength="32" size="33" name="street" value="<?=$data['user']['street']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
-                                        <label class="inputLabel" for="house">Дом:</label>
-                                        <input id="house" type="text" maxlength="32" size="33" name="house" value="<?=$data['user']['house']?>">
+                                        <label class="inputLabel" for="house">Будинок:</label>
+                                        <input id="house" type="text" maxlength="32" size="33" name="house" value="<?=$data['user']['house']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
-                                        <label class="inputLabel" for="flat">№ Квартиры:</label>
-                                        <input id="flat" type="text" maxlength="32" size="33" name="flat" value="<?=$data['user']['flat']?>">
+                                        <label class="inputLabel" for="flat">№ Квартири:</label>
+                                        <input id="flat" type="text" maxlength="32" size="33" name="flat" value="<?=$data['user']['flat']?>" required="required">
                                         <span class="alert">*</span>
 
                                         <br class="clearBoth">
                                     </fieldset>
 
                                 <fieldset class="address">
-                                    <legend>Способ доставки</legend>
+                                    <legend>Спосіб доставки</legend>
 
-                                    <input type="radio" name="delivery" value="3" /> Самовывоз из офиса (Киев) ул. Крещатик, 20/224, 3-й этаж, офис 315 — <b>бесплатно</b>
-
-                                    <br class="clearBoth">
-                                    <input type="radio" name="delivery" value="1" /> Курьером по Киеву — 35 грн <b>(Бесплатно от 600 грн.)</b>
+                                    <input type="radio" name="delivery" value="3" /> Самовивіз з офісу (Київ) вул. Хрещатик, 20/224, 3-й поверх, офіс 315 -<b>безкоштовно</b>
 
                                     <br class="clearBoth">
-                                    <input type="radio" name="delivery" value="2" /> На склад "Новой почты" в Киеве — 15 грн
+                                    <input type="radio" name="delivery" value="1" /> Кур'єром по Києву - 35 грн <b>(Безкоштовно від 600 грн.)</b>
+
+                                    <br class="clearBoth">
+                                    <input type="radio" name="delivery" value="2" /> На склад "Нової Пошти" в Києві - 15 грн
 
                                     <br class="clearBoth">
                                 </fieldset>
 
                                 <fieldset>
-                                    <legend>Ваш заказ</legend>
+                                    <legend>Ваше замовлення</legend>
 
                                     <table id="cartContentsDisplay" width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                         <tr class="cartTableHeading">
-                                            <th id="ccProductsHeading" scope="col">Название</th>
-                                            <th id="ccProductsHeading" scope="col">Количество</th>
-                                            <th id="ccTotalHeading" scope="col">Цена</th>
+                                            <th id="ccProductsHeading" scope="col">Назва</th>
+                                            <th id="ccProductsHeading" scope="col">Кількість</th>
+                                            <th id="ccTotalHeading" scope="col">Ціна</th>
                                         </tr>
                                         <?php foreach ($data['order'] as $order) {?>
                                         <tr class="rowEven">
@@ -92,22 +87,22 @@
                                         <?php }  ?>
                                     </table>
                                     <br class="clearBoth">
-                                    <h3 style="float: right">Итого к оплате: <?=$count?> грн.</h3>
+                                    <h3 style="float: right">Всього до сплати: <?=$count?> грн.</h3>
                                 </fieldset>
 
                                 <fieldset class="address">
-                                    <legend>Форма оплаты</legend>
+                                    <legend>Форма оплати</legend>
 
-                                    <input type="radio" name="payment" value="1"/> Наличными
-                                    Оплата при получении товара (только гривнами)<br/>
-                                    <input type="radio" name="payment" value="2" "/> Безналичная оплата с НДС<br/>
-                                    <input type="radio" name="payment" value="3" /> Оплата по безналичному расчёту для физ.лиц (физ. лиц-предпринимателей)<br/>
+                                    <input type="radio" name="payment" value="1"/> Готівкою
+                                    Оплата при отриманні товару (тільки гривнями)<br/>
+                                    <input type="radio" name="payment" value="2" "/> Безготівкова оплата з ПДВ<br/>
+                                    <input type="radio" name="payment" value="3" /> Оплата за безготівковим розрахунком для фіз.осіб (фіз. Осіб-підприємців)<br/>
 
                                     <br class="clearBoth">
                                 </fieldset>
 
                                 <div class="buttonRow">
-                                    <input class="cssButton button_submit" type="submit" style="width: 143px;" value="Заказать">
+                                    <input class="cssButton button_submit" type="submit" style="width: 143px;" value="Замовити">
                                 </div>
                             </form>
                             <div class="clear"></div>

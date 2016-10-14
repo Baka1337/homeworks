@@ -1,116 +1,49 @@
-<table width="100%" cellspacing="0" cellpadding="0" border="0" id="contentMainWrapper">
+<table id="contentMainWrapper" cellspacing="0" cellpadding="0" border="0" width="100%">
     <tbody>
     <tr>
-
-
-        <td valign="top" id="column-center">
-
+        <td id="column-center" valign="top">
             <div class="column-center-padding">
-
-                <!--content_center-->
-
                 <div id="productGeneral" class="centerColumn">
-                    <!--bof Product Name-->
-                    <h1 class="productGeneral" id="productName"><?=$data['goods']['name']?></h1>
-                    <!--eof Product Name-->
-
+                    <h1 id="productName" class="productGeneral"><?=$data['goods']['name']?></h1>
                     <div class="tie">
                         <div class="tie-indent">
-
-
                             <div class="page-content">
-
                                 <div class="wrapper">
-
-
-
-                                    <!--bof Category Icon -->
-
-
-                                    <!--bof Prev/Next top position -->
-                                    <!--eof Prev/Next top position-->
-
-                                    <div class="fleft">
-                                        <!--bof Main Product Image -->
-
-
-
-                                        <div class="centeredContent back" id="productMainImage">
-                                            <span class="image"><a href="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><img width="196" height="192" title="<?=$data['goods']['name']?>" alt="<?=$data['goods']['name']?>" src="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><span class="zoom"></span></a></span>
-
+                                        <div class="fleft">
+                                            <div id="productMainImage" class="centeredContent back">
+                                                <span class="image"><a href="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><img width="196" height="192" title="<?=$data['goods']['name']?>" alt="<?=$data['goods']['name']?>" src="<?=IMG_PATH_ASSET?><?=$data['goods']['img']?>"><span class="zoom"></span></a></span>
+                                            </div>
+                                            <div class="clear"></div>
                                         </div>
-                                        <!--eof Main Product Image-->
-                                        <div class="clear"></div>
-                                    </div>
+                                        <div class="fleft desc2">
+                                            <div class="name-type bot-border"><?=$data['goods']['name']?></div>
 
-                                    <div class="fleft desc2">
-                                        <!--bof free ship icon  -->
-                                        <!--eof free ship icon  -->
-                                        <div class="name-type bot-border"><?=$data['goods']['name']?> <?php if (Session::get('role') == 'admin') {?>
-                                                <a href="/admin/product/edit/<?=$data['goods']['id']?>" title="Редактировать товар"><i class="fa fa-pencil fa-lg" aria-hidden="true">
-                                                    </i></a>
-                                            <?php }?></div>
+                                            <h2 class="productPrices" id="productGeneral">
+                                                <span class="price-text">Ціна: &nbsp;</span>
+                                                <?=$data['goods']['price']?> грн. за 100 грам </h2>
 
-
-                                        <!--bof Product details list  -->
-                                        <!--                                            <ul class="instock">-->
-                                        <!--                                                <li><strong>Model: </strong>Model1</li>-->
-                                        <!--                                                <li><strong>Shipping Weight: </strong>2lbs</li>-->
-                                        <!--                                                <li><strong> Units in Stock: </strong>999</li>-->
-                                        <!--                                                <li><strong>Manufactured by: </strong>Example 1</li>-->
-                                        <!--                                            </ul>-->
-                                        <!--eof Product details list -->
-
-                                        <!--bof Product Price block -->
-                                        <h2 class="productGeneral" id="productPrices">
-                                            <span class="price-text">Цена: &nbsp;</span>
-                                            <?=$data['goods']['price']?> грн.  / 100 грамм </h2>
-                                        <!--eof Product Price block -->
-
-                                        <!--bof Add to Cart Box -->
-                                        <div id="cartAdd">
-                                            <strong class="fleft text2"><span class="buttonRow"><a href="/cart/add/<?=$data['goods']['id']?>"><button style="width: 80px;" onmouseout="this.className='cssButton button_in_cart'" onmouseover="this.className='cssButtonHover button_in_cart button_in_cartHover'" class="cssButton button_in_cart">Купить</button></a></span>
+                                            <div id="cartAdd">
+                                                <strong class="fleft text2">
+                                                    <span class="buttonRow"><a href="/cart/add/<?=$data['goods']['id']?>"><button style="width: 80px;" onmouseout="this.className='cssButton button_in_cart'" onmouseover="this.className='cssButtonHover button_in_cart button_in_cartHover'" class="cssButton button_in_cart">Придбати</button></a>
+                                                </strong>
+<!--                                                <span class="buttonRow"></span>-->
+                                            </div>
                                         </div>
-                                        <!--eof Add to Cart Box-->
-                                    </div>
-
-
-
-
-
-
-                                <!--bof Product description -->
-                                <div class="description biggerText" id="productDescription"><strong>Описание: </strong>
-                                    <br/>
+                                </div>
+                                <div id="productDescription" class="description biggerText">
+                                    <strong>Опис: </strong>
+                                    <br>
                                     <?=$data['goods']['description']?>
                                 </div>
-                                <!--eof Product description -->
-
-
-
-
-
-                                <!--bof Attributes Module -->
-                                <!--eof Attributes Module -->
-
-                                <!--bof Quantity Discounts table -->
-                                <!--eof Quantity Discounts table -->
-
-                                <!--bof Additional Product Images -->
-                                <!--eof Additional Product Images -->
-
                                 <div class="wrapper bot-border">
-
-
-
                                 </div>
-
                                 <div class="text2">
-
-                                    <p class="reviewCount"><strong>Отзывов: (<?=count($data['comments'])?>)</strong></p>
-                                    <br/>
+                                    <p class="reviewCount">
+                                        <strong>Відгуків: (<?=count($data['comments'])?>)</strong>
+                                    </p>
+                                    <br>
                                     <?php if (empty($data['comments'])){?>
-                                        <h3>Отзывов нет, оставьте первый!</h3>
+                                        <h3>Відгуків поки що немає, залиште перший!</h3>
                                     <?php }else { ?>
                                         <?php foreach ($data['comments'] as $comment) { ?>
                                             <div id="contactUsNoticeContent" class="content">
@@ -124,61 +57,43 @@
                                     <br/>
                                     <form id="comment_form" method="post" action="/comments/add/<?=$data['goods']['alias']?>">
                                         <fieldset id="contactUsForm">
-                                            <legend>Оставить отзыв</legend>
-                                            <div class="alert alignright">* Обьязательное поле</div>
+                                            <legend>Залишити відгук</legend>
+                                            <div class="alert alignright">* Обов'язкове поле</div>
                                             <label class="inputLabel" for="name">
-                                                Имя
+                                                Ім'я:
                                                 <span class="alert">*</span>
                                             </label>
-                                            <input id="name" type="text" size="40" name="name">
+                                            <input id="name" type="text" size="40" name="name" required="required">
                                             <br class="clearBoth">
                                             <label class="inputLabel" for="email">
-                                                Эл. почта:
+                                                E-mail:
                                                 <span class="alert">*</span>
                                             </label>
-                                            <input id="email" type="text" size="40" name="email">
+                                            <input id="email" type="text" size="40" name="email" required="required">
                                             <br class="clearBoth">
                                             <label class="inputLabel" for="message">
-                                                Сообщение:
+                                                Коментар:
                                                 <span class="alert">*</span>
                                             </label>
-                                            <textarea id="message" rows="7" cols="20" name="message"></textarea>
+                                            <textarea id="message" rows="7" cols="20" name="message" required="required"></textarea>
                                             <br/>
-                                            <input class="cssButton button_send" type="submit" style="width: 80px; margin-left: 12px" value="Добавить">
+                                            <label class="inputLabel" for="code">
+                                                Перевірочний код:
+                                                <span class="alert">*</span>
+                                            </label>
+                                            <img src="/captcha">
+                                            <input id="code" type="text" size="40" name="code" required="required">
+                                            <br class="clearBoth">
+                                            <input class="cssButton button_send" type="submit" style="width: 80px; margin-left: 12px" value="Додати">
                                         </fieldset>
                                     </form>
-
-                                    <!--bof Product URL -->
-                                    <!--eof Product URL -->
-
                                 </div>
-                                </div>
-
-                                <!--bof also purchased products module-->
-
-                                <!--eof also purchased products module-->
-
-                                <!--bof Form close-->
-
-                                <!--bof Form close-->
-
-
                             </div>
-
                         </div>
                     </div>
-
+                    <div class="clear"></div>
                 </div>
-
-                <div class="clear"></div>
-
-                <!--eof content_center-->
-
-            </div>
-
         </td>
-
-
         <td style="width:220px" id="column_right">
 
             <div style="width:220px;">

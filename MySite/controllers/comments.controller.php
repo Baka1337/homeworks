@@ -15,13 +15,16 @@ class CommentsController extends Controller{
             $alias = strtolower($this->params[0]);
             $product = $this->catalog->getByAlias($alias);
             if ($_POST) {
-                if (isset($_POST['name']) && $_POST['name'] != null &&
-                    isset($_POST['email']) && $_POST['email'] != null &&
-                    isset($_POST['message']) && $_POST['message'] != null
-                ) {
-                    $product_id = $product['id'];
-                    $comments_model = new Comment();
-                    $comments_model->add($product_id, $_POST);
+                if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message'])) {
+                    if ($_POST['code'] == Session::get('captcha')) {
+                        $product_id = $product['id'];
+                        $comments_model = new Comment();
+                        $comments_model->add($product_id, $_POST);
+                    } else {
+                        Session::setFlash('Невірно введений код');
+                    }
+                } else {
+                    Session::setFlash('Необхідно заповнити всі поля');
                 }
             }
         }
@@ -37,9 +40,9 @@ class CommentsController extends Controller{
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             $result = $this->model->edit($_POST, $id);
             if ($result) {
-                Session::setFlash('Изменения сохранены');
+                Session::setFlash('Зміни збережені');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
             Router::redirect('/admin/comments/');
         }
@@ -53,9 +56,9 @@ class CommentsController extends Controller{
         if (isset($this->params[0])) {
             $result = $this->model->delete($this->params[0]);
             if ($result) {
-                Session::setFlash('Комментарий удален');
+                Session::setFlash('Коментар видалено');
             } else {
-                Session::setFlash('Ошибка!');
+                Session::setFlash('Помилка!');
             }
         }
         Router::redirect('/admin/comments/');
